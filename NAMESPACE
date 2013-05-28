@@ -1,0 +1,5 @@
+export(read.sym.table, generate.sym.table, write.sym.table, display.sym.table, sym.var, sym.obj, sym.mean, sym.median, sym.variance, sym.sd, sym.cov, sym.cor, sym.scatterplot, sym.scatterplot.ggplot, sym.scatterplot3d, sym.lm, sym.interval.pca, plotX.slice, sym.circle.plot, interval.dist.tobj, interval.dist, sym.hclust, sym.kmeans, downarrow.matrix, rightarrow.matrix, sym.histogram.pca, sym.mds)
+importFrom(ggplot2)
+importFrom(scales)
+importFrom(scatterplot3d)
+importFrom(FactoMineR)

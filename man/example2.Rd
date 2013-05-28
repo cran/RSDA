@@ -1,0 +1,28 @@
+\name{example2}
+\alias{example2}
+\docType{data}
+\title{
+Data Example 2
+}
+\description{
+This a symbolic data matrix wint continuos, interval, histograma a set data types.
+}
+\usage{data(example2)}
+\format{
+$C   F1 $I F2 F2 $H F3  M1  M2  M3 $C   F4 $S F5 E1 E2 E3 E4
+
+Case1 $C  2.8 $I  1  2 $H  3 0.1 0.7 0.2 $C  6.0 $S  4  e  g  k  i
+
+Case2 $C  1.4 $I  3  9 $H  3 0.6 0.3 0.1 $C  8.0 $S  4  a  b  c  d
+
+Case3 $C  3.2 $I -1  4 $H  3 0.2 0.2 0.6 $C -7.0 $S  4  2  1  b  c
+
+Case4 $C -2.1 $I  0  2 $H  3 0.9 0.0 0.1 $C  0.0 $S  4  3  4  c  a
+
+Case5 $C -3.0 $I -4 -2 $H  3 0.6 0.0 0.4 $C -9.5 $S  4  e  i  g  k
+}
+\examples{
+data(example2)
+display.sym.table(example2)
+}
+\keyword{datasets}

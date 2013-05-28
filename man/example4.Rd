@@ -1,0 +1,32 @@
+\name{example4}
+\alias{example4}
+\docType{data}
+\title{
+Data Example 4
+}
+\description{
+data(example4)
+display.sym.table(example4)
+}
+\usage{data(example4)}
+\format{
+$C  2.8 $I  1  2 $H 3 0.1 0.7 0.2 $C    6 $S 4 e g k i $I      0     90
+
+Case2 $C  1.4 $I  3  9 $H 3 0.6 0.3 0.1 $C  8.0 $S 4 a b c d $I -90.00  98.00
+
+Case3 $C  3.2 $I -1  4 $H 3 0.2 0.2 0.6 $C -7.0 $S 4 2 1 b c $I  65.00  90.00
+
+Case4 $C -2.1 $I  0  2 $H 3 0.9 0.0 0.1 $C  0.0 $S 4 3 4 c a $I  45.00  89.00
+
+Case5 $C -3.0 $I -4 -2 $H 3 0.6 0.0 0.4 $C -9.5 $S 4 e i g k $I  90.00 990.00
+
+Case6 $C  0.1 $I 10 21 $H 3 0.0 0.7 0.3 $C -1.0 $S 4 f t c a $I   5.00   8.00
+
+Case7 $C  9.0 $I  4 21 $H 3 0.2 0.2 0.6 $C  0.5 $S 4 e q r z $I   3.14   6.76
+}
+
+\examples{
+data(example4)
+display.sym.table(example4)
+}
+\keyword{datasets}
