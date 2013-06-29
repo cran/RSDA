@@ -8,8 +8,8 @@ Symbolic Covariance
 This function compute the symbolic covariance
 }
 \usage{
-sym.cov(sym.var.x, sym.var.y, 
-        method = c("centers", "interval", "billard", "histogram"), na.rm = FALSE, ...)
+sym.cov(sym.var.x, sym.var.y, method = c("centers", 
+              "interval", "billard", "histogram"), na.rm = FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

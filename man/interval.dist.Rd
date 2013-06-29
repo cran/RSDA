@@ -8,7 +8,7 @@ Interval Distance Matrix
 Compute a distance matrix from a symbolic interval data matrix.
 }
 \usage{
-interval.dist(sym.data, distance = c("hausdorff", "centers"), p = 2)
+interval.dist(sym.data, distance = c("hausdorff", "centers", "interscal"), p = 2)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

@@ -1,50 +1,41 @@
 sym.lm <-
-function(sym.var.x,sym.var.y,method=c('mid-points','tops',
-                                              'inf-sup','billard')) {
-  method<-match.arg(method)
-  if(((sym.var.x$var.type!='$C')||(sym.var.y$var.type!='$C'))&&
-       ((sym.var.x$var.type!='$I')||(sym.var.y$var.type!='$I')))
-    stop("Impossible to use lm this type of variable")    
-  if(method=='mid-points') {
-    if((sym.var.x$var.type=='$C')&&(sym.var.y$var.type=='$C')) {
-      lm1<-lm(sym.var.y$var.data.vector~sym.var.x$var.data.vector)
+sym.lm<-function(formula,sym.data,method=c('cm','crm')) {
+    idn<-all(sym.data$sym.var.types==sym.data$sym.var.types[1])
+    if(idn==FALSE) 
+      stop("All variables have to be of the same type")    
+    method<-match.arg(method)
+    nn<-sym.data$N
+    mm<-sym.data$M  
+    if(method=='cm') {
+      centers<-matrix(0,nn,mm)
+      for(i in 1:nn) 
+        for(j in 1:mm)
+          centers[i,j]<-(sym.var(sym.data,j)$var.data.vector[i,1]+
+                           sym.var(sym.data,j)$var.data.vector[i,2])/2    
+      centers<-as.data.frame(centers)
+      colnames(centers)<-sym.data$sym.var.names
+      model<-lm(formula,data=centers)
+      return(model)
     }
-    if((sym.var.x$var.type=='$I')&&(sym.var.y$var.type=='$I')) {
-      vx<-(sym.var.x$var.data.vector[,1]+sym.var.x$var.data.vector[,2])/2
-      vy<-(sym.var.y$var.data.vector[,1]+sym.var.y$var.data.vector[,2])/2
-      lm1<-lm(vy~vx)
-    }
-    return(lm1)
+    if(method=='crm') {
+      # Center Model
+      centers<-matrix(0,nn,mm)
+      for(i in 1:nn) 
+        for(j in 1:mm)
+          centers[i,j]<-(sym.var(sym.data,j)$var.data.vector[i,1]+
+                           sym.var(sym.data,j)$var.data.vector[i,2])/2    
+      centers<-as.data.frame(centers)
+      colnames(centers)<-sym.data$sym.var.names
+      modelc<-lm(formula,data=centers)
+      # Range Model    
+      range<-matrix(0,nn,mm)
+      for(i in 1:nn) 
+        for(j in 1:mm)
+          range[i,j]<-(sym.var(sym.data,j)$var.data.vector[i,2]-
+                         sym.var(sym.data,j)$var.data.vector[i,1])/2    
+      range<-as.data.frame(range)
+      colnames(range)<-sym.data$sym.var.names
+      modelr<-lm(formula,data=range)
+      return(list(CenterModel=modelc,RangeModel=modelr))
+    }  
   }
-  if(method=='inf-sup') {
-    if((sym.var.x$var.type=='$I')&&(sym.var.y$var.type=='$I')) {
-      vx<-sym.var.x$var.data.vector[,2]
-      vy<-sym.var.y$var.data.vector[,1]
-      lm1<-lm(vy~vx)
-      vx<-sym.var.x$var.data.vector[,1]
-      vy<-sym.var.y$var.data.vector[,2]
-      lm2<-lm(vy~vx)
-      
-    }
-    return(list(inf=lm1,sup=lm2))
-  }  
-  if(method=='tops') {
-    if((sym.var.x$var.type=='$I')&&(sym.var.y$var.type=='$I')) {
-      vx<-c(sym.var.x$var.data.vector[,1],sym.var.x$var.data.vector[,1],
-            sym.var.x$var.data.vector[,2],sym.var.x$var.data.vector[,2])
-      vy<-c(sym.var.y$var.data.vector[,1],sym.var.y$var.data.vector[,2],
-            sym.var.y$var.data.vector[,1],sym.var.y$var.data.vector[,2])
-      lm1<-lm(vy~vx)  
-    }
-    return(lm1)
-  }    
-  if(method=='billard') {
-    if((sym.var.x$var.type=='$I')&&(sym.var.y$var.type=='$I')) {
-      vx<-sym.var.x
-      vy<-sym.var.y
-      beta1<-sym.cov(vx,vy,method='billard')/sym.variance(vx,method='billard')
-      intercept<-sym.mean(vy)-beta1*sym.mean(vx)
-    }
-    return(list(Intercept=intercept,Beta1=beta1))   
-  }
-}

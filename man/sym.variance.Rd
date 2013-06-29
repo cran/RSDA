@@ -8,8 +8,8 @@ Symbolic Variance
 Compute the symbolic variance
 }
 \usage{
-sym.variance(sym.var, method = 
-                   c("centers", "interval", "billard", "histogram"), na.rm = FALSE, ...)
+sym.variance(sym.var, method = c("centers", "interval", 
+                      "billard", "histogram"), na.rm = FALSE, ...)
 }
 \arguments{
   \item{sym.var}{

@@ -1,6 +1,5 @@
 \name{display.sym.table}
 \alias{display.sym.table}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 display.sym.table
 }

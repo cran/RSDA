@@ -1,80 +1,67 @@
 \name{sym.lm}
 \alias{sym.lm}
+
 \title{
-Symbolic Linear Regression
+CM and CRM Linear regression model
 }
 \description{
-The function build a symbolic regression for two interval or continuos variables.
+To execute the Center Method (CR) and Center and Range Method (CRM) to Linear regression
 }
 \usage{
-sym.lm(sym.var.x, sym.var.y, method = c("mid-points", "tops", "inf-sup", "billard"))
+sym.lm(formula, sym.data, method = c("cm", "crm"))
 }
+
 \arguments{
-  \item{sym.var.x}{
-The firth symbolic variable.
+  \item{formula}{
+An object of class "formula" (or one that can be coerced to that class): a symbolic description 
+of the model to be fitted.
 }
-  \item{sym.var.y}{
-The second symbolic variable.
+  \item{sym.data}{
+Should be a symbolic data table read with the function read.sym.table(...).
 }
   \item{method}{
-The thirth symbolic variable.
+"cm" to Center Method and "crm" to Center and Range Method.
 }
 }
-
+\details{
+Models for lm are specified symbolically. A typical model has the form response ~ 
+terms where response is the (numeric) response vector and terms is a series of 
+terms which specifies a linear predictor for response. A terms specification of 
+the form first + second indicates all the terms in first together with all the 
+terms in second with duplicates removed. A specification of the form first:second indicates 
+the set of terms obtained by taking the interactions of all terms in first with all terms 
+in second. The specification first*second indicates the cross of first and second. 
+This is the same as first + second + first:second.
+}
 \value{
-This function return a regression structure as folllows:
-
-$Intercept
-[1] 38.64236
-
-$Beta1
-[1] 0.3081313
+sym.lm returns an object of class "lm" or for multiple responses of class c("mlm", "lm")
 }
 \references{
-Billard L. and  Diday E. (2006).
-Symbolic data analysis: Conceptual statistics and data mining. Wiley, Chichester.
+LIMA-NETO, E.A., DE CARVALHO, F.A.T., (2008). Centre and range method
+to fitting a linear regression model on symbolic interval data. Computational
+Statistics and Data Analysis 52, 1500-1515.
 
-Rodriguez, O. (2000).
-Classification et Modeles Lineaires en Analyse des Donnees Symboliques. Ph.D. Thesis,
-Paris IX-Dauphine University.
+LIMA-NETO, E.A., DE CARVALHO, F.A.T., (2010). Constrained linear regression models 
+for symbolic interval-valued variables. Computational Statistics and
+Data Analysis 54, 333-347.
 }
 \author{
 Oldemar Rodriguez Rojas
 }
+
+\seealso{
+\code{\link{sym.glm}}
+}
 \examples{
-data(example3)
-sym.data<-example3
-lm.mod<-sym.lm(sym.var(sym.data,1),sym.var(sym.data,4))
-sym.scatterplot(sym.var(sym.data,1),sym.var(sym.data,4),col='blue',
-                main='Linear Regression')
-abline(lm.mod,lwd=3)
-
-lm.mod<-sym.lm(sym.var(sym.data,2),sym.var(sym.data,6))
-sym.scatterplot(sym.var(sym.data,2),sym.var(sym.data,6),
-col='blue',main='Linear Regression')
-abline(lm.mod,lwd=3)
-
-data(lynne1)
-lm.mod<-sym.lm(sym.var(lynne1,2),sym.var(lynne1,1))
-sym.scatterplot(sym.var(lynne1,2),sym.var(lynne1,1),labels=TRUE, 
-col='red',main='Linear Regression')
-abline(lm.mod,lwd=3,col='blue')
-
-lm.mod<-sym.lm(sym.var(lynne1,2),sym.var(lynne1,1),method='inf-sup')
-sym.scatterplot(sym.var(lynne1,2),sym.var(lynne1,1),labels=TRUE,
-col='red',main='Linear Regression')
-abline(lm.mod$inf,lwd=3,col='blue')
-abline(lm.mod$sup,lwd=3,col='blue')
-
-lm.mod<-sym.lm(sym.var(lynne1,2),sym.var(lynne1,1),method='tops')
-sym.scatterplot(sym.var(lynne1,2),sym.var(lynne1,1),labels=TRUE,
-col='red',main='Linear Regression')
-abline(lm.mod,lwd=3,col='blue')
-
-lm.mod<-sym.lm(sym.var(lynne1,2),sym.var(lynne1,1),method='billard')
-sym.scatterplot(sym.var(lynne1,2),sym.var(lynne1,1),labels=TRUE,
-col='red',main='Linear Regression')
-abline(lm.mod$Intercept,lm.mod$Beta1,lwd=3,col='blue')
+data(int_prost_train)
+data(int_prost_test)
+res.cm<-sym.lm(lpsa~.,sym.data=int_prost_train,method='cm')
+pred.cm<-predictsym.lm(res.cm,int_prost_test,method='cm')
+RMSE.L(sym.var(int_prost_test,9),pred.cm$Fitted)
+RMSE.U(sym.var(int_prost_test,9),pred.cm$Fitted)
+R2.L(sym.var(int_prost_test,9),pred.cm$Fitted)
+R2.U(sym.var(int_prost_test,9),pred.cm$Fitted)
+deter.coefficient(sym.var(int_prost_test,9),pred.cm$Fitted)
 }
 \keyword{ Symbolic }
-\keyword{ Regression }% __ONLY ONE__ keyword per line
+\keyword{ lm }

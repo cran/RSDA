@@ -1,0 +1,49 @@
+\name{cfa.totals}
+\alias{cfa.totals}
+
+\title{
+Compute totals of the matrix
+}
+\description{
+Compute rows and columns totals of the matrix.
+}
+\usage{
+cfa.totals(sym.data)
+}
+
+\arguments{
+  \item{sym.data}{
+Should be a symbolic data table read with the function read.sym.table(...).
+}
+}
+
+\value{
+Return rows and columns totals of the matrix.
+}
+
+
+\references{
+Rodriguez, O. (2011).
+Correspondence Analysis for Symbolic MultiValued Variables. Workshop in Symbolic Data Analysis
+Namur, Belgium.
+}
+\author{
+Oldemar Rodriguez Rojas
+}
+
+\seealso{
+\code{\link{sym.cfa}}
+}
+\examples{
+data(ex_cfa1) 
+res<-cfa.totals(ex_cfa1)
+Z<-cfa.MatrixZ(ex_cfa1,res$TotalRows,res$TotalColumns) 
+svd<-eigen(Z)
+MVPRealz<-cfa.CVPRealz(ex_cfa1,res$TotalRows,res$TotalColumns,res$Total,svd$vectors)
+Mzz<-cfa.Czz(ex_cfa1,res$TotalRows,res$TotalColumns,MVPRealz,svd$values)
+CMM<-cfa.minmax(ex_cfa1,res$TotalRows,res$TotalRowsMin,res$TotalRowsMax,
+res$TotalColumns,res$TotalColumnsMin,res$TotalColumnsMax,
+res$Total,MVPRealz,Mzz)
+}
+\keyword{ Symbolic }
+\keyword{ CFA }

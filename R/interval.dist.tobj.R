@@ -1,6 +1,5 @@
 interval.dist.tobj <-
-function(sym.obj.x,sym.obj.y,distance=c('hausdorff','centers'),
-                             p=2) {
+function(sym.obj.x,sym.obj.y,distance=c('hausdorff','centers','interscal'),p=2) {
     distance<-match.arg(distance)
     idn1<-all(sym.obj.x$var.types=='$I')
     idn2<-all(sym.obj.y$var.types=='$I')
@@ -18,8 +17,7 @@ function(sym.obj.x,sym.obj.y,distance=c('hausdorff','centers'),
       }
       return(sum^(1/p))
     }
-    else {
-      if(distance=='centers') {
+    if(distance=='centers') {
         pos<-1
         sum<-0
         for(j in 1:(sym.obj.x$M)) {
@@ -30,8 +28,29 @@ function(sym.obj.x,sym.obj.y,distance=c('hausdorff','centers'),
           sum<-sum+m^p
         }
         return(sum^(1/p))
-      }    
-      else       
-        stop("Impossible to compute the Hausdorff distance for this type of variable")       
-    }
+    }    
+    if(distance=='interscal') { 
+      #  Daneaux and Masson Distance
+      pos<-1
+      suma<-0
+      sumb<-0
+      for(j in 1:(sym.obj.x$M)) {
+        a<-(sym.obj.x$obj.data.vector[pos+1]-sym.obj.x$obj.data.vector[pos]+
+              sym.obj.y$obj.data.vector[pos+1]-sym.obj.y$obj.data.vector[pos]-
+              2*abs((sym.obj.x$obj.data.vector[pos+1]+sym.obj.x$obj.data.vector[pos])/2-
+                      (sym.obj.y$obj.data.vector[pos+1]+sym.obj.y$obj.data.vector[pos])/2)-
+              abs(sym.obj.x$obj.data.vector[pos+1]-sym.obj.x$obj.data.vector[pos]+
+                    sym.obj.y$obj.data.vector[pos+1]-sym.obj.y$obj.data.vector[pos]-
+                    2*abs((sym.obj.x$obj.data.vector[pos+1]+sym.obj.x$obj.data.vector[pos])/2-
+                            (sym.obj.y$obj.data.vector[pos+1]+sym.obj.y$obj.data.vector[pos])/2)))^2
+        suma<-suma+a                
+        b<-(sym.obj.x$obj.data.vector[pos+1]-sym.obj.x$obj.data.vector[pos]+
+            sym.obj.y$obj.data.vector[pos+1]-sym.obj.y$obj.data.vector[pos]+
+            2*abs((sym.obj.x$obj.data.vector[pos+1]+sym.obj.x$obj.data.vector[pos])/2-
+                  (sym.obj.y$obj.data.vector[pos+1]+sym.obj.y$obj.data.vector[pos])/2))^2
+        sumb<-sumb+b        
+        pos<-pos+2
+      }
+      return(c((1/4)*sqrt(suma),(1/2)*sqrt(sumb)))
+    }  
 }

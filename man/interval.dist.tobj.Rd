@@ -8,7 +8,8 @@ Symbolic Objects Distance
 Compute a distance between two symbolic objects.
 }
 \usage{
-interval.dist.tobj(sym.obj.x, sym.obj.y, distance = c("hausdorff", "centers"), p = 2)
+interval.dist.tobj(sym.obj.x, sym.obj.y, distance = c("hausdorff", 
+                           "centers", "interscal"), p = 2)
 }
 \arguments{
   \item{sym.obj.x}{
