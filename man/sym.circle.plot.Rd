@@ -27,9 +27,6 @@ The 3rd Workshop in Symbolic Data Analysis, Madrid.
 \author{
 Oldemar Rodriguez Rojas
 }
-\seealso{
-\code{\link{plotX.slice}}
-}
 \examples{
 data(oils)  
 res<-sym.interval.pca(oils,'centers')

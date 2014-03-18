@@ -15,9 +15,10 @@ complex data. Springer, Germany.
 }
 \examples{
 data(ex1_db2so)
-ex1<-ex1_db2so
-concept<-Sconcept(ex1$state,ex1$sex)
-sym.table<-Sobject(Sint(concept$county),Sint(concept$group),Sint(concept$age))
-sym.table
+ex1 <- ex1_db2so
+result <- classic.to.sym(ex1, concept=c("state", "sex"),
+                    variables=c("county", "group", "age","age"),
+                    variables.types=c("$C", "$I", "$H", "$S"))
+result
 }
 \keyword{datasets}

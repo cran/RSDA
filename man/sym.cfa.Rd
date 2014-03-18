@@ -29,9 +29,6 @@ Namur, Belgium.
 Oldemar Rodriguez Rojas
 }
 
-\seealso{
-\code{\link{cfa.Czz}}
-}
 \examples{
 data(ex_cfa1) 
 res<-sym.cfa(ex_cfa1)
