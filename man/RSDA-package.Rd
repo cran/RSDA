@@ -28,8 +28,8 @@ scaling of interval data, denominated INTERSCAL.
 \tabular{ll}{
 Package: \tab RSDA\cr
 Type: \tab Package\cr
-Version: \tab 1.2\cr
-Date: \tab 2014-03-18\cr
+Version: \tab 1.3\cr
+Date: \tab 2015-10-01\cr
 License: \tab GPL (>=2)\cr
 }
 Most of the function of the package stars from a symbolic data table that can be store in
@@ -106,8 +106,8 @@ sym.scatterplot.ggplot(sym.var(res$Sym.Components,1),
 sym.circle.plot(res$Sym.Prin.Correlations)
 
 res<-sym.interval.pca(oils,'classic')
-plot.PCA(res,choix="ind")
-plot.PCA(res,choix="var")
+plot(res,choix="ind")
+plot(res,choix="var")
 
 data(lynne2)
 res<-sym.interval.pca(lynne2,'centers')

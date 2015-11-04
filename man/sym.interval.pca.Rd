@@ -77,8 +77,8 @@ sym.scatterplot.ggplot(sym.var(res$Sym.Components,1),sym.var(res$Sym.Components,
 sym.circle.plot(res$Sym.Prin.Correlations)
 
 res<-sym.interval.pca(oils,'classic')
-plot.PCA(res,choix="ind")
-plot.PCA(res,choix="var")
+plot(res,choix="ind")
+plot(res,choix="var")
 
 data(lynne2)
 res<-sym.interval.pca(lynne2,'centers')
@@ -93,8 +93,8 @@ sym.circle.plot(res$Sym.Prin.Correlations)
 data(StudentsGrades)
 st<-StudentsGrades
 s.pca<-sym.interval.pca(st)
-plot.PCA(s.pca,choix="ind")
-plot.PCA(s.pca,choix="var")
+plot(s.pca,choix="ind")
+plot(s.pca,choix="var")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

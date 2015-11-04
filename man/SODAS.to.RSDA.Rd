@@ -11,10 +11,10 @@ SODAS.to.RSDA(XMLPath, labels = T)
 }
 \arguments{
   \item{XMLPath}{
-Disk path where the SODAS file is.
+Disk path where the SODAS *.XML file is.
 }
   \item{labels}{
-  If we want to include SODAS files lebels in RSDA file.
+  If we want to include SODAS XML files lebels in RSDA file.
 }
 }
 \value{
@@ -30,7 +30,7 @@ Olger Calderon and Roberto Zuniga.
 }
 
 \seealso{
-\code{\link{abalone}}
+\code{\link{SDS.to.RSDA}}
 }
 \examples{
 # We can read the file directly from the SODAS XML file as follows:
