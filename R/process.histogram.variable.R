@@ -1,33 +1,31 @@
-process.histogram.variable <-
-  function(variableName, concept, sym.obj.names) {
-    suppressWarnings(sqldf(paste0("CREATE INDEX IF NOT EXISTS main.", variableName, " ON dataTable (", variableName, ")")))
-    
-    conceptColumns <- paste(concept, collapse = ", ")
-    conceptConcatenation <- paste(concept, collapse = "||'.'||")
-    categories <- sqldf(paste0("SELECT DISTINCT ", variableName, " FROM main.dataTable ORDER BY ", variableName))[[1]]
-    
-    result <- data.frame(rep("$H", length(sym.obj.names)), length(categories), check.names = F)
-    colnames(result) <- c("$H", substr(variableName, 2, nchar(variableName) - 1))
-    
-     for (i in seq(from = 1, to = length(categories), by = 32)) {
-      if (length(categories) - i + 1 >= 32)
-        categoryGroup <- categories[i:(i+31)]
-      else
-        categoryGroup <- categories[i:length(categories)]
-      
-      queries <- character()
-      for (category in categoryGroup) {
-        queries <- c(queries, paste0("(SELECT SymObjNames, ifnull(freq, 0) AS '", category, "' FROM (SELECT SymObjNames FROM main.symObjTable) LEFT JOIN (SELECT ", conceptConcatenation, " AS concept, COUNT(", variableName, ") AS freq FROM main.dataTable WHERE ", variableName, " = '", category, "' GROUP BY ", conceptColumns, ") ON concept = SymObjNames)"))
-      }
-      queries <- paste(queries, collapse = " NATURAL JOIN ")
-      result <- cbind(result, sqldf(paste0("SELECT * FROM ", queries))[-1])
-    }
-    
-    totalFrequency <- sqldf(paste0("SELECT COUNT(", variableName, ") FROM main.dataTable GROUP BY ", conceptColumns, " ORDER BY ", conceptColumns))[[1]]
-    
-    for (j in 1:length(categories)) {
-      result[j + 2] <- round(result[[j + 2]] / totalFrequency, 3)
-    }
-    
-    return (result)
-  }
+#' process.histogram.variable
+#' @import dplyr tidyr stringr lazyeval
+#' @keywords internal
+process.histogram.variable <- function(variableName, concept, dataTable) {
+    # librerias : dplyr tidyr stringr lazyeval
+    concept. <- stringr::str_replace_all(concept, "[\\[\\]]", "")
+    variable.name. <- stringr::str_replace_all(variableName, "[\\[\\]]",
+        "")
+
+    breaks. <- hist(dataTable[, variable.name.], plot = F, right = F)$breaks
+
+    data. <- dataTable %>% dplyr::group_by_(concept.) %>%
+      dplyr::do_(dots. = lazyeval::interp(~calculate.probs(x = .[[variable.name.]],breaks. = breaks.)))%>%
+      tidyr::unnest()
+
+    data. <- data. %>% tidyr::unite("interval",
+        to, from, sep = ",") %>% dplyr::group_by_(concept.) %>% dplyr::mutate(interval = c(paste0("[",
+        head(interval, n() - 1), ")"), interval[n()])) %>%
+      dplyr::mutate(interval = c(interval[1:(n() -1)], paste0("[", interval[n()], "]")))
+
+    order. <- unique(data.$interval)
+    data. <- data. %>% tidyr::spread(interval, prob, fill = 0, convert = F)
+    data. <- data.[, -1]
+    data. <- data.[, order.]
+
+    type <- data.frame(`$H` = rep("$H", nrow(data.)), check.names = F)
+    type.length <- data.frame(rep(ncol(data.), nrow(data.)), check.names = F)
+    colnames(type.length) <- variable.name.
+    data. <- cbind(type, type.length, data.)
+    return(data.)
+}
