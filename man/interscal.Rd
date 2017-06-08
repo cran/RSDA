@@ -13,7 +13,7 @@ interscal(sym.data)
 The symbolic interval components.
 }
 \description{
-Execute interscal Method.
+Execute Interscal Method.
 }
 \examples{
 data(ex_cfa1)

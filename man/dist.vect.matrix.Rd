@@ -9,7 +9,7 @@ dist.vect.matrix(vector, Matrix)
 \arguments{
 \item{vector}{An n dimensional vector.}
 
-\item{Matrix}{An nxn matrix.}
+\item{Matrix}{An n x n matrix.}
 }
 \value{
 The distance.

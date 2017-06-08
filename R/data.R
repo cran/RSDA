@@ -1,3 +1,10 @@
+#' @name Table7
+#' @title Table7
+#' @description example for the dist.interval function.
+#' @keywords datasets
+"table7"
+
+
 #' @name abalone
 #' @title SODAS XML data file.
 #' @description Example of SODAS XML data file converted in a CSV file in RSDA format.
@@ -89,7 +96,7 @@
 #' ex1 <- ex1_db2so
 #' result <- classic.to.sym(ex1, concept=c('state', 'sex'),
 #'                          variables=c('county', 'group', 'age','age'),
-#'                          variables.types=c('$C', '$I', '$H', '$S'))
+#'                          variables.types=c('$C', '$I', '$M', '$S'))
 #' result
 #' @keywords datasets
 "ex1_db2so"
@@ -102,7 +109,7 @@
 #' histogram and set types.
 #' @usage data(example1)
 #' @format The labels $C means that follows a continuous variable, $I means an interval
-#' variable, $H means a histogram variables and $S means set variable. In the
+#' variable, $M means a histogram variables and $S means set variable. In the
 #' first row each labels should be follow of a name to variable and to the case
 #' of histogram a set variables types the names of the modalities (categories).
 #' In data rows for continuous variables we have just one value, for interval
@@ -113,17 +120,12 @@
 
 #' The format is the *.csv file is: \cr
 
-#'   $C   F1 $I F2 F2 $H F3  M1  M2  M3 $S F4 E1 E2 E3 E4 \cr
-
-#' Case1 $C  2.8 $I  1  2 $H  3 0.1 0.7 0.2 $S  4  e  g  k  i \cr
-
-#' Case2 $C  1.4 $I  3  9 $H  3 0.6 0.3 0.1 $S  4  a  b  c  d \cr
-
-#' Case3 $C  3.2 $I -1  4 $H  3 0.2 0.2 0.6 $S  4  2  1  b  c \cr
-
-#' Case4 $C -2.1 $I  0  2 $H  3 0.9 0.0 0.1 $S  4  3  4  c  a \cr
-
-#' Case5 $C -3.0 $I -4 -2 $H  3 0.6 0.0 0.4 $S  4  e  i  g  k \cr
+#'       $C   F1 $I F2 F2 $M F3  M1  M2  M3 $S F4 e a 2 3 g b 1 4 i k c d \cr
+#' Case1 $C  2.8 $I  1  2 $M  3 0.1 0.7 0.2 $S 12 1 0 0 0 1 0 0 0 1 1 0 0 \cr
+#' Case2 $C  1.4 $I  3  9 $M  3 0.6 0.3 0.1 $S 12 0 1 0 0 0 1 0 0 0 0 1 1 \cr
+#' Case3 $C  3.2 $I -1  4 $M  3 0.2 0.2 0.6 $S 12 0 0 1 0 0 1 1 0 0 0 1 0 \cr
+#' Case4 $C -2.1 $I  0  2 $M  3 0.9 0.0 0.1 $S 12 0 1 0 1 0 0 0 1 0 0 1 0 \cr
+#' Case5 $C -3.0 $I -4 -2 $M  3 0.6 0.0 0.4 $S 12 1 0 0 0 1 0 0 0 1 1 0 0 \cr
 
 #' The internal format is:\cr
 
@@ -145,7 +147,7 @@
 
 #' $sym.var.types
 
-#' [1] '$C' '$I' '$H' '$S' \cr
+#' [1] '$C' '$I' '$M' '$S' \cr
 
 #' $sym.var.length \cr
 
@@ -156,32 +158,22 @@
 #' [1]  2  4  8 13 \cr
 
 #' $meta \cr
-
-#' $C   F1 $I F2 F2 $H F3  M1  M2  M3 $S F4 E1 E2 E3 E4 \cr
-
-#' Case1 $C  2.8 $I  1  2 $H  3 0.1 0.7 0.2 $S  4  e  g  k  i \cr
-
-#' Case2 $C  1.4 $I  3  9 $H  3 0.6 0.3 0.1 $S  4  a  b  c  d \cr
-
-#' Case3 $C  3.2 $I -1  4 $H  3 0.2 0.2 0.6 $S  4  2  1  b  c \cr
-
-#' Case4 $C -2.1 $I  0  2 $H  3 0.9 0.0 0.1 $S  4  3  4  c  a \cr
-
-#' Case5 $C -3.0 $I -4 -2 $H  3 0.6 0.0 0.4 $S  4  e  i  g  k \cr
+#'
+#'       $C   F1 $I F2 F2 $M F3  M1  M2  M3 $S F4 e a 2 3 g b 1 4 i k c d
+#' Case1 $C  2.8 $I  1  2 $M  3 0.1 0.7 0.2 $S 12 1 0 0 0 1 0 0 0 1 1 0 0
+#' Case2 $C  1.4 $I  3  9 $M  3 0.6 0.3 0.1 $S 12 0 1 0 0 0 1 0 0 0 0 1 1
+#' Case3 $C  3.2 $I -1  4 $M  3 0.2 0.2 0.6 $S 12 0 0 1 0 0 1 1 0 0 0 1 0
+#' Case4 $C -2.1 $I  0  2 $M  3 0.9 0.0 0.1 $S 12 0 1 0 1 0 0 0 1 0 0 1 0
+#' Case5 $C -3.0 $I -4 -2 $M  3 0.6 0.0 0.4 $S 12 1 0 0 0 1 0 0 0 1 1 0 0
 
 #' $data \cr
-
-#' F1 F2 F2.1  M1  M2  M3 E1 E2 E3 E4 \cr
-
-#' Case1  2.8  1    2 0.1 0.7 0.2  e  g  k  i \cr
-
-#' Case2  1.4  3    9 0.6 0.3 0.1  a  b  c  d \cr
-
-#' Case3  3.2 -1    4 0.2 0.2 0.6  2  1  b  c \cr
-
-#' Case4 -2.1  0    2 0.9 0.0 0.1  3  4  c  a \cr
-
-#' Case5 -3.0 -4   -2 0.6 0.0 0.4  e  i  g  k \cr
+#'         F1 F2 F2.1  M1  M2  M3 e a 2 3 g b 1 4 i k c d
+#' Case1  2.8  1    2 0.1 0.7 0.2 1 0 0 0 1 0 0 0 1 1 0 0
+#' Case2  1.4  3    9 0.6 0.3 0.1 0 1 0 0 0 1 0 0 0 0 1 1
+#' Case3  3.2 -1    4 0.2 0.2 0.6 0 0 1 0 0 1 1 0 0 0 1 0
+#' Case4 -2.1  0    2 0.9 0.0 0.1 0 1 0 1 0 0 0 1 0 0 1 0
+#' Case5 -3.0 -4   -2 0.6 0.0 0.4 1 0 0 0 1 0 0 0 1 1 0 0
+#'
 #' @references Bock H-H. and Diday E. (eds.) (2000).
 #' Analysis of Symbolic Data. Exploratory methods for extracting statistical information from
 #' complex data. Springer, Germany.
@@ -198,17 +190,12 @@
 #' histogram and set types.
 #' @usage data(example2)
 #' @format
-#' $C   F1 $I F2 F2 $H F3  M1  M2  M3 $C   F4 $S F5 E1 E2 E3 E4 \cr
-
-#' Case1 $C  2.8 $I  1  2 $H  3 0.1 0.7 0.2 $C  6.0 $S  4  e  g  k  i \cr
-
-#' Case2 $C  1.4 $I  3  9 $H  3 0.6 0.3 0.1 $C  8.0 $S  4  a  b  c  d \cr
-
-#' Case3 $C  3.2 $I -1  4 $H  3 0.2 0.2 0.6 $C -7.0 $S  4  2  1  b  c \cr
-
-#' Case4 $C -2.1 $I  0  2 $H  3 0.9 0.0 0.1 $C  0.0 $S  4  3  4  c  a \cr
-
-#' Case5 $C -3.0 $I -4 -2 $H  3 0.6 0.0 0.4 $C -9.5 $S  4  e  i  g  k \cr
+#'       $C   F1 $I F2 F2 $M F3  M1  M2  M3 $C   F4 $S F5 e a 2 3 g b 1 4 i k c d\cr
+#' Case1 $C  2.8 $I  1  2 $M  3 0.1 0.7 0.2 $C  6.0 $S 12 1 0 0 0 1 0 0 0 1 1 0 0\cr
+#' Case2 $C  1.4 $I  3  9 $M  3 0.6 0.3 0.1 $C  8.0 $S 12 0 1 0 0 0 1 0 0 0 0 1 1\cr
+#' Case3 $C  3.2 $I -1  4 $M  3 0.2 0.2 0.6 $C -7.0 $S 12 0 0 1 0 0 1 1 0 0 0 1 0\cr
+#' Case4 $C -2.1 $I  0  2 $M  3 0.9 0.0 0.1 $C  0.0 $S 12 0 1 0 1 0 0 0 1 0 0 1 0\cr
+#' Case5 $C -3.0 $I -4 -2 $M  3 0.6 0.0 0.4 $C -9.5 $S 12 1 0 0 0 1 0 0 0 1 1 0 0\cr
 #'
 #' @examples
 #' data(example2)
@@ -224,21 +211,14 @@
 #' histogram and set types.
 #' @usage data(example3)
 #' @format
-#' $C   F1 $I F2 F2 $H F3  M1  M2  M3 $C   F4 $S F5 E1 E2 E3 E4 $I     F6    F6 $I F7 F7 \cr
-
-#' Case1 $C  2.8 $I  1  2 $H  3 0.1 0.7 0.2 $C  6.0 $S  4  e  g  k  i $I   0.00 90.00 $I  9 24 \cr
-
-#' Case2 $C  1.4 $I  3  9 $H  3 0.6 0.3 0.1 $C  8.0 $S  4  a  b  c  d $I -90.00 98.00 $I -9  9 \cr
-
-#' Case3 $C  3.2 $I -1  4 $H  3 0.2 0.2 0.6 $C -7.0 $S  4  2  1  b  c $I  65.00 90.00 $I 65 70 \cr
-
-#' Case4 $C -2.1 $I  0  2 $H  3 0.9 0.0 0.1 $C  0.0 $S  4  3  4  c  a $I  45.00 89.00 $I 25 67 \cr
-
-#' Case5 $C -3.0 $I -4 -2 $H  3 0.6 0.0 0.4 $C -9.5 $S  4  e  i  g  k $I  20.00 40.00 $I  9 40 \cr
-
-#' Case6 $C  0.1 $I 10 21 $H  3 0.0 0.7 0.3 $C -1.0 $S  4  f  t  c  a $I   5.00  8.00 $I  5  8 \cr
-
-#' Case7 $C  9.0 $I  4 21 $H  3 0.2 0.2 0.6 $C  0.5 $S  4  e  q  r  z $I   3.14  6.76 $I  4  6 \cr
+#'       $C   F1 $I F2 F2 $M F3  M1  M2  M3 $C   F4 $S F5 e a 2 3 g b 1 4 i k c d $I     F6    F6 $I F7 F7
+#' Case1 $C  2.8 $I  1  2 $M  3 0.1 0.7 0.2 $C  6.0 $S 12 1 0 0 0 1 0 0 0 1 1 0 0 $I   0.00 90.00 $I  9 24
+#' Case2 $C  1.4 $I  3  9 $M  3 0.6 0.3 0.1 $C  8.0 $S 12 0 1 0 0 0 1 0 0 0 0 1 1 $I -90.00 98.00 $I -9  9
+#' Case3 $C  3.2 $I -1  4 $M  3 0.2 0.2 0.6 $C -7.0 $S 12 0 0 1 0 0 1 1 0 0 0 1 0 $I  65.00 90.00 $I 65 70
+#' Case4 $C -2.1 $I  0  2 $M  3 0.9 0.0 0.1 $C  0.0 $S 12 0 1 0 1 0 0 0 1 0 0 1 0 $I  45.00 89.00 $I 25 67
+#' Case5 $C -3.0 $I -4 -2 $M  3 0.6 0.0 0.4 $C -9.5 $S 12 1 0 0 0 1 0 0 0 1 1 0 0 $I  20.00 40.00 $I  9 40
+#' Case6 $C  0.1 $I 10 21 $M  3 0.0 0.7 0.3 $C -1.0 $S 12 1 0 0 0 0 0 1 0 1 0 0 0 $I   5.00  8.00 $I  5  8
+#' Case7 $C  9.0 $I  4 21 $M  3 0.2 0.2 0.6 $C  0.5 $S 12 1 1 1 0 0 0 0 0 0 0 0 0 $I   3.14  6.76 $I  4  6
 #'
 #' @examples
 #' data(example3)
@@ -255,19 +235,13 @@
 #' display.sym.table(example4)
 #' @usage data(example4)
 #' @format
-#' $C  2.8 $I  1  2 $H 3 0.1 0.7 0.2 $C    6 $S 4 e g k i $I      0     90 \cr
-
-#' Case2 $C  1.4 $I  3  9 $H 3 0.6 0.3 0.1 $C  8.0 $S 4 a b c d $I -90.00  98.00 \cr
-
-#' Case3 $C  3.2 $I -1  4 $H 3 0.2 0.2 0.6 $C -7.0 $S 4 2 1 b c $I  65.00  90.00 \cr
-
-#' Case4 $C -2.1 $I  0  2 $H 3 0.9 0.0 0.1 $C  0.0 $S 4 3 4 c a $I  45.00  89.00 \cr
-
-#' Case5 $C -3.0 $I -4 -2 $H 3 0.6 0.0 0.4 $C -9.5 $S 4 e i g k $I  90.00 990.00 \cr
-
-#' Case6 $C  0.1 $I 10 21 $H 3 0.0 0.7 0.3 $C -1.0 $S 4 f t c a $I   5.00   8.00 \cr
-
-#' Case7 $C  9.0 $I  4 21 $H 3 0.2 0.2 0.6 $C  0.5 $S 4 e q r z $I   3.14   6.76 \cr
+#'       $C  2.8 $I  1  2 $M 3 0.1 0.7 0.2 $C    6 $S F4 e a 2 3 g b 1 4 i k c d $I      0     90
+#' Case2 $C  1.4 $I  3  9 $M 3 0.6 0.3 0.1 $C  8.0 $S 12 1 0 0 0 1 0 0 0 1 1 0 0 $I -90.00  98.00
+#' Case3 $C  3.2 $I -1  4 $M 3 0.2 0.2 0.6 $C -7.0 $S 12 0 1 0 0 0 1 0 0 0 0 1 1 $I  65.00  90.00
+#' Case4 $C -2.1 $I  0  2 $M 3 0.9 0.0 0.1 $C  0.0 $S 12 0 0 1 0 0 1 1 0 0 0 1 0 $I  45.00  89.00
+#' Case5 $C -3.0 $I -4 -2 $M 3 0.6 0.0 0.4 $C -9.5 $S 12 0 1 0 1 0 0 0 1 0 0 1 0 $I  90.00 990.00
+#' Case6 $C  0.1 $I 10 21 $M 3 0.0 0.7 0.3 $C -1.0 $S 12 1 0 0 0 1 0 0 0 1 1 0 0 $I   5.00   8.00
+#' Case7 $C  9.0 $I  4 21 $M 3 0.2 0.2 0.6 $C  0.5 $S 12 1 1 0 0 0 0 1 0 0 0 0 1 $I   3.14   6.76
 #'
 #' @examples
 #' data(example4)
@@ -283,17 +257,17 @@
 #' This a symbolic data matrix wint continuos, interval, histograma a set data types.
 #' @usage data(example5)
 #' @format
-#' $H F0 M01 M02 $C   F1 $I F2 F2 $H F3  M1  M2  M3 $S F4 E1 E2 E3 E4 \cr
+#' $M F0 M01 M02 $C   F1 $I F2 F2 $M F3  M1  M2  M3 $S F4 E1 E2 E3 E4 \cr
 
-#' Case1 $H  2 0.1 0.9 $C  2.8 $I  1  2 $H  3 0.1 0.7 0.2 $S  4  e  g  k  i \cr
+#' Case1 $M  2 0.1 0.9 $C  2.8 $I  1  2 $M  3 0.1 0.7 0.2 $S  4  e  g  k  i \cr
 
-#' Case2 $H  2 0.7 0.3 $C  1.4 $I  3  9 $H  3 0.6 0.3 0.1 $S  4  a  b  c  d \cr
+#' Case2 $M  2 0.7 0.3 $C  1.4 $I  3  9 $M  3 0.6 0.3 0.1 $S  4  a  b  c  d \cr
 
-#' Case3 $H  2 0.0 1.0 $C  3.2 $I -1  4 $H  3 0.2 0.2 0.6 $S  4  2  1  b  c \cr
+#' Case3 $M  2 0.0 1.0 $C  3.2 $I -1  4 $M  3 0.2 0.2 0.6 $S  4  2  1  b  c \cr
 
-#' Case4 $H  2 0.2 0.8 $C -2.1 $I  0  2 $H  3 0.9 0.0 0.1 $S  4  3  4  c  a \cr
+#' Case4 $M  2 0.2 0.8 $C -2.1 $I  0  2 $M  3 0.9 0.0 0.1 $S  4  3  4  c  a \cr
 
-#' Case5 $H  2 0.6 0.4 $C -3.0 $I -4 -2 $H  3 0.6 0.0 0.4 $S  4  e  i  g  k \cr
+#' Case5 $M  2 0.6 0.4 $C -3.0 $I -4 -2 $M  3 0.6 0.0 0.4 $S  4  e  i  g  k \cr
 #'
 #' @examples
 #' data(example5)
@@ -309,17 +283,13 @@
 #' This a symbolic data matrix wint continuos, interval, histograma a set data types.
 #' @usage data(example6)
 #' @format
-#' $C   F1 $H F2  M1  M2  M3  M4  M5 $I F3 F3 $H F4  M1  M2  M3 $C   F5 $S F6 E1 E2 E3 E4 \cr
-
-#' Case1 $C  2.8 $H  5 0.1 0.1 0.1 0.1 0.6 $I  1  2 $H  3 0.1 0.7 0.2 $C  6.0 $S  4  e  g  k  i \cr
-
-#' Case2 $C  1.4 $H  5 0.1 0.1 0.1 0.1 0.6 $I  3  9 $H  3 0.6 0.3 0.1 $C  8.0 $S  4  a  b  c  d \cr
-
-#' Case3 $C  3.2 $H  5 0.1 0.1 0.1 0.1 0.6 $I -1  4 $H  3 0.2 0.2 0.6 $C -7.0 $S  4  2  1  b  c \cr
-
-#' Case4 $C -2.1 $H  5 0.1 0.1 0.1 0.1 0.6 $I  0  2 $H  3 0.9 0.0 0.1 $C  0.0 $S  4  3  4  c  a \cr
-
-#' Case5 $C -3.0 $H  5 0.1 0.1 0.1 0.1 0.6 $I -4 -2 $H  3 0.6 0.0 0.4 $C -9.5 $S  4  e  i  g  k \cr
+#'
+#'       $C   F1 $M F2  M1  M2  M3  M4  M5 $I F3 F3 $M F4  M1  M2  M3 $C   F5 $S F4 e a 2 3 g b 1 4 i k c d
+#' Case1 $C  2.8 $M  5 0.1 0.1 0.1 0.1 0.6 $I  1  2 $M  3 0.1 0.7 0.2 $C  6.0 $S 12 1 0 0 0 1 0 0 0 1 1 0 0
+#' Case2 $C  1.4 $M  5 0.1 0.1 0.1 0.1 0.6 $I  3  9 $M  3 0.6 0.3 0.1 $C  8.0 $S 12 0 1 0 0 0 1 0 0 0 0 1 1
+#' Case3 $C  3.2 $M  5 0.1 0.1 0.1 0.1 0.6 $I -1  4 $M  3 0.2 0.2 0.6 $C -7.0 $S 12 0 0 1 0 0 1 1 0 0 0 1 0
+#' Case4 $C -2.1 $M  5 0.1 0.1 0.1 0.1 0.6 $I  0  2 $M  3 0.9 0.0 0.1 $C  0.0 $S 12 0 1 0 1 0 0 0 1 0 0 1 0
+#' Case5 $C -3.0 $M  5 0.1 0.1 0.1 0.1 0.6 $I -4 -2 $M  3 0.6 0.0 0.4 $C -9.5 $S 12 1 0 0 0 1 0 0 0 1 1 0 0
 #'
 #' @examples
 #' data(example6)
@@ -335,17 +305,17 @@
 #' This a symbolic data matrix wint continuos, interval, histograma a set data types.
 #' @usage data(example6)
 #' @format
-#' $C   F1 $H F2  M1  M2  M3  M4  M5 $I F3 F3 $H F4  M1  M2  M3 $C   F5 \cr
+#' $C   F1 $M F2  M1  M2  M3  M4  M5 $I F3 F3 $M F4  M1  M2  M3 $C   F5 \cr
 
-#' Case1 $C  2.8 $H  5 0.1 0.2 0.3 0.4 0.0 $I  1  2 $H  3 0.1 0.7 0.2 $C  6.0 \cr
+#' Case1 $C  2.8 $M  5 0.1 0.2 0.3 0.4 0.0 $I  1  2 $M  3 0.1 0.7 0.2 $C  6.0 \cr
 
-#' Case2 $C  1.4 $H  5 0.2 0.1 0.5 0.1 0.2 $I  3  9 $H  3 0.6 0.3 0.1 $C  8.0 \cr
+#' Case2 $C  1.4 $M  5 0.2 0.1 0.5 0.1 0.2 $I  3  9 $M  3 0.6 0.3 0.1 $C  8.0 \cr
 
-#' Case3 $C  3.2 $H  5 0.1 0.1 0.2 0.1 0.5 $I -1  4 $H  3 0.2 0.2 0.6 $C -7.0 \cr
+#' Case3 $C  3.2 $M  5 0.1 0.1 0.2 0.1 0.5 $I -1  4 $M  3 0.2 0.2 0.6 $C -7.0 \cr
 
-#' Case4 $C -2.1 $H  5 0.4 0.1 0.1 0.1 0.3 $I  0  2 $H  3 0.9 0.0 0.1 $C  0.0 \cr
+#' Case4 $C -2.1 $M  5 0.4 0.1 0.1 0.1 0.3 $I  0  2 $M  3 0.9 0.0 0.1 $C  0.0 \cr
 
-#' Case5 $C -3.0 $H  5 0.6 0.1 0.1 0.1 0.1 $I -4 -2 $H  3 0.6 0.0 0.4 $C -9.5 \cr
+#' Case5 $C -3.0 $M  5 0.6 0.1 0.1 0.1 0.1 $I -4 -2 $M  3 0.6 0.0 0.4 $C -9.5 \cr
 #'
 #' @examples
 #' data(example7)
@@ -615,10 +585,6 @@
 #' summary(us.crime)
 #' names(us.crime)
 #' nrow(us.crime)
-#' result  <- classic.to.sym(us.crime, concept='state',
-#'                           variables=c('NumInShelters', 'NumImmig'),
-#'                           variables.types=c('$H', '$H'))
-#' result
 #' @keywords datasets
 "USCrime"
 

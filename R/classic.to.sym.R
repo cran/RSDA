@@ -20,7 +20,7 @@
 #' ex1 <- ex1_db2so
 #' result <- classic.to.sym(ex1, concept=c('state', 'sex'),
 #'                          variables=c('county', 'group', 'age','age'),
-#'                          variables.types=c('$C', '$I', '$H', '$S'))
+#'                          variables.types=c('$C', '$I', '$M', '$S'))
 #' result
 #' @keywords symbolic data table
 #' @export
@@ -206,7 +206,7 @@ format_hist_var <- function(x, i) {
     var <- x[, i]$meta
     var <- var[, -c(1, 2)]
     out <- apply(var, 1, function(x) {
-        paste0(names(x), ":", round(x, 2), "%", collapse = " ")
+        paste0(names(x), ":", (round(x, 2)*100), "%", collapse = " ")
     })
     return(out)
 }
@@ -231,7 +231,7 @@ format_modal_var <- function(x, i) {
     var <- x[, i]$meta
     var <- var[, -c(1, 2)]
     out <- apply(var, 1, function(x) {
-        paste0(stringr::str_trunc(names(x), 3), ":", x, "% ", collapse = "")
+        paste0(stringr::str_trunc(names(x), 3), ":",(round(x, 2)*100), "% ", collapse = "")
     })
     return(out)
 }

@@ -5,7 +5,7 @@
 #' @description This function compute the symbolic correlation
 #' @param x A symbolic variable.
 #' @param y A symbolic variable.
-#' @param use an optional character string giving a method for computing
+#' @param use An optional character string giving a method for computing
 #' covariances in the presence of missing values. This must be (an abbreviation of)
 #'  one of the strings "everything", "all.obs", "complete.obs", "na.or.complete",
 #'  or "pairwise.complete.obs".

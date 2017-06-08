@@ -27,7 +27,7 @@
 #' \tabular{ll}{
 #' Package: \tab RSDA\cr
 #' Type: \tab Package\cr
-#' Version: \tab 1.3\cr
+#' Version: \tab 2.0\cr
 #' Date: \tab 2015-10-01\cr
 #' License: \tab GPL (>=2)\cr
 #' }
@@ -111,4 +111,5 @@
 #'                        labels=TRUE)
 #' sym.circle.plot(res$Sym.Prin.Correlations)
 NULL
-utils::globalVariables(c("to","from","interval","n","prob"))
+utils::globalVariables(c("to","from","interval","n","prob","pca.max","N","M","<<-"))
+

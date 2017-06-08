@@ -21,7 +21,7 @@ cor(x, ...)
 
 \item{y}{A symbolic variable.}
 
-\item{use}{an optional character string giving a method for computing
+\item{use}{An optional character string giving a method for computing
 covariances in the presence of missing values. This must be (an abbreviation of)
  one of the strings "everything", "all.obs", "complete.obs", "na.or.complete",
  or "pairwise.complete.obs".}

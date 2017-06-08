@@ -6,7 +6,7 @@
 #'
 #' @usage dist.vect.matrix(vector, Matrix)
 #' @param vector An n dimensional vector.
-#' @param Matrix An nxn matrix.
+#' @param Matrix An n x n matrix.
 #'
 #' @return The distance.
 #' @references Arce J. and Rodriguez O. (2015) 'Principal Curves and Surfaces

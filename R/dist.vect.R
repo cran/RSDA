@@ -13,7 +13,7 @@
 #' Data Analysis, SDA2015, Orleans, France, November.
 #'
 #' Hastie,T. (1984).
-#' Principal Curves and Surface. Ph.D Thesis Stanford University.
+#' Principal Curves and Surface. Ph.D. Thesis Stanford University.
 #'
 #' Hastie,T. \& Weingessel,A. (2014).
 #' princurve - Fits a Principal Curve in Arbitrary Dimension.R package version 1.1--12

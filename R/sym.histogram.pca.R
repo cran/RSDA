@@ -41,6 +41,7 @@ sym.histogram.pca <- function(sym.data, method = c("histogram", "classic")) {
     }
     k <- max(sym.data$sym.var.length)
     if (k == 1) {
+        class(res) <- "sym.data.table"
         return(res)
     } else {
         pos <- 1
@@ -48,9 +49,9 @@ sym.histogram.pca <- function(sym.data, method = c("histogram", "classic")) {
             for (s in 1:k) {
                 colm <- 2
                 for (j in 1:q) {
-                  res$Sym.Components$meta[pos, colm] <- res$Sym.Components$meta[pos, 
+                  res$Sym.Components$meta[pos, colm] <- res$Sym.Components$meta[pos,
                     colm] + cpc$ind$coord[i, j]
-                  res$Sym.Components$meta[pos, colm + 1] <- res$Sym.Components$meta[pos, 
+                  res$Sym.Components$meta[pos, colm + 1] <- res$Sym.Components$meta[pos,
                     colm + 1] + cpc$ind$coord[i, j]
                   colm <- colm + 3
                 }
@@ -58,6 +59,7 @@ sym.histogram.pca <- function(sym.data, method = c("histogram", "classic")) {
             }
         }
         dam$meta <- res$Sym.Components$meta
+        class(dam) <- "sym.data.table"
         return(dam)
     }
 }

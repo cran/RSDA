@@ -5,7 +5,7 @@
 \alias{example1}
 \title{Data Example 1}
 \format{The labels $C means that follows a continuous variable, $I means an interval
-variable, $H means a histogram variables and $S means set variable. In the
+variable, $M means a histogram variables and $S means set variable. In the
 first row each labels should be follow of a name to variable and to the case
 of histogram a set variables types the names of the modalities (categories).
 In data rows for continuous variables we have just one value, for interval
@@ -14,12 +14,12 @@ variables we have the number of modalities and then the probability of each
 modality and for set variables we have the cardinality of the set and next
 the elements of the set. \cr
 The format is the *.csv file is: \cr
-  $C   F1 $I F2 F2 $H F3  M1  M2  M3 $S F4 E1 E2 E3 E4 \cr
-Case1 $C  2.8 $I  1  2 $H  3 0.1 0.7 0.2 $S  4  e  g  k  i \cr
-Case2 $C  1.4 $I  3  9 $H  3 0.6 0.3 0.1 $S  4  a  b  c  d \cr
-Case3 $C  3.2 $I -1  4 $H  3 0.2 0.2 0.6 $S  4  2  1  b  c \cr
-Case4 $C -2.1 $I  0  2 $H  3 0.9 0.0 0.1 $S  4  3  4  c  a \cr
-Case5 $C -3.0 $I -4 -2 $H  3 0.6 0.0 0.4 $S  4  e  i  g  k \cr
+      $C   F1 $I F2 F2 $M F3  M1  M2  M3 $S F4 e a 2 3 g b 1 4 i k c d \cr
+Case1 $C  2.8 $I  1  2 $M  3 0.1 0.7 0.2 $S 12 1 0 0 0 1 0 0 0 1 1 0 0 \cr
+Case2 $C  1.4 $I  3  9 $M  3 0.6 0.3 0.1 $S 12 0 1 0 0 0 1 0 0 0 0 1 1 \cr
+Case3 $C  3.2 $I -1  4 $M  3 0.2 0.2 0.6 $S 12 0 0 1 0 0 1 1 0 0 0 1 0 \cr
+Case4 $C -2.1 $I  0  2 $M  3 0.9 0.0 0.1 $S 12 0 1 0 1 0 0 0 1 0 0 1 0 \cr
+Case5 $C -3.0 $I -4 -2 $M  3 0.6 0.0 0.4 $S 12 1 0 0 0 1 0 0 0 1 1 0 0 \cr
 The internal format is:\cr
   $N \cr
 [1] 5 \cr
@@ -30,25 +30,26 @@ $sym.obj.names \cr
 $sym.var.names \cr
 [1] 'F1' 'F2' 'F3' 'F4' \cr
 $sym.var.types
-[1] '$C' '$I' '$H' '$S' \cr
+[1] '$C' '$I' '$M' '$S' \cr
 $sym.var.length \cr
 [1] 1 2 3 4 \cr
 $sym.var.starts \cr
 [1]  2  4  8 13 \cr
 $meta \cr
-$C   F1 $I F2 F2 $H F3  M1  M2  M3 $S F4 E1 E2 E3 E4 \cr
-Case1 $C  2.8 $I  1  2 $H  3 0.1 0.7 0.2 $S  4  e  g  k  i \cr
-Case2 $C  1.4 $I  3  9 $H  3 0.6 0.3 0.1 $S  4  a  b  c  d \cr
-Case3 $C  3.2 $I -1  4 $H  3 0.2 0.2 0.6 $S  4  2  1  b  c \cr
-Case4 $C -2.1 $I  0  2 $H  3 0.9 0.0 0.1 $S  4  3  4  c  a \cr
-Case5 $C -3.0 $I -4 -2 $H  3 0.6 0.0 0.4 $S  4  e  i  g  k \cr
+
+      $C   F1 $I F2 F2 $M F3  M1  M2  M3 $S F4 e a 2 3 g b 1 4 i k c d
+Case1 $C  2.8 $I  1  2 $M  3 0.1 0.7 0.2 $S 12 1 0 0 0 1 0 0 0 1 1 0 0
+Case2 $C  1.4 $I  3  9 $M  3 0.6 0.3 0.1 $S 12 0 1 0 0 0 1 0 0 0 0 1 1
+Case3 $C  3.2 $I -1  4 $M  3 0.2 0.2 0.6 $S 12 0 0 1 0 0 1 1 0 0 0 1 0
+Case4 $C -2.1 $I  0  2 $M  3 0.9 0.0 0.1 $S 12 0 1 0 1 0 0 0 1 0 0 1 0
+Case5 $C -3.0 $I -4 -2 $M  3 0.6 0.0 0.4 $S 12 1 0 0 0 1 0 0 0 1 1 0 0
 $data \cr
-F1 F2 F2.1  M1  M2  M3 E1 E2 E3 E4 \cr
-Case1  2.8  1    2 0.1 0.7 0.2  e  g  k  i \cr
-Case2  1.4  3    9 0.6 0.3 0.1  a  b  c  d \cr
-Case3  3.2 -1    4 0.2 0.2 0.6  2  1  b  c \cr
-Case4 -2.1  0    2 0.9 0.0 0.1  3  4  c  a \cr
-Case5 -3.0 -4   -2 0.6 0.0 0.4  e  i  g  k \cr}
+        F1 F2 F2.1  M1  M2  M3 e a 2 3 g b 1 4 i k c d
+Case1  2.8  1    2 0.1 0.7 0.2 1 0 0 0 1 0 0 0 1 1 0 0
+Case2  1.4  3    9 0.6 0.3 0.1 0 1 0 0 0 1 0 0 0 0 1 1
+Case3  3.2 -1    4 0.2 0.2 0.6 0 0 1 0 0 1 1 0 0 0 1 0
+Case4 -2.1  0    2 0.9 0.0 0.1 0 1 0 1 0 0 0 1 0 0 1 0
+Case5 -3.0 -4   -2 0.6 0.0 0.4 1 0 0 0 1 0 0 0 1 1 0 0}
 \usage{
 data(example1)
 }
