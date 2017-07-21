@@ -107,8 +107,8 @@
 #' @importFrom utils read.table
 #'
 read.sym.table <- function(file, header = TRUE, sep, dec, row.names = NULL) {
-    meta.data <- read.table(file, header, sep = as.character(sep), 
-        dec = as.character(dec), row.names = c(row.names), check.names = FALSE)
+    meta.data <- read.table(file, header, sep = as.character(sep), dec = as.character(dec), 
+        row.names = c(row.names), check.names = FALSE)
     n.sym.objects <- dim(meta.data)[1]
     meta.M <- dim(meta.data)[2]
     sym.var.types <- list()
@@ -158,21 +158,19 @@ read.sym.table <- function(file, header = TRUE, sep, dec, row.names = NULL) {
             sym.var.starts[j] <- j + 2
         } else sym.var.types[j] <- "NA"
     }
-    del1 <- match(sym.var.types, c("$C", "$I", "$H", "$S", "$M"), 
-        0)
+    del1 <- match(sym.var.types, c("$C", "$I", "$H", "$S", "$M"), 0)
     for (k in 1:del.columns.length) {
         sym.var.types[del.columns[k]] <- "$H"
     }
-    del2 <- match(sym.var.types, c("$C", "$I", "$H", "$S", "$M"), 
-        0)
+    del2 <- match(sym.var.types, c("$C", "$I", "$H", "$S", "$M"), 0)
     sym.var.types <- sym.var.types[del1 > 0]
     sym.var.length <- sym.var.length[del1 > 0]
     n.sym.var <- length(sym.var.length)
     data.matrix <- as.data.frame(meta.data[, del2 == 0])
     sym.data <- list(N = n.sym.objects, M = n.sym.var, sym.obj.names = sym.obj.names, 
         sym.var.names = unlist(sym.var.names), sym.var.types = unlist(sym.var.types), 
-        sym.var.length = sym.var.length, sym.var.starts = unlist(sym.var.starts), 
-        meta = meta.data, data = data.matrix)
+        sym.var.length = sym.var.length, sym.var.starts = unlist(sym.var.starts), meta = meta.data, 
+        data = data.matrix)
     
     class(sym.data) <- c("sym.data.table")
     return(sym.data)

@@ -27,9 +27,9 @@ data.fame.to.sym.inteval <- function(data.df) {
     colnames(meta) <- colnames.sym
     row.names(meta) <- sym.obj.names
     
-    data.sym <- list(N = dim.sym[1], M = var.dist, sym.obj.names = sym.obj.names, 
-        sym.var.names = sym.var.names, sym.var.types = sym.var.types, sym.var.length = sym.var.length, 
-        sym.var.starts = sym.var.starts, meta = meta, data = data.df)
+    data.sym <- list(N = dim.sym[1], M = var.dist, sym.obj.names = sym.obj.names, sym.var.names = sym.var.names, 
+        sym.var.types = sym.var.types, sym.var.length = sym.var.length, sym.var.starts = sym.var.starts, 
+        meta = meta, data = data.df)
     
     return(data.sym)
 }

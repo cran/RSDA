@@ -25,8 +25,8 @@ compatible dimensions to x. The default is equivalent to y = x (but more efficie
 
 \item{use}{an optional character string giving a method for computing covariances
 in the presence of missing values. This must be (an abbreviation of) one of the
-strings "everything", "all.obs", "complete.obs", "na.or.complete",
-or "pairwise.complete.obs".}
+strings 'everything', 'all.obs', 'complete.obs', 'na.or.complete',
+or 'pairwise.complete.obs'.}
 
 \item{method}{The method to be use.}
 }

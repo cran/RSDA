@@ -2,8 +2,7 @@
 #' @keywords internal
 newSobject <- function(meta.data) {
     special.indexes.1 <- which(colnames(meta.data) %in% c("$C", "$I"))
-    special.indexes.2 <- which(colnames(meta.data) %in% c("$H", "$S", 
-        "$M"))
+    special.indexes.2 <- which(colnames(meta.data) %in% c("$H", "$S", "$M"))
     special.indexes.all <- sort(c(special.indexes.1, special.indexes.2))
     index.colnames <- colnames(meta.data)[special.indexes.all]
     
@@ -25,10 +24,9 @@ newSobject <- function(meta.data) {
         }, stop("Invalid argument!"))
     }
     
-    return(list(N = nrow(meta.data), M = length(special.indexes.all), 
-        sym.obj.names = row.names(meta.data), sym.var.names = colnames(meta.data)[special.indexes.all + 
-            1], sym.var.types = colnames(meta.data)[special.indexes.all], 
+    return(list(N = nrow(meta.data), M = length(special.indexes.all), sym.obj.names = row.names(meta.data), 
+        sym.var.names = colnames(meta.data)[special.indexes.all + 1], sym.var.types = colnames(meta.data)[special.indexes.all], 
         sym.var.length = sym.var.length, sym.var.starts = sort(c(special.indexes.1 + 
-            1, special.indexes.2 + 2)), meta = meta.data, data = meta.data[, 
-            -c(special.indexes.all, special.indexes.2 + 1)]))
+            1, special.indexes.2 + 2)), meta = meta.data, data = meta.data[, -c(special.indexes.all, 
+            special.indexes.2 + 1)]))
 }

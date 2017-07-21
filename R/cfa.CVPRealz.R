@@ -10,15 +10,15 @@ cfa.CVPRealz <- function(sym.data, TFilas, TColumnas, TT, z) {
     if (MCol <= NFil) {
         for (i in 1:aMin) {
             for (j in 1:aMin) {
-                VPRealz[i, j] <- abs(TT) * (sqrt(abs(TT)) * sqrt(TColumnas[i])) * 
-                  z[i, j]
+                VPRealz[i, j] <- abs(TT) * (sqrt(abs(TT)) * sqrt(TColumnas[i])) * z[i, 
+                  j]
             }
         }
     } else {
         for (i in 1:aMin) {
             for (j in 1:aMin) {
-                VPRealz[i, j] <- abs(TT) * (sqrt(abs(TT)) * sqrt(TFilas[i])) * 
-                  z[i, j]
+                VPRealz[i, j] <- abs(TT) * (sqrt(abs(TT)) * sqrt(TFilas[i])) * z[i, 
+                  j]
             }
         }
     }

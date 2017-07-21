@@ -41,29 +41,24 @@
 #' @keywords Symbolic Plot
 #' @export
 #'
-sym.scatterplot <- function(sym.var.x, sym.var.y, labels = FALSE, 
-    ...) {
-    if (((sym.var.x$sym.var.types != "$C") || (sym.var.y$sym.var.types != 
-        "$C")) && ((sym.var.x$sym.var.types != "$I") || (sym.var.y$sym.var.types != 
-        "$I"))) {
+sym.scatterplot <- function(sym.var.x, sym.var.y, labels = FALSE, ...) {
+    if (((sym.var.x$sym.var.types != "$C") || (sym.var.y$sym.var.types != "$C")) && 
+        ((sym.var.x$sym.var.types != "$I") || (sym.var.y$sym.var.types != "$I"))) {
         stop("Impossible to plot this type of variable")
     }
     
     
-    if ((sym.var.x$sym.var.types == "$C") && (sym.var.y$sym.var.types == 
-        "$C")) {
+    if ((sym.var.x$sym.var.types == "$C") && (sym.var.y$sym.var.types == "$C")) {
         if (labels == FALSE) 
             plot(sym.var.x$data[, 1], sym.var.y$data[, 1], xlab = sym.var.x$sym.var.names, 
                 ylab = sym.var.y$sym.var.names, ...) else {
             ltext <- sym.var.x$sym.var.names
-            plot(sym.var.x$data[, 1], sym.var.y$data[, 1], type = "n", 
-                xlab = sym.var.x$sym.var.names, ylab = sym.var.y$sym.var.names, 
-                ...)
+            plot(sym.var.x$data[, 1], sym.var.y$data[, 1], type = "n", xlab = sym.var.x$sym.var.names, 
+                ylab = sym.var.y$sym.var.names, ...)
             text(sym.var.x$data[, 1], sym.var.y$data[, 1], ltext)
         }
     }
-    if ((sym.var.x$sym.var.types == "$I") && (sym.var.y$sym.var.types == 
-        "$I")) {
+    if ((sym.var.x$sym.var.types == "$I") && (sym.var.y$sym.var.types == "$I")) {
         xmin1 <- min(sym.var.x$data[, 1])
         xmin2 <- min(sym.var.x$data[, 2])
         xmin <- min(xmin1, xmin2)
@@ -87,8 +82,7 @@ sym.scatterplot <- function(sym.var.x, sym.var.y, labels = FALSE,
         }
         if (labels == TRUE) {
             ltext <- sym.var.x$sym.obj.names
-            text(jitter(sym.var.x$data[, 1]), jitter(sym.var.y$data[, 
-                1]), ltext)
+            text(jitter(sym.var.x$data[, 1]), jitter(sym.var.y$data[, 1]), ltext)
         }
     }
 }

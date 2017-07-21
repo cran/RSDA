@@ -30,20 +30,21 @@
 #' @export
 #' @exportMethod
 #'
-mean.sym.data.table <- function(x, method = c("centers", "interval","modal"), trim = 0, na.rm = F, ...) {
+mean.sym.data.table <- function(x, method = c("centers", "interval", "modal"), trim = 0, 
+    na.rm = F, ...) {
     method <- match.arg(method)
     if (method == "centers") {
-        if (x$sym.var.types == "$C")
+        if (x$sym.var.types == "$C") 
             return(mean(x$data[, 1], trim, na.rm, ...))
-        if (x$sym.var.types == "$I")
+        if (x$sym.var.types == "$I") 
             return(mean((x$data[, 1] + x$data[, 2])/2, ...)) else stop("Impossible to compute the mean for this type of variable with this method")
     }
     if (method == "interval") {
-        if (x$sym.var.types == "$I")
+        if (x$sym.var.types == "$I") 
             return(colMeans(x$data)) else stop("Impossible to compute the mean for this type of variable with this method")
     }
     if (method == "modal") {
-        if (x$sym.var.types == "$M")
+        if (x$sym.var.types == "$M") 
             return(colMeans(x$data)) else stop("Impossible to compute the mean for this type of variable with this method")
     }
 }

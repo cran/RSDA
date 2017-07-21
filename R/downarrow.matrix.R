@@ -35,10 +35,8 @@ downarrow.matrix <- function(sym.data) {
             c3 <- rep(0, n.sym.objects)
             for (i in 1:nn) {
                 for (s in 1:k) {
-                  c2[pos] <- sym.var(sym.data, j)$var.data.vector[i, 
-                    1]
-                  c3[pos] <- sym.var(sym.data, j)$var.data.vector[i, 
-                    2]
+                  c2[pos] <- sym.var(sym.data, j)$var.data.vector[i, 1]
+                  c3[pos] <- sym.var(sym.data, j)$var.data.vector[i, 2]
                   pos <- pos + 1
                 }
             }
@@ -82,8 +80,7 @@ downarrow.matrix <- function(sym.data) {
         pos <- pos + 2
     }
     sym.data <- list(N = n.sym.objects, M = n.sym.var, sym.obj.names = sym.obj.names, 
-        sym.var.names = sym.var.names, sym.var.types = sym.var.types, 
-        sym.var.length = sym.var.length, sym.var.starts = sym.var.starts, 
-        meta = meta.data, data = data.matrix)
+        sym.var.names = sym.var.names, sym.var.types = sym.var.types, sym.var.length = sym.var.length, 
+        sym.var.starts = sym.var.starts, meta = meta.data, data = data.matrix)
     return(sym.data)
 }

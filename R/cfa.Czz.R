@@ -9,8 +9,8 @@ cfa.Czz <- function(sym.data, TFilas, TColumnas, VPRealz, d) {
     zz <- matrix(0, NFil, MCol)  # To z
     for (i in 1:NFil) {
         for (j in 1:MCol) {
-            X[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 1] + 
-                sym.var(sym.data, j)$var.data.vector[i, 2])/2
+            X[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 1] + sym.var(sym.data, 
+                j)$var.data.vector[i, 2])/2
         }
     }
     suma <- 0
@@ -19,8 +19,7 @@ cfa.Czz <- function(sym.data, TFilas, TColumnas, VPRealz, d) {
             for (l in 1:aMax) {
                 suma <- 0
                 for (s in 1:aMin) {
-                  suma <- suma + (X[l, s]/TColumnas[s]) * VPRealz[s, 
-                    i]
+                  suma <- suma + (X[l, s]/TColumnas[s]) * VPRealz[s, i]
                 }
                 suma <- (1/sqrt(d[i])) * suma
                 zz[l, i] <- suma
@@ -31,8 +30,7 @@ cfa.Czz <- function(sym.data, TFilas, TColumnas, VPRealz, d) {
             for (l in 1:aMax) {
                 suma <- 0
                 for (s in 1:aMin) {
-                  suma <- suma + (X[s, l]/TFilas[s]) * VPRealz[s, 
-                    i]
+                  suma <- suma + (X[s, l]/TFilas[s]) * VPRealz[s, i]
                 }
                 suma <- (1/sqrt(d[i])) * suma
                 zz[l, i] = suma

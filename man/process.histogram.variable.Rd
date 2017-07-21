@@ -4,7 +4,7 @@
 \alias{process.histogram.variable}
 \title{process.histogram.variable}
 \usage{
-process.histogram.variable(variableName, concept, dataTable)
+process.histogram.variable(variableName, concept, dataTable, n)
 }
 \description{
 process.histogram.variable

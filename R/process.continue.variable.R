@@ -1,8 +1,7 @@
 #' process.continue.variable
 #' @keywords internal
 #' @importFrom XML xmlValue
-process.continue.variable <- function(number.of.rows, parsed.xml, 
-    variable.index, variable.name) {
+process.continue.variable <- function(number.of.rows, parsed.xml, variable.index, variable.name) {
     aux <- list()
     aux[[1]] <- rep("$C", number.of.rows)
     

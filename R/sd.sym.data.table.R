@@ -34,34 +34,34 @@ sd <- function(x, ...) {
 
 #' @rdname sd
 #' @export
-sd.default <- function(x,na.rm = FALSE, ...) {
-    stats::sd(x,na.rm)
+sd.default <- function(x, na.rm = FALSE, ...) {
+    stats::sd(x, na.rm)
 }
 
 
 #' @rdname sd
 #' @export
-sd.sym.data.table <- function(x, method = c("centers", "interval",
-    "billard", "modal"), na.rm = FALSE, ...) {
+sd.sym.data.table <- function(x, method = c("centers", "interval", "billard", "modal"), 
+    na.rm = FALSE, ...) {
     method <- match.arg(method)
     if (method == "centers") {
-        if (x$sym.var.types == "$C")
+        if (x$sym.var.types == "$C") 
             return(sd(x$data[, 1]))
-        if (x$sym.var.types == "$I")
+        if (x$sym.var.types == "$I") 
             return(sd(x$data[, 1] + x$data[, 2])/2) else stop("Impossible to compute the Standard Deviation for this type of variable with this method")
     }
     if (method == "interval") {
-        if (x$sym.var.types == "$I")
+        if (x$sym.var.types == "$I") 
             return(sapply(x$data, sd)) else stop("Impossible to compute the Standard Deviation for this type of variable with this method")
     }
     if (method == "billard") {
-        if (x$sym.var.types == "$I")
-            return(sqrt((1/(3 * x$N)) * sum(x$data[, 1]^2 + (x$data[,
-                1] * x$data[, 2]) + x$data[, 2]^2) - (1/(4 * (x$N)^2)) *
-                sum(x$data[, 1] + x$data[, 2])^2)) else stop("Impossible to compute the Standard Deviation for this type of variable with this method")
+        if (x$sym.var.types == "$I") 
+            return(sqrt((1/(3 * x$N)) * sum(x$data[, 1]^2 + (x$data[, 1] * x$data[, 
+                2]) + x$data[, 2]^2) - (1/(4 * (x$N)^2)) * sum(x$data[, 1] + x$data[, 
+                2])^2)) else stop("Impossible to compute the Standard Deviation for this type of variable with this method")
     }
     if (method == "modal") {
-        if (x$sym.var.types == "$M")
+        if (x$sym.var.types == "$M") 
             return(sapply(x$data, sd)) else stop("Impossible to compute the Standard Deviation for this type of variable with this method")
     }
 }

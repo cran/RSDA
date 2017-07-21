@@ -25,8 +25,7 @@ interscal.delta <- function(sym.data) {
                 D2M[2 * i, 2 * j] <- CMax[i, j]
                 D2M[2 * i - 1, 2 * j] <- (CMax[i, j] + CMin[i, j])/2
                 D2M[2 * i, 2 * j - 1] <- (CMax[i, j] + CMin[i, j])/2
-                D2M[2 * j - 1, 2 * i - 1] <- D2M[2 * i - 1, 2 * j - 
-                  1]
+                D2M[2 * j - 1, 2 * i - 1] <- D2M[2 * i - 1, 2 * j - 1]
                 D2M[2 * j, 2 * i] <- D2M[2 * i, 2 * j]
                 D2M[2 * j, 2 * i - 1] <- D2M[2 * i - 1, 2 * j]
                 D2M[2 * j - 1, 2 * i] <- D2M[2 * i, 2 * j - 1]

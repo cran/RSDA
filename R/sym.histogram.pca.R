@@ -49,9 +49,9 @@ sym.histogram.pca <- function(sym.data, method = c("histogram", "classic")) {
             for (s in 1:k) {
                 colm <- 2
                 for (j in 1:q) {
-                  res$Sym.Components$meta[pos, colm] <- res$Sym.Components$meta[pos,
+                  res$Sym.Components$meta[pos, colm] <- res$Sym.Components$meta[pos, 
                     colm] + cpc$ind$coord[i, j]
-                  res$Sym.Components$meta[pos, colm + 1] <- res$Sym.Components$meta[pos,
+                  res$Sym.Components$meta[pos, colm + 1] <- res$Sym.Components$meta[pos, 
                     colm + 1] + cpc$ind$coord[i, j]
                   colm <- colm + 3
                 }

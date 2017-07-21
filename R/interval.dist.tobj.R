@@ -24,8 +24,8 @@
 #' interval.dist.tobj(sym.obj(VD,1),sym.obj(VD,2),distance='centers')
 #' @keywords Symbolic Distance
 #' @export
-interval.dist.tobj <- function(sym.obj.x, sym.obj.y, distance = c("hausdorff", 
-    "centers", "interscal"), p = 2) {
+interval.dist.tobj <- function(sym.obj.x, sym.obj.y, distance = c("hausdorff", "centers", 
+    "interscal"), p = 2) {
     distance <- match.arg(distance)
     idn1 <- all(sym.obj.x$var.types == "$I")
     idn2 <- all(sym.obj.y$var.types == "$I")

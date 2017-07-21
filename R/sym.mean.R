@@ -32,22 +32,21 @@
 #' @export
 #'
 #'
-sym.mean <- function(sym.var, method = c("centers", "interval", "modal"),
-    trim = 0, na.rm = FALSE, ...) {
+sym.mean <- function(sym.var, method = c("centers", "interval", "modal"), trim = 0, 
+    na.rm = FALSE, ...) {
     method <- match.arg(method)
     if (method == "centers") {
-        if (sym.var$var.type == "$C")
+        if (sym.var$var.type == "$C") 
             return(mean(sym.var$var.data.vector, trim, na.rm))
-        if (sym.var$var.type == "$I")
-            return(mean((sym.var$var.data.vector[, 1] + sym.var$var.data.vector[,
-                2])/2)) else stop("Impossible to compute the mean for this type of variable with this method")
+        if (sym.var$var.type == "$I") 
+            return(mean((sym.var$var.data.vector[, 1] + sym.var$var.data.vector[, 2])/2)) else stop("Impossible to compute the mean for this type of variable with this method")
     }
     if (method == "interval") {
-        if (sym.var$var.type == "$I")
+        if (sym.var$var.type == "$I") 
             return(colMeans(sym.var$var.data.vector)) else stop("Impossible to compute the mean for this type of variable with this method")
     }
     if (method == "modal") {
-        if (sym.var$var.type == "$M")
+        if (sym.var$var.type == "$M") 
             return(colMeans(sym.var$var.data.vector)) else stop("Impossible to compute the mean for this type of variable with this method")
     }
 }

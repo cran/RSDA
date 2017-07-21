@@ -37,9 +37,8 @@ centers.interval <- function(sym.data) {
     centers <- as.data.frame(centers)
     rownames(centers) <- sym.data$sym.obj.names
     colnames(centers) <- sym.data$sym.var.names
-    for (i in 1:nn) for (j in 1:mm) centers[i, j] <- (sym.var(sym.data, 
-        j)$var.data.vector[i, 1] + sym.var(sym.data, j)$var.data.vector[i, 
-        2])/2
+    for (i in 1:nn) for (j in 1:mm) centers[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 
+        1] + sym.var(sym.data, j)$var.data.vector[i, 2])/2
     
     return(centers)
 }

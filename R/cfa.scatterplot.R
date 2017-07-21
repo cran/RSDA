@@ -26,22 +26,18 @@
 #' @export
 #' @import graphics
 #'
-cfa.scatterplot <- function(sym.var.x, sym.var.y, num.gr1 = 0, labels = TRUE,
-    ...) {
-    if (((sym.var.x$var.type != "$C") || (sym.var.y$var.type != "$C")) &&
-        ((sym.var.x$var.type != "$I") || (sym.var.y$var.type != "$I")))
+cfa.scatterplot <- function(sym.var.x, sym.var.y, num.gr1 = 0, labels = TRUE, ...) {
+    if (((sym.var.x$var.type != "$C") || (sym.var.y$var.type != "$C")) && ((sym.var.x$var.type != 
+        "$I") || (sym.var.y$var.type != "$I"))) 
         stop("Impossible to plot this type of variable")
     if ((sym.var.x$var.type == "$C") && (sym.var.y$var.type == "$C")) {
-        if (labels == FALSE)
-            plot(sym.var.x$var.data.vector, sym.var.y$var.data.vector,
-                xlab = sym.var.x$var.name, ylab = sym.var.y$var.name,
-                ...) else {
+        if (labels == FALSE) 
+            plot(sym.var.x$var.data.vector, sym.var.y$var.data.vector, xlab = sym.var.x$var.name, 
+                ylab = sym.var.y$var.name, ...) else {
             ltext <- sym.var.x$obj.names
-            plot(sym.var.x$var.data.vector, sym.var.y$var.data.vector,
-                type = "n", xlab = sym.var.x$var.name, ylab = sym.var.y$var.name,
-                ...)
-            text(sym.var.x$var.data.vector, sym.var.y$var.data.vector,
-                ltext)
+            plot(sym.var.x$var.data.vector, sym.var.y$var.data.vector, type = "n", 
+                xlab = sym.var.x$var.name, ylab = sym.var.y$var.name, ...)
+            text(sym.var.x$var.data.vector, sym.var.y$var.data.vector, ltext)
         }
     }
     if ((sym.var.x$var.type == "$I") && (sym.var.y$var.type == "$I")) {
@@ -57,19 +53,19 @@ cfa.scatterplot <- function(sym.var.x, sym.var.y, num.gr1 = 0, labels = TRUE,
         ymax1 <- max(sym.var.y$var.data.vector[, 1])
         ymax2 <- max(sym.var.y$var.data.vector[, 2])
         ymax <- max(ymax1, ymax2)
-        plot(c(xmin, xmax), c(ymin, ymax), type = "n", xlab = sym.var.x$var.name,
-            ylab = sym.var.y$var.name, ...)
+        plot(c(xmin, xmax), c(ymin, ymax), type = "n", xlab = sym.var.x$var.name, ylab = sym.var.y$var.name, 
+            ...)
         for (i in 1:sym.var.x$N) {
             x1 <- sym.var.x$var.data.vector[i, 1]
             y1 <- sym.var.y$var.data.vector[i, 1]
             x2 <- sym.var.x$var.data.vector[i, 2]
             y2 <- sym.var.y$var.data.vector[i, 2]
-            if (i <= num.gr1)
+            if (i <= num.gr1) 
                 rect(x1, y1, x2, y2, lwd = 2, border = "red") else rect(x1, y1, x2, y2, lwd = 2, border = "blue")
         }
         if (labels == TRUE) {
             ltext <- sym.var.x$obj.names
-            text(jitter(sym.var.x$var.data.vector[, 1]), jitter(sym.var.y$var.data.vector[,
+            text(jitter(sym.var.x$var.data.vector[, 1]), jitter(sym.var.y$var.data.vector[, 
                 1]), ltext)
         }
     }

@@ -50,9 +50,8 @@ sym.lm <- sym.lm <- function(formula, sym.data, method = c("cm", "crm")) {
     mm <- sym.data$M
     if (method == "cm") {
         centers <- matrix(0, nn, mm)
-        for (i in 1:nn) for (j in 1:mm) centers[i, j] <- (sym.var(sym.data, 
-            j)$var.data.vector[i, 1] + sym.var(sym.data, j)$var.data.vector[i, 
-            2])/2
+        for (i in 1:nn) for (j in 1:mm) centers[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 
+            1] + sym.var(sym.data, j)$var.data.vector[i, 2])/2
         centers <- as.data.frame(centers)
         colnames(centers) <- sym.data$sym.var.names
         model <- lm(formula, data = centers)
@@ -61,17 +60,15 @@ sym.lm <- sym.lm <- function(formula, sym.data, method = c("cm", "crm")) {
     if (method == "crm") {
         # Center Model
         centers <- matrix(0, nn, mm)
-        for (i in 1:nn) for (j in 1:mm) centers[i, j] <- (sym.var(sym.data, 
-            j)$var.data.vector[i, 1] + sym.var(sym.data, j)$var.data.vector[i, 
-            2])/2
+        for (i in 1:nn) for (j in 1:mm) centers[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 
+            1] + sym.var(sym.data, j)$var.data.vector[i, 2])/2
         centers <- as.data.frame(centers)
         colnames(centers) <- sym.data$sym.var.names
         modelc <- lm(formula, data = centers)
         # Range Model
         range <- matrix(0, nn, mm)
-        for (i in 1:nn) for (j in 1:mm) range[i, j] <- (sym.var(sym.data, 
-            j)$var.data.vector[i, 2] - sym.var(sym.data, j)$var.data.vector[i, 
-            1])/2
+        for (i in 1:nn) for (j in 1:mm) range[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 
+            2] - sym.var(sym.data, j)$var.data.vector[i, 1])/2
         range <- as.data.frame(range)
         colnames(range) <- sym.data$sym.var.names
         modelr <- lm(formula, data = range)

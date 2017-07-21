@@ -22,6 +22,10 @@ head(us.crime)
 summary(us.crime)
 names(us.crime)
 nrow(us.crime)
+result  <- classic.to.sym(us.crime, concept='state',
+                          variables=c('NumInShelters', 'NumImmig'),
+                          variables.types=c('$H', '$H'))
+result
 }
 \references{
 HASTIE, T., TIBSHIRANI, R. and FRIEDMAN, J. (2008). The Elements of Statistical Learning:

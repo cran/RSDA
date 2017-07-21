@@ -58,8 +58,8 @@
 #' @keywords Symbolic Kmeans
 #' @export
 #'
-sym.kmeans <- function(sym.data, k = 3, iter.max = 10, nstart = 1, 
-    algorithm = c("Hartigan-Wong", "Lloyd", "Forgy", "MacQueen")) {
+sym.kmeans <- function(sym.data, k = 3, iter.max = 10, nstart = 1, algorithm = c("Hartigan-Wong", 
+    "Lloyd", "Forgy", "MacQueen")) {
     algorithm <- match.arg(algorithm)
     idn <- all(sym.data$sym.var.types == "$I")
     if (idn == FALSE) 
@@ -70,8 +70,7 @@ sym.kmeans <- function(sym.data, k = 3, iter.max = 10, nstart = 1,
     centers <- as.data.frame(centers)
     rownames(centers) <- sym.data$sym.obj.names
     colnames(centers) <- sym.data$sym.var.names
-    for (i in 1:nn) for (j in 1:mm) centers[i, j] <- (sym.var(sym.data, 
-        j)$var.data.vector[i, 1] + sym.var(sym.data, j)$var.data.vector[i, 
-        2])/2
+    for (i in 1:nn) for (j in 1:mm) centers[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 
+        1] + sym.var(sym.data, j)$var.data.vector[i, 2])/2
     return(kmeans(centers, k, iter.max, nstart, algorithm))
 }

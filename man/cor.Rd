@@ -23,8 +23,8 @@ cor(x, ...)
 
 \item{use}{An optional character string giving a method for computing
 covariances in the presence of missing values. This must be (an abbreviation of)
- one of the strings "everything", "all.obs", "complete.obs", "na.or.complete",
- or "pairwise.complete.obs".}
+ one of the strings 'everything', 'all.obs', 'complete.obs', 'na.or.complete',
+ or 'pairwise.complete.obs'.}
 
 \item{method}{The method to be use.}
 }

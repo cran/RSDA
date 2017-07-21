@@ -22,8 +22,8 @@ interscal.B <- function(sym.data) {
             for (s in 1:Fil) {
                 suma2 <- suma2 + (MDis[i, s] * MDis[i, s])
             }
-            B[i, j] <- (-1/2) * (MDis[i, j] * MDis[i, j] - (1/Fil) * 
-                suma1 - (1/Fil) * suma2 + ((1/Fil)^2) * suma3)
+            B[i, j] <- (-1/2) * (MDis[i, j] * MDis[i, j] - (1/Fil) * suma1 - (1/Fil) * 
+                suma2 + ((1/Fil)^2) * suma3)
         }
     }
     return(B)

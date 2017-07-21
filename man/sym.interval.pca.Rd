@@ -4,8 +4,8 @@
 \alias{sym.interval.pca}
 \title{Interval Principal Components Analysis.}
 \usage{
-sym.interval.pca(sym.data, method = c("classic", "tops","centers",
-"principal.curves", "optimized.distance", "optimized.variance"))
+sym.interval.pca(sym.data, method = c('classic', 'tops','centers',
+'principal.curves', 'optimized.distance', 'optimized.variance'))
 }
 \arguments{
 \item{sym.data}{Shoud be a symbolic data table}

@@ -32,8 +32,7 @@
 #' @export
 #'
 #'
-sym.interval.pc.limits <- function(sym.data, prin.curve, num.vertex, 
-    lambda, var.ord) {
+sym.interval.pc.limits <- function(sym.data, prin.curve, num.vertex, lambda, var.ord) {
     num.vars <- sym.data$M
     num.ind <- sym.data$N
     
@@ -63,7 +62,7 @@ sym.interval.pc.limits <- function(sym.data, prin.curve, num.vertex,
     colnames(res)[1:num.vars] <- variables
     variables <- c(variables[var.ord], "lambda")
     
-    sym.res <- classic.to.sym(dataTable = res, concept = c("symindiv"), 
-        variables = variables, variables.types = var.type)
+    sym.res <- classic.to.sym(dataTable = res, concept = c("symindiv"), variables = variables, 
+        variables.types = var.type)
     return(sym.res)
 }

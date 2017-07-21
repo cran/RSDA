@@ -4,8 +4,8 @@ sym.scatterplot <- function(sym.var.x, sym.var.y, labels = FALSE, ...) {
         stop("Impossible to plot this type of variable")
     if ((sym.var.x$sym.var.types == "$C") && (sym.var.y$sym.var.types == "$C")) {
         if (labels == FALSE) 
-            plot(sym.var.x$data, sym.var.y$data, xlab = sym.var.x$sym.var.names, 
-                ylab = sym.var.y$sym.var.names, ...) else {
+            plot(sym.var.x$data, sym.var.y$data, xlab = sym.var.x$sym.var.names, ylab = sym.var.y$sym.var.names, 
+                ...) else {
             ltext <- sym.var.x$sym.obj.names
             plot(sym.var.x$data, sym.var.y$data, type = "n", xlab = sym.var.x$sym.var.names, 
                 ylab = sym.var.y$sym.var.names, ...)

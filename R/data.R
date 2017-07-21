@@ -96,7 +96,7 @@
 #' ex1 <- ex1_db2so
 #' result <- classic.to.sym(ex1, concept=c('state', 'sex'),
 #'                          variables=c('county', 'group', 'age','age'),
-#'                          variables.types=c('$C', '$I', '$M', '$S'))
+#'                          variables.types=c('$C', '$I', '$H', '$S'))
 #' result
 #' @keywords datasets
 "ex1_db2so"
@@ -109,7 +109,7 @@
 #' histogram and set types.
 #' @usage data(example1)
 #' @format The labels $C means that follows a continuous variable, $I means an interval
-#' variable, $M means a histogram variables and $S means set variable. In the
+#' variable, $H means a histogram variables and $S means set variable. In the
 #' first row each labels should be follow of a name to variable and to the case
 #' of histogram a set variables types the names of the modalities (categories).
 #' In data rows for continuous variables we have just one value, for interval
@@ -147,7 +147,7 @@
 
 #' $sym.var.types
 
-#' [1] '$C' '$I' '$M' '$S' \cr
+#' [1] '$C' '$I' '$H' '$S' \cr
 
 #' $sym.var.length \cr
 
@@ -257,17 +257,17 @@
 #' This a symbolic data matrix wint continuos, interval, histograma a set data types.
 #' @usage data(example5)
 #' @format
-#' $M F0 M01 M02 $C   F1 $I F2 F2 $M F3  M1  M2  M3 $S F4 E1 E2 E3 E4 \cr
+#' $H F0 M01 M02 $C   F1 $I F2 F2 $H F3  M1  M2  M3 $S F4 E1 E2 E3 E4 \cr
 
-#' Case1 $M  2 0.1 0.9 $C  2.8 $I  1  2 $M  3 0.1 0.7 0.2 $S  4  e  g  k  i \cr
+#' Case1 $H  2 0.1 0.9 $C  2.8 $I  1  2 $H  3 0.1 0.7 0.2 $S  4  e  g  k  i \cr
 
-#' Case2 $M  2 0.7 0.3 $C  1.4 $I  3  9 $M  3 0.6 0.3 0.1 $S  4  a  b  c  d \cr
+#' Case2 $H  2 0.7 0.3 $C  1.4 $I  3  9 $H  3 0.6 0.3 0.1 $S  4  a  b  c  d \cr
 
-#' Case3 $M  2 0.0 1.0 $C  3.2 $I -1  4 $M  3 0.2 0.2 0.6 $S  4  2  1  b  c \cr
+#' Case3 $H  2 0.0 1.0 $C  3.2 $I -1  4 $H  3 0.2 0.2 0.6 $S  4  2  1  b  c \cr
 
-#' Case4 $M  2 0.2 0.8 $C -2.1 $I  0  2 $M  3 0.9 0.0 0.1 $S  4  3  4  c  a \cr
+#' Case4 $H  2 0.2 0.8 $C -2.1 $I  0  2 $H  3 0.9 0.0 0.1 $S  4  3  4  c  a \cr
 
-#' Case5 $M  2 0.6 0.4 $C -3.0 $I -4 -2 $M  3 0.6 0.0 0.4 $S  4  e  i  g  k \cr
+#' Case5 $H  2 0.6 0.4 $C -3.0 $I -4 -2 $H  3 0.6 0.0 0.4 $S  4  e  i  g  k \cr
 #'
 #' @examples
 #' data(example5)
@@ -305,17 +305,17 @@
 #' This a symbolic data matrix wint continuos, interval, histograma a set data types.
 #' @usage data(example6)
 #' @format
-#' $C   F1 $M F2  M1  M2  M3  M4  M5 $I F3 F3 $M F4  M1  M2  M3 $C   F5 \cr
+#' $C   F1 $H F2  M1  M2  M3  M4  M5 $I F3 F3 $H F4  M1  M2  M3 $C   F5 \cr
 
-#' Case1 $C  2.8 $M  5 0.1 0.2 0.3 0.4 0.0 $I  1  2 $M  3 0.1 0.7 0.2 $C  6.0 \cr
+#' Case1 $C  2.8 $H  5 0.1 0.2 0.3 0.4 0.0 $I  1  2 $H  3 0.1 0.7 0.2 $C  6.0 \cr
 
-#' Case2 $C  1.4 $M  5 0.2 0.1 0.5 0.1 0.2 $I  3  9 $M  3 0.6 0.3 0.1 $C  8.0 \cr
+#' Case2 $C  1.4 $H  5 0.2 0.1 0.5 0.1 0.2 $I  3  9 $H  3 0.6 0.3 0.1 $C  8.0 \cr
 
-#' Case3 $C  3.2 $M  5 0.1 0.1 0.2 0.1 0.5 $I -1  4 $M  3 0.2 0.2 0.6 $C -7.0 \cr
+#' Case3 $C  3.2 $H  5 0.1 0.1 0.2 0.1 0.5 $I -1  4 $H  3 0.2 0.2 0.6 $C -7.0 \cr
 
-#' Case4 $C -2.1 $M  5 0.4 0.1 0.1 0.1 0.3 $I  0  2 $M  3 0.9 0.0 0.1 $C  0.0 \cr
+#' Case4 $C -2.1 $H  5 0.4 0.1 0.1 0.1 0.3 $I  0  2 $H  3 0.9 0.0 0.1 $C  0.0 \cr
 
-#' Case5 $C -3.0 $M  5 0.6 0.1 0.1 0.1 0.1 $I -4 -2 $M  3 0.6 0.0 0.4 $C -9.5 \cr
+#' Case5 $C -3.0 $H  5 0.6 0.1 0.1 0.1 0.1 $I -4 -2 $H  3 0.6 0.0 0.4 $C -9.5 \cr
 #'
 #' @examples
 #' data(example7)
@@ -585,6 +585,10 @@
 #' summary(us.crime)
 #' names(us.crime)
 #' nrow(us.crime)
+#' result  <- classic.to.sym(us.crime, concept='state',
+#'                           variables=c('NumInShelters', 'NumImmig'),
+#'                           variables.types=c('$H', '$H'))
+#' result
 #' @keywords datasets
 "USCrime"
 

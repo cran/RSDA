@@ -7,8 +7,8 @@
 #' @param y A symbolic variable.
 #' @param use An optional character string giving a method for computing
 #' covariances in the presence of missing values. This must be (an abbreviation of)
-#'  one of the strings "everything", "all.obs", "complete.obs", "na.or.complete",
-#'  or "pairwise.complete.obs".
+#'  one of the strings 'everything', 'all.obs', 'complete.obs', 'na.or.complete',
+#'  or 'pairwise.complete.obs'.
 #' @param method The method to be use.
 #' @param ... As in R cor function.
 #'
@@ -34,26 +34,25 @@ cor <- function(x, ...) {
 
 #' @rdname cor
 #' @export
-cor.default <- function(x, y = NULL, use = "everything", method = c("pearson",
-    "kendall", "spearman"), ...) {
+cor.default <- function(x, y = NULL, use = "everything", method = c("pearson", "kendall", 
+    "spearman"), ...) {
     stats::cor(x, y, use, method)
 }
 
 #' @rdname cor
 #' @export
-cor.sym.data.table <- function(x, y, method = c("centers", "interval",
-    "billard", "modal"), ...) {
+cor.sym.data.table <- function(x, y, method = c("centers", "interval", "billard", "modal"), 
+    ...) {
     method <- match.arg(method)
     if (method == "centers") {
-        if ((x$sym.var.types == "$C") && (y$sym.var.types == "$C"))
+        if ((x$sym.var.types == "$C") && (y$sym.var.types == "$C")) 
             return(cor(x$data[, 1], y$data[, 1]))
-        if ((x$sym.var.types == "$I") && (y$sym.var.types == "$I"))
-            return(cor((x$data[, 1] + x$data[, 2])/2, (y$data[, 1] +
-                y$data[, 2])/2)) else stop("Impossible to compute the Standard Deviation for this type of variable with this method")
+        if ((x$sym.var.types == "$I") && (y$sym.var.types == "$I")) 
+            return(cor((x$data[, 1] + x$data[, 2])/2, (y$data[, 1] + y$data[, 2])/2)) else stop("Impossible to compute the Standard Deviation for this type of variable with this method")
     }
     if (method == "billard") {
-        if ((x$sym.var.types == "$I") && (y$sym.var.types == "$I"))
-            return(cov(x, y, method = "billard")/(sd(x, method = "billard") *
-                sd(y, method = "billard")))
+        if ((x$sym.var.types == "$I") && (y$sym.var.types == "$I")) 
+            return(cov(x, y, method = "billard")/(sd(x, method = "billard") * sd(y, 
+                method = "billard")))
     }
 }

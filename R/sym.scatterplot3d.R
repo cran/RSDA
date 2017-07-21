@@ -25,32 +25,28 @@
 #' @export
 #' @importFrom scatterplot3d scatterplot3d
 #'
-sym.scatterplot3d <- function(sym.var.x, sym.var.y, sym.var.z, labels = FALSE, 
-    ...) {
-    if (((sym.var.x$sym.var.types != "$C") || (sym.var.y$sym.var.types != 
-        "$C") || (sym.var.z$sym.var.types != "$C")) && ((sym.var.x$sym.var.types != 
-        "$I") || (sym.var.y$sym.var.types != "$I") || (sym.var.y$sym.var.types != 
-        "$I"))) 
+sym.scatterplot3d <- function(sym.var.x, sym.var.y, sym.var.z, labels = FALSE, ...) {
+    if (((sym.var.x$sym.var.types != "$C") || (sym.var.y$sym.var.types != "$C") || 
+        (sym.var.z$sym.var.types != "$C")) && ((sym.var.x$sym.var.types != "$I") || 
+        (sym.var.y$sym.var.types != "$I") || (sym.var.y$sym.var.types != "$I"))) 
         stop("Impossible to plot this type of variable")
-    if ((sym.var.x$sym.var.types == "$C") && (sym.var.y$sym.var.types == 
-        "$C") && (sym.var.z$sym.var.types == "$C")) {
+    if ((sym.var.x$sym.var.types == "$C") && (sym.var.y$sym.var.types == "$C") && (sym.var.z$sym.var.types == 
+        "$C")) {
         if (labels == FALSE) {
-            p <- scatterplot3d(sym.var.x$data[, 1], sym.var.y$data[, 
-                1], sym.var.z$data[, 1], xlab = sym.var.x$sym.var.names, 
-                ylab = sym.var.y$sym.var.names, zlab = sym.var.z$sym.var.names, 
-                ...)
+            p <- scatterplot3d(sym.var.x$data[, 1], sym.var.y$data[, 1], sym.var.z$data[, 
+                1], xlab = sym.var.x$sym.var.names, ylab = sym.var.y$sym.var.names, 
+                zlab = sym.var.z$sym.var.names, ...)
         } else {
-            p <- scatterplot3d(sym.var.x$data[, 1], sym.var.y$data[, 
-                1], sym.var.z$data[, 1], xlab = sym.var.x$sym.var.names, 
-                ylab = sym.var.y$sym.var.names, zlab = sym.var.z$sym.var.names, 
-                type = "n", ...)
+            p <- scatterplot3d(sym.var.x$data[, 1], sym.var.y$data[, 1], sym.var.z$data[, 
+                1], xlab = sym.var.x$sym.var.names, ylab = sym.var.y$sym.var.names, 
+                zlab = sym.var.z$sym.var.names, type = "n", ...)
             ltext <- sym.var.x$sym.obj.names
-            text(p$xyz.convert(sym.var.x$data[, 1], sym.var.y$data[, 
-                1], sym.var.z$data[, 1]), labels = ltext)
+            text(p$xyz.convert(sym.var.x$data[, 1], sym.var.y$data[, 1], sym.var.z$data[, 
+                1]), labels = ltext)
         }
     }
-    if ((sym.var.x$sym.var.types == "$I") && (sym.var.y$sym.var.types == 
-        "$I") && (sym.var.z$sym.var.types == "$I")) {
+    if ((sym.var.x$sym.var.types == "$I") && (sym.var.y$sym.var.types == "$I") && (sym.var.z$sym.var.types == 
+        "$I")) {
         
         xmin1 <- min(sym.var.x$data[, 1])
         xmin2 <- min(sym.var.x$data[, 2])
@@ -70,27 +66,25 @@ sym.scatterplot3d <- function(sym.var.x, sym.var.y, sym.var.z, labels = FALSE,
         zmax1 <- max(sym.var.z$data[, 1])
         zmax2 <- max(sym.var.z$data[, 2])
         zmax <- max(zmax1, zmax2)
-        p <- scatterplot3d(c(xmin, xmax), c(ymin, ymax), c(zmin, zmax), 
-            xlab = sym.var.x$sym.var.names, ylab = sym.var.y$sym.var.names, 
-            zlab = sym.var.z$sym.var.names, type = "n", ...)
-        cube <- rbind(c(1, 1, 1), c(2, 1, 1), c(2, 1, 2), c(1, 1, 
-            2), c(1, 1, 1), c(1, 2, 1), c(1, 2, 2), c(2, 2, 2), c(2, 
-            2, 1), c(1, 2, 1), c(1, 2, 2), c(1, 1, 2), c(2, 1, 2), 
-            c(2, 2, 2), c(2, 2, 1), c(2, 1, 1))
+        p <- scatterplot3d(c(xmin, xmax), c(ymin, ymax), c(zmin, zmax), xlab = sym.var.x$sym.var.names, 
+            ylab = sym.var.y$sym.var.names, zlab = sym.var.z$sym.var.names, type = "n", 
+            ...)
+        cube <- rbind(c(1, 1, 1), c(2, 1, 1), c(2, 1, 2), c(1, 1, 2), c(1, 1, 1), c(1, 
+            2, 1), c(1, 2, 2), c(2, 2, 2), c(2, 2, 1), c(1, 2, 1), c(1, 2, 2), c(1, 
+            1, 2), c(2, 1, 2), c(2, 2, 2), c(2, 2, 1), c(2, 1, 1))
         for (i in 1:sym.var.x$N) {
             
             vec.x <- sym.var.x$data[i, cube[, 1]]
             vec.y <- sym.var.y$data[i, cube[, 2]]
             vec.z <- sym.var.z$data[i, cube[, 3]]
             
-            p$points3d(vec.x, vec.y, vec.z, type = "l", lty = 1, col = i + 
-                1)
+            p$points3d(vec.x, vec.y, vec.z, type = "l", lty = 1, col = i + 1)
         }
         if (labels == TRUE) {
             ltext <- sym.var.x$sym.obj.names
-            textPoints <- cbind((sym.var.x$data[, 1] + sym.var.x$data[, 
-                2])/2, (sym.var.y$data[, 1] + sym.var.y$data[, 2])/2, 
-                (sym.var.z$data[, 1] + sym.var.z$data[, 2])/2)
+            textPoints <- cbind((sym.var.x$data[, 1] + sym.var.x$data[, 2])/2, (sym.var.y$data[, 
+                1] + sym.var.y$data[, 2])/2, (sym.var.z$data[, 1] + sym.var.z$data[, 
+                2])/2)
             text(p$xyz.convert(textPoints), labels = ltext)
         }
     }

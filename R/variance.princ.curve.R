@@ -36,7 +36,6 @@ variance.princ.curve <- function(data, curve) {
     ord <- order(x = var.data, decreasing = TRUE)
     var.data.cum <- cumsum(var.data[ord])
     var.curve.cum <- cumsum(var.curve[ord])
-    return(list(var.data = var.data, var.data.cum = var.data.cum, 
-        var.curve = var.curve, var.curve.cum = var.curve.cum, dist = dist, 
-        var.order = ord))
+    return(list(var.data = var.data, var.data.cum = var.data.cum, var.curve = var.curve, 
+        var.curve.cum = var.curve.cum, dist = dist, var.order = ord))
 }

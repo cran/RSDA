@@ -30,24 +30,20 @@
 #' @export
 #' @import ggplot2
 #'
-sym.scatterplot.ggplot <- function(sym.var.x, sym.var.y, labels = FALSE, 
-    ...) {
+sym.scatterplot.ggplot <- function(sym.var.x, sym.var.y, labels = FALSE, ...) {
     x <- 0
     y <- 0
     xmin <- 0
     xmax <- 0
     ymin <- 0
     ymax <- 0
-    if (((sym.var.x$sym.var.types != "$C") || (sym.var.y$sym.var.types != 
-        "$C")) && ((sym.var.x$sym.var.types != "$I") || (sym.var.y$sym.var.types != 
-        "$I"))) 
+    if (((sym.var.x$sym.var.types != "$C") || (sym.var.y$sym.var.types != "$C")) && 
+        ((sym.var.x$sym.var.types != "$I") || (sym.var.y$sym.var.types != "$I"))) 
         stop("Impossible to plot this type of variable")
-    if ((sym.var.x$sym.var.types == "$C") && (sym.var.y$sym.var.types == 
-        "$C")) {
+    if ((sym.var.x$sym.var.types == "$C") && (sym.var.y$sym.var.types == "$C")) {
         df <- data.frame(sym.var.x$data, sym.var.y$data)
         names(df) <- c("x", "y")
-        p <- ggplot(df, aes(x, y)) + labs(x = sym.var.x$sym.var.names, 
-            y = sym.var.y$sym.var.names)
+        p <- ggplot(df, aes(x, y)) + labs(x = sym.var.x$sym.var.names, y = sym.var.y$sym.var.names)
         if (labels == FALSE) {
             p <- p + geom_point()
         } else {
@@ -55,18 +51,16 @@ sym.scatterplot.ggplot <- function(sym.var.x, sym.var.y, labels = FALSE,
             p <- p + geom_text(label = ltext)
         }
     }
-    if ((sym.var.x$sym.var.types == "$I") && (sym.var.y$sym.var.types == 
-        "$I")) {
+    if ((sym.var.x$sym.var.types == "$I") && (sym.var.y$sym.var.types == "$I")) {
         df <- data.frame(sym.var.x$data, sym.var.y$data)
         names(df) <- c("xmin", "xmax", "ymin", "ymax")
         p <- ggplot(df) + labs(x = sym.var.x$sym.var.names, y = sym.var.y$sym.var.names) + 
-            geom_rect(data = df, aes(xmin = xmin, xmax = xmax, ymin = ymin, 
-                ymax = ymax), fill = alpha(1:sym.var.x$N, 2/3))
+            geom_rect(data = df, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax), 
+                fill = alpha(1:sym.var.x$N, 2/3))
         
         if (labels == TRUE) {
             ltext <- sym.var.x$sym.obj.names
-            p <- p + geom_text(aes((xmin + xmax)/2, (ymin + ymax)/2), 
-                label = ltext)
+            p <- p + geom_text(aes((xmin + xmax)/2, (ymin + ymax)/2), label = ltext)
         }
     }
     print(p)

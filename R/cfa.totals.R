@@ -17,12 +17,10 @@ cfa.totals <- function(sym.data) {
     CMax <- matrix(0, N, M)
     for (i in 1:N) {
         for (j in 1:M) {
-            CMin[i, j] <- sym.var(sym.data, j)$var.data.vector[i, 
-                1]
-            CMax[i, j] <- sym.var(sym.data, j)$var.data.vector[i, 
-                2]
-            A[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 1] + 
-                sym.var(sym.data, j)$var.data.vector[i, 2])/2
+            CMin[i, j] <- sym.var(sym.data, j)$var.data.vector[i, 1]
+            CMax[i, j] <- sym.var(sym.data, j)$var.data.vector[i, 2]
+            A[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 1] + sym.var(sym.data, 
+                j)$var.data.vector[i, 2])/2
         }
     }
     # Centers Totals
@@ -49,8 +47,7 @@ cfa.totals <- function(sym.data) {
         TotalColumnasMax[j] <- sum(CMax[, j])
     }
     TotalMax <- sum(TotalFilasMax)
-    return(list(Total = Total, TotalMin = TotalMin, TotalMax = TotalMax, 
-        TotalRows = TotalFilas, TotalColumns = TotalColumnas, TotalRowsMin = TotalFilasMin, 
-        TotalColumnsMin = TotalColumnasMin, TotalRowsMax = TotalFilasMax, 
-        TotalColumnsMax = TotalColumnasMax))
+    return(list(Total = Total, TotalMin = TotalMin, TotalMax = TotalMax, TotalRows = TotalFilas, 
+        TotalColumns = TotalColumnas, TotalRowsMin = TotalFilasMin, TotalColumnsMin = TotalColumnasMin, 
+        TotalRowsMax = TotalFilasMax, TotalColumnsMax = TotalColumnasMax))
 }

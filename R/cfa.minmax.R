@@ -1,7 +1,7 @@
 #' cfa.minmax
 #' @keywords internal
-cfa.minmax <- function(sym.data, TFilas, TFilasMin, TFilasMax, TColumnas, 
-    TColumnasMin, TColumnasMax, Total, VP, VPzz) {
+cfa.minmax <- function(sym.data, TFilas, TFilasMin, TFilasMax, TColumnas, TColumnasMin, 
+    TColumnasMax, Total, VP, VPzz) {
     n <- sym.data$N
     m <- sym.data$M
     aMin <- min(n, m)
@@ -13,12 +13,10 @@ cfa.minmax <- function(sym.data, TFilas, TFilasMin, TFilasMax, TColumnas,
     Max <- matrix(0, n + m, aMin - 1)
     for (i in 1:n) {
         for (j in 1:m) {
-            XMin[i, j] <- sym.var(sym.data, j)$var.data.vector[i, 
-                1]
-            XMax[i, j] <- sym.var(sym.data, j)$var.data.vector[i, 
-                2]
-            X[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 1] + 
-                sym.var(sym.data, j)$var.data.vector[i, 2])/2
+            XMin[i, j] <- sym.var(sym.data, j)$var.data.vector[i, 1]
+            XMax[i, j] <- sym.var(sym.data, j)$var.data.vector[i, 2]
+            X[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 1] + sym.var(sym.data, 
+                j)$var.data.vector[i, 2])/2
         }
     }
     for (j in 1:m) {

@@ -61,6 +61,6 @@ meta.to.RSDA <- function(data.meta) {
     sym.obj.names <- row.names(data.meta)
     
     return(list(N = N, M = M, sym.obj.names = sym.obj.names, sym.var.names = sym.var.names, 
-        sym.var.types = names.col.meta[pos.var], sym.var.length = sym.var.length, 
-        sym.var.starts = sym.var.starts, meta = data.meta, data = data))
+        sym.var.types = names.col.meta[pos.var], sym.var.length = sym.var.length, sym.var.starts = sym.var.starts, 
+        meta = data.meta, data = data))
 }

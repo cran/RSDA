@@ -33,8 +33,7 @@ optim.pca.variance.j <- function(sym.data, num.dimension) {
     pca.max <- PCA(X = M.x, scale.unit = FALSE, ind.sup = (N + 1):tot.individuals, 
         ncp = M, graph = FALSE)
     
-    pca.min.sym <- sym.interval.pca.limits.new.j(sym.data, pca.max$ind.sup$coord, 
-        sym.data.vertex$num.vertex)
+    pca.min.sym <- sym.interval.pca.limits.new.j(sym.data, pca.max$ind.sup$coord, sym.data.vertex$num.vertex)
     
     return(list(Sym.Components = pca.min.sym, pca.min = pca.max, res.max = res.min))
 }

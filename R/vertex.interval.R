@@ -44,15 +44,13 @@ vertex.interval <- function(sym.data) {
         for (i in 1:nn) {
             current.row <- as.character(i)
             previous <- "1:2"
-            command <- paste0(sym.text, current.row, ",", previous, 
-                "])")
+            command <- paste0(sym.text, current.row, ",", previous, "])")
             for (j in 2:mm) {
                 col.current.min <- 2 * j - 1
                 col.current.max <- 2 * j
-                nxt.grid <- paste0(as.character(col.current.min), 
-                  ":", as.character(col.current.max))
-                command <- paste0(command, ",", sym.text, current.row, 
-                  ",", nxt.grid, "])")
+                nxt.grid <- paste0(as.character(col.current.min), ":", as.character(col.current.max))
+                command <- paste0(command, ",", sym.text, current.row, ",", nxt.grid, 
+                  "])")
             }
             command <- paste0("expand.grid(", command, ")")
             aux <- eval(parse(text = command))

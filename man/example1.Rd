@@ -5,7 +5,7 @@
 \alias{example1}
 \title{Data Example 1}
 \format{The labels $C means that follows a continuous variable, $I means an interval
-variable, $M means a histogram variables and $S means set variable. In the
+variable, $H means a histogram variables and $S means set variable. In the
 first row each labels should be follow of a name to variable and to the case
 of histogram a set variables types the names of the modalities (categories).
 In data rows for continuous variables we have just one value, for interval
@@ -30,7 +30,7 @@ $sym.obj.names \cr
 $sym.var.names \cr
 [1] 'F1' 'F2' 'F3' 'F4' \cr
 $sym.var.types
-[1] '$C' '$I' '$M' '$S' \cr
+[1] '$C' '$I' '$H' '$S' \cr
 $sym.var.length \cr
 [1] 1 2 3 4 \cr
 $sym.var.starts \cr

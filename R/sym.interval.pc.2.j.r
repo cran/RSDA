@@ -1,5 +1,5 @@
-sym.interval.pc.2.j <- function(sym.data, method = c("vertex", "centers"), maxit, 
-    plot, scale, center) {
+sym.interval.pc.2.j <- function(sym.data, method = c("vertex", "centers"), maxit, plot, 
+    scale, center) {
     idn <- all(sym.data$sym.var.types == sym.data$sym.var.types[1])
     if (idn == FALSE) 
         stop("All variables have to be of the same type")
