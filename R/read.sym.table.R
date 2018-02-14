@@ -98,16 +98,18 @@
 #' from complex data. Springer, Germany.
 #' @seealso display.sym.table
 #' @examples
+#' \dontrun{
 #' data(example1)
 #' write.sym.table(example1, file='temp4.csv', sep='|',dec='.', row.names=TRUE,
 #'                 col.names=TRUE)
 #' ex1<-read.sym.table('temp4.csv', header=TRUE, sep='|',dec='.', row.names=1)
+#' }
 #' @keywords Symbolic Table
 #' @export
 #' @importFrom utils read.table
 #'
 read.sym.table <- function(file, header = TRUE, sep, dec, row.names = NULL) {
-    meta.data <- read.table(file, header, sep = as.character(sep), dec = as.character(dec), 
+    meta.data <- read.table(file, header, sep = as.character(sep), dec = as.character(dec),
         row.names = c(row.names), check.names = FALSE)
     n.sym.objects <- dim(meta.data)[1]
     meta.M <- dim(meta.data)[2]
@@ -118,7 +120,7 @@ read.sym.table <- function(file, header = TRUE, sep, dec, row.names = NULL) {
     sym.obj.names <- rownames(meta.data)
     del.columns <- c()
     del.columns.length <- 0
-    if (header == TRUE) 
+    if (header == TRUE)
         meta.types <- colnames(meta.data) else stop("Data file have to have a header")
     meta.types.orig <- meta.types
     for (i in 1:length(meta.types)) {
@@ -167,11 +169,11 @@ read.sym.table <- function(file, header = TRUE, sep, dec, row.names = NULL) {
     sym.var.length <- sym.var.length[del1 > 0]
     n.sym.var <- length(sym.var.length)
     data.matrix <- as.data.frame(meta.data[, del2 == 0])
-    sym.data <- list(N = n.sym.objects, M = n.sym.var, sym.obj.names = sym.obj.names, 
-        sym.var.names = unlist(sym.var.names), sym.var.types = unlist(sym.var.types), 
-        sym.var.length = sym.var.length, sym.var.starts = unlist(sym.var.starts), meta = meta.data, 
+    sym.data <- list(N = n.sym.objects, M = n.sym.var, sym.obj.names = sym.obj.names,
+        sym.var.names = unlist(sym.var.names), sym.var.types = unlist(sym.var.types),
+        sym.var.length = sym.var.length, sym.var.starts = unlist(sym.var.starts), meta = meta.data,
         data = data.matrix)
-    
+
     class(sym.data) <- c("sym.data.table")
     return(sym.data)
 }

@@ -17,8 +17,9 @@
 #' @seealso sym.interval.pca
 #'
 #' @examples
-#' data(ex_cfa1)
-#' res<-interscal(ex_cfa1)
+#' \dontrun{
+#' data(oils)
+#' res<-interscal(oils)
 #' class(res$Sym.Components) <- c('sym.data.table')
 #' sym.scatterplot(res$Sym.Components[,1], res$Sym.Components[,2],
 #'                 labels=TRUE,col='red',main='Interscal CFA Data')
@@ -27,6 +28,7 @@
 #'                   labels=TRUE,main='Interscal CFA Data')
 #' sym.scatterplot.ggplot(res$Sym.Components[,1],res$Sym.Components[,2],
 #'                        labels=TRUE)
+#' }
 #' @keywords Interscal
 #' @export
 interscal <- function(sym.data) {
@@ -37,7 +39,7 @@ interscal <- function(sym.data) {
     VecP <- ds$vector
     n <- 2 * sym.data$N
     m <- sym.data$M
-    if (n < m) 
+    if (n < m)
         nn <- min(n, m) else nn <- m
     prin.com <- matrix(0, n, nn)
     for (i in 1:n) {
@@ -57,9 +59,9 @@ interscal <- function(sym.data) {
             max <- prin.com[ii, j]
             min <- prin.com[ii, j]
             for (k in ii:(2 * i)) {
-                if (prin.com[k, j] > max) 
+                if (prin.com[k, j] > max)
                   max <- prin.com[k, j]
-                if (prin.com[k, j] < min) 
+                if (prin.com[k, j] < min)
                   min <- prin.com[k, j]
             }
             Min[i, j] <- min

@@ -25,11 +25,13 @@ Return the coordanates to plot the graphic.
 This function execute a multidimensional scaling from a interval symbolic data matrix.
 }
 \examples{
+\dontrun{
 data(oils)
 res<-sym.mds(oils)
 plot(res,pch = 23, bg = 'red', xlab = 'Score 1', ylab = 'Score 2')
 res<-sym.mds(oils,distance='centers')
 plot(res,pch = 23, bg = 'red', xlab = 'Score 1', ylab = 'Score 2')
+}
 }
 \references{
 Groenen, P.J.F., Winsberg, S., Rodriguez, O., Diday, E. (2006). I-Scal: Multidimensional

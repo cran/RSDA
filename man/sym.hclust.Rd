@@ -5,7 +5,7 @@
 \title{Symbolic Hierarchical Clustering}
 \usage{
 sym.hclust(sym.data, distance = c('hausdorff', 'centers'), p = 2,
-method = c('ward', 'single', 'complete', 'average', 'mcquitty',
+method = c('ward.D2', 'single', 'complete', 'average', 'mcquitty',
            'median', 'centroid'), members = NULL)
 }
 \arguments{
@@ -28,11 +28,13 @@ This function allows us to execute a symbolic
 hierarchical clustering to interval variables.
 }
 \examples{
+\dontrun{
 data(oils)
 sh<-sym.hclust(oils)
 plot(sh)
 sh<-sym.hclust(oils,'centers')
 plot(sh)
+}
 }
 \references{
 Carvalho F., Souza R.,Chavent M., and Lechevallier Y. (2006)

@@ -42,6 +42,7 @@
 #' Paris IX-Dauphine University.
 #' @seealso sym.histogram.pca
 #' @examples
+#' \dontrun{
 #' data(oils)
 #' res<-sym.interval.pca(oils,'centers')
 #' class(res) <- c('sym.data.table')
@@ -73,19 +74,20 @@
 #' s.pca<-sym.interval.pca(st)
 #' plot(s.pca,choix='ind')
 #' plot(s.pca,choix='var')
+#' }
 #' @keywords PCA Intervals
 #' @export
 #'
-sym.interval.pca <- function(sym.data, method = c("classic", "tops", "centers", "principal.curves", 
+sym.interval.pca <- function(sym.data, method = c("classic", "tops", "centers", "principal.curves",
     "optimized.distance", "optimized.variance")) {
     idn <- all(sym.data$sym.var.types == sym.data$sym.var.types[1])
-    if (idn == FALSE) 
+    if (idn == FALSE)
         stop("All variables have to be of the same type")
     method <- match.arg(method)
     if (method == "classic") {
-        if ((sym.data$sym.var.types[1] != "$C") && (sym.data$sym.var.types[1] != "$I")) 
+        if ((sym.data$sym.var.types[1] != "$C") && (sym.data$sym.var.types[1] != "$I"))
             stop("Variables have to be continuos or Interval")
-        if (sym.data$sym.var.types[1] == "$C") 
+        if (sym.data$sym.var.types[1] == "$C")
             res <- PCA(sym.data$data, scale.unit = TRUE, ncp = sym.data$M, graph = FALSE) else if (sym.data$sym.var.types[1] == "$I") {
             nn <- sym.data$N
             mm <- sym.data$M
@@ -93,7 +95,7 @@ sym.interval.pca <- function(sym.data, method = c("classic", "tops", "centers", 
             centers <- as.data.frame(centers)
             rownames(centers) <- sym.data$sym.obj.names
             colnames(centers) <- sym.data$sym.var.names
-            for (i in 1:nn) for (j in 1:mm) centers[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 
+            for (i in 1:nn) for (j in 1:mm) centers[i, j] <- (sym.var(sym.data, j)$var.data.vector[i,
                 1] + sym.var(sym.data, j)$var.data.vector[i, 2])/2
             res <- FactoMineR::PCA(centers, scale.unit = TRUE, ncp = sym.data$M, graph = FALSE)
         }
@@ -106,17 +108,17 @@ sym.interval.pca <- function(sym.data, method = c("classic", "tops", "centers", 
         centers.stan <- matrix(0, nn, mm)
         min.stan <- matrix(0, nn, mm)
         max.stan <- matrix(0, nn, mm)
-        for (i in 1:nn) for (j in 1:mm) centers[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 
+        for (i in 1:nn) for (j in 1:mm) centers[i, j] <- (sym.var(sym.data, j)$var.data.vector[i,
             1] + sym.var(sym.data, j)$var.data.vector[i, 2])/2
         # Standarized
-        for (i in 1:nn) for (j in 1:mm) centers.stan[i, j] <- (centers[i, j] - mean(centers[, 
+        for (i in 1:nn) for (j in 1:mm) centers.stan[i, j] <- (centers[i, j] - mean(centers[,
             j]))/(sd(centers[, j]) * sqrt((nn - 1)/nn))
         # Min-Max
         for (i in 1:nn) {
             for (j in 1:mm) {
-                min.stan[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 1] - mean(centers[, 
+                min.stan[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 1] - mean(centers[,
                   j]))/(sd(centers[, j]) * sqrt((nn - 1)/nn))
-                max.stan[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 2] - mean(centers[, 
+                max.stan[i, j] <- (sym.var(sym.data, j)$var.data.vector[i, 2] - mean(centers[,
                   j]))/(sd(centers[, j]) * sqrt((nn - 1)/nn))
             }
         }
@@ -131,9 +133,9 @@ sym.interval.pca <- function(sym.data, method = c("classic", "tops", "centers", 
                 smin <- 0
                 smax <- 0
                 for (k in 1:mm) {
-                  if (svd$vectors[k, j] < 0) 
+                  if (svd$vectors[k, j] < 0)
                     smin <- smin + max.stan[i, k] * svd$vectors[k, j] else smin <- smin + min.stan[i, k] * svd$vectors[k, j]
-                  if (svd$vectors[k, j] < 0) 
+                  if (svd$vectors[k, j] < 0)
                     smax <- smax + min.stan[i, k] * svd$vectors[k, j] else smax <- smax + max.stan[i, k] * svd$vectors[k, j]
                 }
                 sym.comp$meta[i, sym.comp$sym.var.starts[j]] <- smin
@@ -175,9 +177,9 @@ sym.interval.pca <- function(sym.data, method = c("classic", "tops", "centers", 
                 smin <- 0
                 smax <- 0
                 for (k in 1:nn) {
-                  if (svdV[k, j] < 0) 
+                  if (svdV[k, j] < 0)
                     smin <- smin + (1/sqrt(nn)) * max.stan[k, i] * svdV[k, j] else smin <- smin + (1/sqrt(nn)) * min.stan[k, i] * svdV[k, j]
-                  if (svdV[k, j] < 0) 
+                  if (svdV[k, j] < 0)
                     smax <- smax + (1/sqrt(nn)) * min.stan[k, i] * svdV[k, j] else smax <- smax + (1/sqrt(nn)) * max.stan[k, i] * svdV[k, j]
                 }
                 IPrinCorre[i, pcol] <- smin

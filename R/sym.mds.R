@@ -22,18 +22,20 @@
 #' Paris IX-Dauphine University.
 #' @seealso sym.interval.pca
 #' @examples
+#' \dontrun{
 #' data(oils)
 #' res<-sym.mds(oils)
 #' plot(res,pch = 23, bg = 'red', xlab = 'Score 1', ylab = 'Score 2')
 #' res<-sym.mds(oils,distance='centers')
 #' plot(res,pch = 23, bg = 'red', xlab = 'Score 1', ylab = 'Score 2')
+#' }
 #' @keywords Symbolic MDS
 #' @export
 #'
-sym.mds <- function(sym.data, distance = c("hausdorff", "centers"), p = 2, method = c("classic", 
+sym.mds <- function(sym.data, distance = c("hausdorff", "centers"), p = 2, method = c("classic",
     "INTERSCAL")) {
     distance <- match.arg(distance)
     method <- match.arg(method)
-    if (method == "classic") 
+    if (method == "classic")
         return(cmdscale(interval.dist(sym.data, distance)))
 }

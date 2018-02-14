@@ -5,7 +5,7 @@
 #' @description This function allows us to execute a symbolic
 #' hierarchical clustering to interval variables.
 #' @usage sym.hclust(sym.data, distance = c('hausdorff', 'centers'), p = 2,
-#' method = c('ward', 'single', 'complete', 'average', 'mcquitty',
+#' method = c('ward.D2', 'single', 'complete', 'average', 'mcquitty',
 #'            'median', 'centroid'), members = NULL)
 #' @param sym.data The symbolic data table.
 #' @param distance The distance to be use.
@@ -24,15 +24,17 @@
 #' Classification et Modeles Lineaires en Analyse des Donnees Symboliques. Ph.D. Thesis,
 #' Paris IX-Dauphine University.
 #' @examples
+#' \dontrun{
 #' data(oils)
 #' sh<-sym.hclust(oils)
 #' plot(sh)
 #' sh<-sym.hclust(oils,'centers')
 #' plot(sh)
+#' }
 #' @keywords Symbolic Clustering
 #' @export
 #'
-sym.hclust <- function(sym.data, distance = c("hausdorff", "centers"), p = 2, method = c("ward", 
+sym.hclust <- function(sym.data, distance = c("hausdorff", "centers"), p = 2, method = c("ward.D2",
     "single", "complete", "average", "mcquitty", "median", "centroid"), members = NULL) {
     distance <- match.arg(distance)
     method <- match.arg(method)

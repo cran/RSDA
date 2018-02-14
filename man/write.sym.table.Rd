@@ -26,10 +26,11 @@ Write in CSV file the symbolic data table.
 This function write (save) a symbolic data table from a CSV data file.
 }
 \examples{
+\dontrun{
 data(example1)
 write.sym.table(example1, file='temp4.csv', sep='|',dec='.', row.names=TRUE, col.names=TRUE)
 ex1 <- read.sym.table('temp4.csv', header=TRUE, sep='|',dec='.', row.names=1)
-
+}
 
 
 }

@@ -22,10 +22,12 @@ Return a R distance triangular matrix.
 Compute a distance matrix from a symbolic interval data matrix.
 }
 \examples{
+\dontrun{
 data(VeterinaryData)
 VD <- VeterinaryData
 interval.dist(VD)
 interval.dist(VD,distance='centers')
+}
 }
 \references{
 Groenen, P.J.F., Winsberg, S., Rodriguez, O., Diday, E. (2006). I-Scal: Multidimensional

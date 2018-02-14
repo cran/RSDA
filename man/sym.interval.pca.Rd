@@ -30,6 +30,7 @@ components analysis method to a particular kind of symbolic objects
 characterized by multi--values variables of interval type.
 }
 \examples{
+\dontrun{
 data(oils)
 res<-sym.interval.pca(oils,'centers')
 class(res) <- c('sym.data.table')
@@ -61,6 +62,7 @@ st<-StudentsGrades
 s.pca<-sym.interval.pca(st)
 plot(s.pca,choix='ind')
 plot(s.pca,choix='var')
+}
 }
 \references{
 Bock H-H. and Diday E. (eds.) (2000).

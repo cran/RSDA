@@ -16,8 +16,9 @@ The symbolic interval components.
 Execute Interscal Method.
 }
 \examples{
-data(ex_cfa1)
-res<-interscal(ex_cfa1)
+\dontrun{
+data(oils)
+res<-interscal(oils)
 class(res$Sym.Components) <- c('sym.data.table')
 sym.scatterplot(res$Sym.Components[,1], res$Sym.Components[,2],
                 labels=TRUE,col='red',main='Interscal CFA Data')
@@ -26,6 +27,7 @@ sym.scatterplot3d(res$Sym.Components[,1], res$Sym.Components[,2],
                   labels=TRUE,main='Interscal CFA Data')
 sym.scatterplot.ggplot(res$Sym.Components[,1],res$Sym.Components[,2],
                        labels=TRUE)
+}
 }
 \references{
 Groenen, P.J.F., Winsberg, S., Rodriguez, O., Diday, E. (2006). I-Scal: Multidimensional
