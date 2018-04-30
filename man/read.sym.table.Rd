@@ -78,10 +78,12 @@ Case4 -2.1  0    2 0.9 0.0 0.1  3  4  c  a\cr
 Case5 -3.0 -4   -2 0.6 0.0 0.4  e  i  g  k\cr
 }
 \examples{
+\dontrun{
 data(example1)
 write.sym.table(example1, file='temp4.csv', sep='|',dec='.', row.names=TRUE,
                 col.names=TRUE)
 ex1<-read.sym.table('temp4.csv', header=TRUE, sep='|',dec='.', row.names=1)
+}
 }
 \references{
 Bock H-H. and Diday E. (eds.) (2000).

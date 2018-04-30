@@ -4,17 +4,16 @@
 \alias{classic.to.sym}
 \title{Generate a symbolic data table}
 \usage{
-classic.to.sym(dataTable, concept, variables, variables.types)
+classic.to.sym(data, concept, col.names, col.types)
 }
 \arguments{
-\item{dataTable}{This is the classic data table.}
+\item{data}{A data.frame.}
 
 \item{concept}{These are the variable that we are going to use a concepts.}
 
-\item{variables}{These are the variables that we want to inlude in the symbolic data table.}
+\item{col.names}{These are the variables that we want to include in the symbolic data table.}
 
-\item{variables.types}{These are the variables symbolic types (continuos, interval, set or histograma)
-of the variables that we want to inlude in the symbolic data table.}
+\item{col.types}{A vector with names and the type of symbolic data to use, the available types are type_histogram (), type_continuous (), type.set (), type.modal (), by default type_histogram () is used for numeric variables and type_modal () for the categorical variables.}
 }
 \value{
 The symbolic data table.
@@ -23,11 +22,18 @@ The symbolic data table.
 Generate a symbolic data table from a classic data table.
 }
 \examples{
-data(ex1_db2so)
-ex1 <- ex1_db2so
-result <- classic.to.sym(ex1, concept=c('state', 'sex'),
-                         variables=c('county', 'group', 'age','age'),
-                         variables.types=c('$C', '$I', '$H', '$S'))
+result <- classic.to.sym(data = iris,
+              concept = "Species",
+              col.names = c(Sepal.Length,Sepal.Width,Petal.Length,Petal.Width))
+result
+
+result <- classic.to.sym(data = iris,
+concept = "Species", # concepto
+col.names = c(Sepal.Length,Sepal.Width,Petal.Length,Petal.Width), # variable a utilizar
+col.types = c(Sepal.Length = type.interval(), # tipo para cada una de las variable
+             Sepal.Width = type.interval(),
+             Petal.Length = type.interval(),
+             Petal.Width = type.interval()))
 result
 }
 \references{
@@ -39,7 +45,7 @@ complex data. Springer, Germany.
 read.sym.table
 }
 \author{
-Olger Calderon and Roberto Zuniga.
+Carlos Aguero.
 }
 \keyword{data}
 \keyword{symbolic}

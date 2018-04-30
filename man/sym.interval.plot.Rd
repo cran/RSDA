@@ -25,8 +25,13 @@ Function for plotting one "interval" type value from the symbolic data table
 \dontrun{
 data(ex1_db2so)
 data.sym <- classic.to.sym(ex1_db2so, concept=c("state", "sex"),
-                           variables=c("county", "group", "age","age","age","age"),
-                           variables.types=c("$I", "$C", "$C", "$S", "$M","$H"))
+                           col.names = c(county, group, age,age,age,age),
+                           variables.types=c(county = type.interval(),
+                            group = type.continuous(),
+                             age = type.continuous(),
+                              age = type.continuous(),
+                               age = type.modal(),
+                               age = type.histogram()))
 sym.interval.plot(data.sym[1,1])
 }
 }

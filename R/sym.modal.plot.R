@@ -21,8 +21,8 @@
 #' sym.modal.plot(data.sym[1,5], reduce = TRUE)
 #' }
 sym.modal.plot <- function(info,col=c("blue"),border=FALSE,ylab=TRUE,show.type = TRUE,reduce=FALSE){
-  #if(info$sym.var.types != "$M")
-  #  stop("The data type is wrong, only $M are accepted")
+  if(info$sym.var.types != "$M")
+    stop("The data type is wrong, only $M are accepted")
   mt <- info$data
   names <- colnames(info$data)
   if(reduce){

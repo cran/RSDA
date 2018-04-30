@@ -32,6 +32,7 @@ circle of correlations.
 Compute a symbolic interval principal components curves
 }
 \examples{
+\dontrun{
 data(oils)
 res.vertex.ps<-sym.interval.pc(oils,'vertex',150,FALSE,FALSE,TRUE)
 class(res.vertex.ps$sym.prin.curve) <- c('sym.data.table')
@@ -43,7 +44,7 @@ res.vertex.ps<-sym.interval.pc(facedata,'vertex',150,FALSE,FALSE,TRUE)
 class(res.vertex.ps$sym.prin.curve) <- c('sym.data.table')
 sym.scatterplot(res.vertex.ps$sym.prin.curve[,1],res.vertex.ps$sym.prin.curve[,2],
                 labels=TRUE,col='red',main='PSC Face Data')
-
+}
 }
 \references{
 Arce J. and Rodriguez O. (2015) 'Principal Curves and Surfaces

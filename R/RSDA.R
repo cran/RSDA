@@ -112,5 +112,5 @@
 #' sym.circle.plot(res$Sym.Prin.Correlations)
 NULL
 utils::globalVariables(c("to", "from", "interval", "n", "prob", "pca.max", "N", "M",
-    "<<-", ".", "do", "quo"))
+    "<<-", ".", "do", "quo","concept"))
 
