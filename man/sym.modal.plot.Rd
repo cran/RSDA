@@ -2,40 +2,12 @@
 % Please edit documentation in R/sym.modal.plot.R
 \name{sym.modal.plot}
 \alias{sym.modal.plot}
-\title{Function for plotting one "modal" type value from the symbolic data table}
+\title{sym.modal.plot}
 \usage{
-sym.modal.plot(info, col = c("blue"), border = FALSE, ylab = TRUE,
-  show.type = TRUE, reduce = FALSE)
-}
-\arguments{
-\item{info}{The information of one "modal" type value. Use data[num.r,num.col] to get info}
-
-\item{col}{A specification for the default plotting color.}
-
-\item{border}{A logical value indicating whether border should be plotted.}
-
-\item{ylab}{A logical value indicating whether the label of y axis has to be plotted.}
-
-\item{show.type}{A logical value indicating whether type should be plotted.}
-
-\item{reduce}{A logical value indicating whether values different from zero should be plotted in modal and set graphics.}
-}
-\value{
-A plot of one "modal" type value from the symbolic data table.
+sym.modal.plot(info, col = c("blue"), border = FALSE, show.type = TRUE,
+  reduce = FALSE)
 }
 \description{
-Function for plotting one "modal" type value from the symbolic data table
+sym.modal.plot
 }
-\examples{
-\dontrun{
-data(ex1_db2so)
-data.sym <- classic.to.sym(ex1_db2so, concept=c("state", "sex"),
-                           variables=c("county", "group", "age","age","age","age"),
-                           variables.types=c("$I", "$C", "$C", "$S", "$M","$H"))
-sym.modal.plot(data.sym[1,5])
-sym.modal.plot(data.sym[1,5], reduce = TRUE)
-}
-}
-\author{
-Andres Navarro
-}
+\keyword{internal}

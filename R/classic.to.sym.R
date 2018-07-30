@@ -3,12 +3,12 @@
 #' @name classic.to.sym
 #' @author Carlos Aguero.
 #' @description Generate a symbolic data table from a classic data table.
-#' @usage classic.to.sym(data, concept, col.names, col.types)
+#' @usage classic.to.sym(data, concept, variables, variables.types)
 #'
 #' @param data A data.frame.
 #' @param concept These are the variable that we are going to use a concepts.
-#' @param col.names These are the variables that we want to include in the symbolic data table.
-#' @param col.types A vector with names and the type of symbolic data to use, the available types are type_histogram (), type_continuous (), type.set (), type.modal (), by default type_histogram () is used for numeric variables and type_modal () for the categorical variables.
+#' @param variables These are the variables that we want to include in the symbolic data table.
+#' @param variables.types A vector with names and the type of symbolic data to use, the available types are type_histogram (), type_continuous (), type.set (), type.modal (), by default type_histogram () is used for numeric variables and type_modal () for the categorical variables.
 #'
 #' @return The symbolic data table.
 #' @references Bock H-H. and Diday E. (eds.) (2000).
@@ -18,13 +18,13 @@
 #' @examples
 #'result <- classic.to.sym(data = iris,
 #'               concept = "Species",
-#'               col.names = c(Sepal.Length,Sepal.Width,Petal.Length,Petal.Width))
+#'               variables = c(Sepal.Length,Sepal.Width,Petal.Length,Petal.Width))
 #' result
 #'
 #' result <- classic.to.sym(data = iris,
 #'concept = "Species", # concepto
-#'col.names = c(Sepal.Length,Sepal.Width,Petal.Length,Petal.Width), # variable a utilizar
-#'col.types = c(Sepal.Length = type.interval(), # tipo para cada una de las variable
+#'variables = c(Sepal.Length,Sepal.Width,Petal.Length,Petal.Width), # variable a utilizar
+#'variables.types = c(Sepal.Length = type.interval(), # tipo para cada una de las variable
 #'              Sepal.Width = type.interval(),
 #'              Petal.Length = type.interval(),
 #'              Petal.Width = type.interval()))
@@ -33,13 +33,13 @@
 #' @export
 #' @import sqldf
 #'
-classic.to.sym <- function(data = NULL, concept = NULL, col.names = NULL, col.types = NULL){
-  col.names <- enexpr(col.names)
+classic.to.sym <- function(data = NULL, concept = NULL, variables = NULL, variables.types = NULL){
+  variables <- enexpr(variables)
   data <- add_concept(x = data,
                    concept = concept,
-                   col.names = !!col.names)
-  vars.selected <- c(names(col.types),colnames(data)[!colnames(data) %in% c(names(col.types), "concept")])
-  meta.data <- create.meta.data(data, col.types)
+                   col.names = !!variables)
+  vars.selected <- c(names(variables.types),colnames(data)[!colnames(data) %in% c(names(variables.types), "concept")])
+  meta.data <- create.meta.data(data, variables.types)
 
   data. <- remove_meta_info(meta.data)
   symbolic.object <- list()
@@ -154,7 +154,7 @@ type.modal <- function(){
   modal <- function(x){
     # se calcula la frecuencia para de las categorias para cada uno de los conceptos
     split.df <- x %>% split(x$concept)
-    props.df <- split.df %>% purrr::map_dfr(~as.data.frame(t(round(as.numeric(prop.table(table(.[, 2]))),2))))
+    props.df <- split.df %>% purrr::map_dfr(~as.data.frame(t(as.numeric(prop.table(table(.[, 2]))))))
 
     # se completa el data.frame con tipo, largo y nombres de columnas
     var.name <- paste0(gsub("\\s",".",tolower(colnames(x[,2]))),".modal")

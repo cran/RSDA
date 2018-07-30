@@ -1,116 +1,127 @@
 #' Internal sym.radar.plot the distence between two rows
 #' @keywords internal
-sym.radar.plot. <- function(dat, indivs, vars, dat.min, dat.max, rad.main, seg = 3,
-    use.legend = T) {
-    # Extra la parte de datos de la estructura simbólica de RSDA
-    dat <- dat$data
-    if (!missing(indivs)) {
-        dat <- dat[indivs, ]
-    }
-    if (!missing(vars)) {
-        if (length(vars) <= 2)
-            stop("You must specify 3 or more variables in vars")
-        vars <- sort(c(2 * vars - 1, 2 * vars))
-        dat <- dat[, vars]
-    }
-    if (missing(dat.max)) {
-        dat.max = apply(dat[, seq(2, ncol(dat), 2)], 2, max)
-    }
-    if (missing(dat.min)) {
-        dat.min = apply(dat[, seq(1, ncol(dat), 2)], 2, min)
-    }
-    # Cantidad de columnas (2 por variable)
-    n <- ncol(dat)
-    # Cantidad de variables (la mitad del total de columnas)
-    m <- n/2
-    # Cantidad de observaciones
-    k <- nrow(dat)
-    datos.L <- dat[, seq(1, n, 2)]
-    datos.R <- dat[, seq(2, n, 2)]
-    colnames(datos.R) <- colnames(datos.L)
-    legend.names <- row.names(dat)
-    temp <- rbind(datos.L, datos.R)
-    dat <- temp[order(row.names(temp)), ]
-    rm(list = c(c("temp"), c("datos.L"), c("datos.R")))
-    # Crea la paleta de colores, tomando 1 color para cada individuo
-    colors <- rainbow(2 * k)
-    # Grafica el sistema coordenado
-    plot(c(-1.4, 1.4), c(-1.4, 1.4), type = "n", frame.plot = FALSE, axes = F, xlab = "",
-        ylab = "", main = rad.main, asp = 1)
-    if (use.legend)
-        legend("topright", legend.names, lty = 1, col = colors[seq(1, 2 * k - 1, 2)],
-            bty = "n", cex = 0.75)
-    # Posiciones de los vértices al rededor de un círculo unitario expresados en
-    # radianes Esto se utiliza para dibujar la telaraña central
-    theta <- seq(90, 360 + 90, length = m + 1) * pi/180
-    theta <- theta[1:m]
-    xx <- cos(theta)
-    yy <- sin(theta)
-    # Genera un pequeño desplazamiento para que se vean mejor los ejes
-    xx.s <- xx + cos(theta) * 0.05
-    yy.s <- yy + sin(theta) * 0.05
-    # Genera otro desplazamiento para las etiquetas
-    xx.s.l <- xx + cos(theta) * 0.2
-    yy.s.l <- yy + sin(theta) * 0.2
-    CGap <- 1
-    # Genera el interior (aspecto de telaraña) del gráfico de radar
-    for (i in 0:seg) {
-        polygon(xx * (i + CGap)/(seg + CGap), yy * (i + CGap)/(seg + CGap), lty = 1,
-            lwd = 1, border = c("black"))
-    }
-    text(xx * (CGap)/(seg + CGap), yy * (CGap)/(seg + CGap), dat.min, col = c("grey"),
-        cex = 0.8)
-    # Dibuja los ejes de cada una de las variables
-    arrows(rep(0, length(xx.s)), rep(0, length(yy.s)), xx.s, yy.s, lwd = 1, lty = 1,
-        length = 0, col = c("black"))
-    # Coloca los máximos de cada variable
-    text(xx.s + cos(theta) * 0.07, yy.s + sin(theta) * 0.07, dat.max, col = c("grey"),
-        cex = 0.8)
-    # Coloca el nombre de cada variable
-    axis.labs <- names(dat)
-    text(xx * 1.4, yy * 1.4, axis.labs, cex = 0.8)
-    ############### GRAFICA CADA INDIVIDUO ############### Para cada observación (fila)
-    alpha.x <- 0.05
-    for (i in seq(1, 2 * k - 1, 2)) {
-        # Encuentra el factor de escala la i-ésima observación
-        scale.int <- CGap/(seg + CGap) + (dat[i, ] - dat.min)/(dat.max - dat.min) *
-            seg/(seg + CGap)
-        # Aplica la escala a las coordenadas
-        xx.int <- xx * scale.int
-        yy.int <- yy * scale.int
-        # Encuentra el factor de escala la i-ésima observación
-        scale.ext <- CGap/(seg + CGap) + (dat[i + 1, ] - dat.min)/(dat.max - dat.min) *
-            seg/(seg + CGap)
-        # Aplica la escala a las coordenadas
-        xx.ext <- xx * scale.ext
-        yy.ext <- yy * scale.ext
-        poly.coords <- data.frame(x = as.numeric(c(xx.ext, NA, xx.int)), y = as.numeric(c(yy.ext,
-            NA, yy.int)))
-        polypath(poly.coords[, 1], poly.coords[, 2], col = adjustcolor(colors[i], alpha.f = 0.8 -
-            alpha.x), rule = "evenodd")
-        # Coloca los puntos de los vértices internos
-        points(xx.int, yy.int, pch = 20, col = c("black"))
-        # Coloca los puntos de los vértices externos
-        points(xx.ext, yy.ext, pch = 20, col = c("black"))
-        alpha.x <- alpha.x + 0.1
-    }
-}
-
-
 #' Radar Plot For Symbolic Interval Variables
 #'
-#' @param x A symbolic object.
-#' @param dat.min <documentar>
-#' @param dat.max <documentar>
-#' @param rad.main <documentar>
-#' @param seg <documentar>
-#' @param use.legend a logical value indicating whether use a legend.
-#' @param main the main title (on top).
+#' @param dat The symbolic data.
+#' @param rad.main the title of the final plot (optional).
+#' @param indivs an array that indicates which individuals to use (optional).
+#' @param vars an array that indicates which variables to use (optional).
+#' @param use.pct a logical value indicating if use percentage or real distance for plot.
 #'
 #' @return A radar plot.
 #' @export
 #'
-sym.radar.plot <- function(x, dat.min, dat.max, rad.main, seg = 3, use.legend = T,
-    main = "") {
-    sym.radar.plot.(dat = x, use.legend = use.legend, rad.main = main)
+sym.radar.plot <- function(dat, indivs, vars, rad.main = "", rad.legend = "Individuals", use.pct = F) {
+  nom.vars <- dat$sym.var.names # Takes the names of the variables
+  dat <- dat$data # Takes the dataset of the symbolic data.
+  if (!missing(indivs)) {
+    dat <- dat[indivs, ]#If individuals given, take just that indiduals for the analysis.
+  }
+  if (!missing(vars)) {
+    if (length(vars) <= 2)
+      stop("You must specify 3 or more variables in vars")
+    nom.vars <- nom.vars[vars]#If variables given, take just that variables names for the analysis.
+    vars <- sort(c(2 * vars - 1, 2 * vars))
+    dat <- dat[, vars]#If variables given, take just that variables for the analysis.
+  }
+
+  dat <- sym.radar.data(dat, nom.vars, use.pct) #Turn dataset to a molten data.
+
+  #Plot the radar plot with the points of the intervals.
+  res.radar <- ggplot(dat, aes(x = Variables, y = value)) +
+    geom_point(aes(color = Individuals), size = 1) +
+    theme( panel.background = element_rect(fill = "transparent"),
+           plot.background = element_rect(fill = "transparent"),
+           panel.grid.major = element_line(size = 0.5, linetype = 'solid', colour = "#dddddd"),
+           axis.text.x = element_text(size = rel(1.2)),
+           axis.text.y = element_blank(),
+           axis.ticks = element_blank()) +
+    scale_y_continuous(limits=c(-0.3, 1.1), breaks=c(0, 0.25, 0.5, 0.75, 1)) +
+    ggtitle(rad.main) + xlab("") + ylab("") +
+    coord_radar()
+
+  # Lables with some values of the intervals are added.
+  if(use.pct){
+    plots <- list()
+    for (i in unique(dat$pos.var)) {
+      res.radar <- res.radar +
+        geom_text(aes_string(x = i, y = -0.1, label = round(min(dat[dat$pos.var==i,]$real.value), 3)), size = 3, colour = "gray", family = "Arial") +
+        geom_text(aes_string(x = i, y = 1.1, label = round(max(dat[dat$pos.var==i,]$real.value), 3)), size = 3, colour = "gray", family = "Arial")
+    }
+  } else{
+    res.radar <- res.radar +
+      geom_text(aes(x = 0.5, y = 0, label = round(min(dat$real.value), 3)), size = 3, colour = "gray", family = "Arial") +
+      geom_text(aes(x = 0.5, y = 0.25, label = inverse.rescale(0.25, dat$real.value)), size = 3, colour = "gray", family = "Arial") +
+      geom_text(aes(x = 0.5, y = 0.5, label = inverse.rescale(0.5, dat$real.value)), size = 3, colour = "gray", family = "Arial") +
+      geom_text(aes(x = 0.5, y = 0.75, label = inverse.rescale(0.75, dat$real.value)), size = 3, colour = "gray", family = "Arial") +
+      geom_text(aes(x = 0.5, y = 1, label = round(max(dat$real.value), 3)), size = 3, colour = "gray", family = "Arial")
+  }
+
+  #Paths which connect the points of the interval are added.
+  res.radar + ggpolypath::geom_polypath(data = dat, aes(x = pos.var, y = value, fill = Individuals), alpha = 0.3, rule = "evenodd") +
+    scale_fill_discrete(name = rad.legend) + scale_color_discrete(name = rad.legend)
 }
+
+#' Internal sym.radar.data
+#' @keywords internal
+#' Molten data for radar plot
+#'
+#' @param dat The symbolic data.
+#' @param nom.vars Names of the variables.
+#' @param use.pct a logical value indicating if use percentage or real distance for plot.
+#'
+#' @return A molten data.
+#' @export
+#'
+sym.radar.data <- function(dat, nom.vars, use.pct = F){
+  n <- ncol(dat)# Number of variables (2 for each variable (minimum and maximum)).
+  m <- n/2# Number of variables (Real number).
+  datos.L <- dat[, seq(1, n, 2)] #Takes the minimum values of the dataset
+  datos.R <- dat[, seq(2, n, 2)] #Takes the maximum values of the dataset
+  colnames(datos.R) <- nom.vars #Names of the variables are placed to the dataset of minimum.
+  colnames(datos.L) <- nom.vars #Names of the variables are placed to the dataset of maximum.
+  datos.L <- reshape::melt(t(datos.L), varnames = c("Variables", "Individuals")) #Turn the dataset to a molten data
+  datos.R <- reshape::melt(t(datos.R), varnames = c("Variables", "Individuals")) #Turn the dataset to a molten data
+  datos.L <- datos.L[order(datos.L$Individuals, datos.L$Variables), ] #Sort the dataset
+  datos.R <- datos.R[order(datos.R$Individuals, datos.R$Variables), ] #Sort the dataset
+  datos.L <- cbind(datos.L, c(1:m)) #Add a column with the position of each variable
+  datos.R <- cbind(datos.R, c(1:m)) #Add a column with the position of each variable
+  colnames(datos.L)[ncol(datos.L)] <- "pos.var" #Give a name to the column
+  colnames(datos.R)[ncol(datos.R)] <- "pos.var" #Give a name to the column
+  #Merge the datasets and adds rows with the values of the first variable for each individual (It is necessary to the radar plot).
+  dat <- rbind(datos.R, datos.R[seq(1, nrow(datos.R), m), ], datos.L, datos.L[seq(1, nrow(datos.L), m), ])
+  rm(list = c(c("datos.L"), c("datos.R")))
+  real.value <- dat$value
+  if(use.pct){
+    for (name.var in unique(dat$Variables)) {
+      # Rescale the values between 0 and 1 for each variable.
+      dat$value[dat$Variables == name.var] <- rescale(dat$value[dat$Variables == name.var], to = c(0, 1))
+    }
+  } else {
+    dat$value <- scales::rescale(dat$value, to = c(0, 1))# Rescale the values between 0 and 1 for all the dataset.
+  }
+
+
+  dat <- cbind(dat, real.value) #Add a column with the real values.
+
+  #Fix the type of data if is not correctly.
+  if(!is.factor(dat$Variables)) dat$Variables <- as.factor(dat$Variables)
+  if(!is.factor(dat$Individuals)) dat$Individuals <- as.factor(dat$Individuals)
+  if(!is.numeric(dat$value)) dat$value <- as.numeric(dat$value)
+  if(!is.numeric(dat$pos.var)) dat$pos.var <- as.numeric(dat$pos.var)
+
+  return(dat)
+}
+
+#Turns the rescale value to the real value.
+inverse.rescale <- function(pct, values){
+  return(round((pct * (max(values) - min(values))) + min(values), 3))
+}
+
+#Function required to make the radar plot
+coord_radar <- function (theta = "x", start = 0, direction = 1) {
+  theta <- match.arg(theta, c("x", "y"))
+  r <- if (theta == "x") "y" else "x"
+  ggproto("CordRadar", CoordPolar, theta = theta, r = r, start = start, direction = sign(direction), is_linear = function(coord) TRUE)
+}
+

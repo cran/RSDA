@@ -1,35 +1,15 @@
-#' Function for plotting one "continuos" type value from the symbolic data table
-#'
-#' @author Andres Navarro
-#' @param info The information of one "continuos" type value. Use data[num.r,num.col] to get info
-#' @param col A specification for the default plotting color.
-#' @param border A logical value indicating whether border should be plotted.
-#' @param show.type A logical value indicating whether type should be plotted.
-#'
-#' @return A plot of one "continuos" type value from the symbolic data table.
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' data(ex1_db2so)
-#' data.sym <- classic.to.sym(ex1_db2so, concept=c("state", "sex"),
-#'                            col.names = c(county, group, age,age,age,age),
-#'                            variables.types=c(county = type.interval(),
-#'                            group = type.continuous(),
-#'                            age = type.continuous(),
-#'                             age = type.continuous(),
-#'                             age = type.modal(),
-#'                             age = type.histogram()))
-#' sym.continuos.plot(data.sym[1,2])
-#' }
-sym.continuos.plot <- function(info,col=c("blue"),border=FALSE,show.type = TRUE){
-  if(info$sym.var.types != "$C")
+#' sym.continuos.plot
+#' @keywords internal
+sym.continuos.plot <- function(info, col=c("blue"), border=FALSE, show.type = TRUE){
+  if(info$sym.var.types != "$C")#El tipo de dato es el incorrecto
     stop("The data type is wrong, only $C are accepted")
-  continuos <- as.numeric(info$data)
+
+  continuos <- as.numeric(info$data)#obtiene el valor continuo
+
+  #grafica el plano
   plot(continuos+c(-0.5,0.5), c(0,4.1), type= "n", xlab = "", ylab = "",main = paste(info$sym.var.names,ifelse(show.type," (Continuos)","")),yaxt='n')
-  abline(v=continuos, col=col, lty=2, lwd=2)
-  size.font <- ifelse(par()$pin[1]<=1.5,par()$pin[1],1.5)
-  text(continuos, 2, labels = as.character(continuos),cex=size.font)
-  if(border)
+  abline(v=continuos, col=col, lty=2, lwd=2) #agrega la linea vertical con el valor continuo
+  text(continuos, 2, labels = as.character(round(continuos,2)),cex=ifelse(par()$pin[1]<=1.5,par()$pin[1],1.5)) #agrega el label con el valor continuo en mitad del plano
+  if(border) #se pone el borde en negro
     box("figure", col="black")
 }

@@ -2,15 +2,18 @@
 % Please edit documentation in R/plot.sym.data.table.R
 \name{plot.sym.data.table}
 \alias{plot.sym.data.table}
-\title{Function for plotting a symbolic data table}
+\title{Function for plotting a symbolic object}
 \usage{
-\method{plot}{sym.data.table}(x, col = NA, border = FALSE, size = 1,
-  title = TRUE, show.type = FALSE, reduce = FALSE, ...)
+\method{plot}{sym.data.table}(x, col = NA, matrix.form = NA,
+  border = FALSE, size = 1, title = TRUE, show.type = FALSE,
+  font.size = 1, reduce = FALSE, hist.angle.x = 60, ...)
 }
 \arguments{
-\item{x}{The symbolic data table.}
+\item{x}{The symbolic object.}
 
 \item{col}{A specification for the default plotting color.}
+
+\item{matrix.form}{A vector of the form c(num.rows,num.columns).}
 
 \item{border}{A logical value indicating whether border should be plotted.}
 
@@ -20,7 +23,11 @@
 
 \item{show.type}{A logical value indicating whether type should be plotted.}
 
+\item{font.size}{The font size of graphics.}
+
 \item{reduce}{A logical value indicating whether values different from zero should be plotted in modal and set graphics.}
+
+\item{hist.angle.x}{The angle of labels in y axis. Only for histogram plot}
 
 \item{...}{Arguments to be passed to methods.}
 }
@@ -28,7 +35,7 @@
 A plot of the symbolic data table.
 }
 \description{
-Function for plotting a symbolic data table
+Function for plotting a symbolic object
 }
 \examples{
 \dontrun{

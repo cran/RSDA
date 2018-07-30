@@ -21,7 +21,7 @@ sym.interval.pca.limits.new.j <- function(sym.data, prin.comp, num.vertex) {
     res$symindiv <- sym.indiv
     var.type <- rep("$I", num.vars)
     variables <- colnames(prin.comp)
-    sym.res <- classic.to.sym(data  = res, concept = "symindiv", col.names = everything())
+    sym.res <- classic.to.sym(data  = res, concept = "symindiv", variables = everything())
     #sym.res <- classic.to.sym(dataTable = res, concept = c("symindiv"), variables = variables,
         #variables.types = var.type)
     return(sym.res)

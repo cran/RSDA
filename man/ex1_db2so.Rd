@@ -15,8 +15,8 @@ This is a small data example to generate symbolic objets.
 data(ex1_db2so)
 ex1 <- ex1_db2so
 result <- classic.to.sym(ex1, concept=c('state', 'sex'),
-                         col.names = c(county, group, age, age),
-                         col.types = c(county = type.continuous(),
+                         variables = c(county, group, age, age),
+                         variables.types = c(county = type.continuous(),
                          group = type.histogram(),
                          age = type.histogram(),
                           age = type.set()))

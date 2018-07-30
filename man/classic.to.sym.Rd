@@ -4,16 +4,16 @@
 \alias{classic.to.sym}
 \title{Generate a symbolic data table}
 \usage{
-classic.to.sym(data, concept, col.names, col.types)
+classic.to.sym(data, concept, variables, variables.types)
 }
 \arguments{
 \item{data}{A data.frame.}
 
 \item{concept}{These are the variable that we are going to use a concepts.}
 
-\item{col.names}{These are the variables that we want to include in the symbolic data table.}
+\item{variables}{These are the variables that we want to include in the symbolic data table.}
 
-\item{col.types}{A vector with names and the type of symbolic data to use, the available types are type_histogram (), type_continuous (), type.set (), type.modal (), by default type_histogram () is used for numeric variables and type_modal () for the categorical variables.}
+\item{variables.types}{A vector with names and the type of symbolic data to use, the available types are type_histogram (), type_continuous (), type.set (), type.modal (), by default type_histogram () is used for numeric variables and type_modal () for the categorical variables.}
 }
 \value{
 The symbolic data table.
@@ -24,13 +24,13 @@ Generate a symbolic data table from a classic data table.
 \examples{
 result <- classic.to.sym(data = iris,
               concept = "Species",
-              col.names = c(Sepal.Length,Sepal.Width,Petal.Length,Petal.Width))
+              variables = c(Sepal.Length,Sepal.Width,Petal.Length,Petal.Width))
 result
 
 result <- classic.to.sym(data = iris,
 concept = "Species", # concepto
-col.names = c(Sepal.Length,Sepal.Width,Petal.Length,Petal.Width), # variable a utilizar
-col.types = c(Sepal.Length = type.interval(), # tipo para cada una de las variable
+variables = c(Sepal.Length,Sepal.Width,Petal.Length,Petal.Width), # variable a utilizar
+variables.types = c(Sepal.Length = type.interval(), # tipo para cada una de las variable
              Sepal.Width = type.interval(),
              Petal.Length = type.interval(),
              Petal.Width = type.interval()))

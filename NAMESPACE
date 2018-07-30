@@ -1,17 +1,19 @@
-export(sym.row.plot,sym.interval.plot,sym.modal.plot,sym.set.plot,sym.hist.plot,sym.continuos.plot,dist,dist.default,dist.sym.data.table,
-       pander.sym.data.table,interval.histogram.plot,sym.radar.plot,sym.dist.set, sym.dist.interval,cor.default,cov.default,sd.default,
-       var.default,cov, cor, median.sym.data.table,sd,var,mean.sym.data.table,"[.sym.data.table", print.sym.data.table, sym.interval.pc,
-       SDS.to.RSDA,SODAS.to.RSDA,classic.to.sym,read.sym.table, generate.sym.table, write.sym.table, display.sym.table, sym.var, sym.obj,
-       sym.scatterplot, cfa.scatterplot, sym.scatterplot.ggplot, sym.scatterplot3d, sym.lm.bi, sym.lm, predictsym.lm, sym.glm, predictsym.glm,
-       deter.coefficient, RMSE.L, RMSE.U, R2.L, R2.U, sym.interval.pca, sym.circle.plot, interval.dist.tobj, interval.dist, interscal, sym.hclust,
-       sym.kmeans, sym.histogram.pca, sym.mds, sym.cfa,sym.cor,sym.cov,sym.sd,sym.variance,sym.mean,sym.var,sym.median, type.histogram, type.interval, type.set,type.continuous,
-       type.modal)
+export(dist.default,dist,dist.sym.data.table,
+pander.sym.data.table,interval.histogram.plot,sym.radar.plot,sym.dist.set, sym.dist.interval,cor.default,cov.default,sd.default,var.default,
+cov, cor, median.sym.data.table,sd,var,mean.sym.data.table,"[.sym.data.table", print.sym.data.table, sym.interval.pc,SDS.to.RSDA,SODAS.to.RSDA,
+classic.to.sym,read.sym.table, generate.sym.table, write.sym.table, display.sym.table, sym.var, sym.obj,sym.scatterplot, cfa.scatterplot,
+sym.scatterplot.ggplot, sym.scatterplot3d, sym.lm.bi, sym.lm, predictsym.lm, sym.glm, predictsym.glm,deter.coefficient, RMSE.L, RMSE.U, R2.L,
+R2.U, sym.interval.pca, sym.circle.plot, interval.dist.tobj, interval.dist, interscal, sym.hclust,sym.kmeans, sym.histogram.pca, sym.mds,
+sym.cfa,sym.cor,sym.cov,sym.sd,sym.variance,sym.mean,sym.var,sym.median, type.histogram, type.interval,type.set,type.continuous,type.modal)
+#funciones a importar
+
 importFrom(FactoMineR,PCA)
 importFrom(RJSONIO,fromJSON)
 import(XML)
 import(nloptr)
 import(xtable)
-import(RColorBrewer)
+import(randomcoloR)
+import(grid)
 import(FactoMineR)
 importFrom(abind,abind)
 importFrom(glmnet,cv.glmnet)
@@ -24,6 +26,8 @@ import(princurve)
 import(pander)
 import(tidyselect)
 import(tibble)
+import(ggpolypath)
+import(reshape)
 importFrom(purrr,map_dfr,map)
 importFrom("stats", "dist")
 importFrom(graphics, abline, plot, polygon, rect, symbols,text,hist,segments,barplot)

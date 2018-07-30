@@ -23,7 +23,7 @@ sym.interval.pc.limits.2.j <- function(sym.data, prin.curve, num.vertex, lambda)
     var.type <- rep("$I", num.vars + 1)
     variables <- c(sym.data$sym.var.names, "lambda")
     browser()
-    sym.res <- classic.to.sym(data = res, concept = "symindiv", col.names = everything())
+    sym.res <- classic.to.sym(data = res, concept = "symindiv", variables = everything())
     #sym.res <- classic.to.sym(dataTable = res, concept = c("symindiv"), variables = variables,
     #   variables.types = var.type)
     return(sym.res)

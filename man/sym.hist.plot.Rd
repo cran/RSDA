@@ -2,42 +2,12 @@
 % Please edit documentation in R/sym.hist.plot.R
 \name{sym.hist.plot}
 \alias{sym.hist.plot}
-\title{Function for plotting one "histogram" type value from the symbolic data table}
+\title{sym.hist.plot}
 \usage{
-sym.hist.plot(info, col = c("blue"), border = FALSE, ylab = TRUE,
-  show.type = TRUE)
-}
-\arguments{
-\item{info}{The information of one "histogram" type value. Use data[num.r,num.col] to get info}
-
-\item{col}{A specification for the default plotting color.}
-
-\item{border}{A logical value indicating whether border should be plotted.}
-
-\item{ylab}{A logical value indicating whether the label of y axis has to be plotted.}
-
-\item{show.type}{A logical value indicating whether type should be plotted.}
-}
-\value{
-A plot of one "histogram" type value from the symbolic data table.
+sym.hist.plot(info, col = c("blue"), border = FALSE, show.type = TRUE,
+  angle = 60)
 }
 \description{
-Function for plotting one "histogram" type value from the symbolic data table
+sym.hist.plot
 }
-\examples{
-\dontrun{
-data(ex1_db2so)
-data.sym <- classic.to.sym(ex1_db2so, concept=c("state", "sex"),
-                           col.names = c(county, group, age,age,age,age),
-                           variables.types=c(county = type.interval(),
-                           group = type.continuous(),
-                           age = type.continuous(),
-                           age = type.continuous(),
-                           age = type.modal(),
-                           age = type.histogram()))
-sym.hist.plot(data.sym[1,6])
-}
-}
-\author{
-Andres Navarro
-}
+\keyword{internal}

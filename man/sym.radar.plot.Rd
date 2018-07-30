@@ -2,29 +2,32 @@
 % Please edit documentation in R/sym.radar.plot.R
 \name{sym.radar.plot}
 \alias{sym.radar.plot}
-\title{Radar Plot For Symbolic Interval Variables}
+\title{Internal sym.radar.plot the distence between two rows}
 \usage{
-sym.radar.plot(x, dat.min, dat.max, rad.main, seg = 3, use.legend = T,
-  main = "")
+sym.radar.plot(dat, indivs, vars, rad.main = "", rad.legend = "Individuals",
+  use.pct = F)
 }
 \arguments{
-\item{x}{A symbolic object.}
+\item{dat}{The symbolic data.}
 
-\item{dat.min}{<documentar>}
+\item{indivs}{an array that indicates which individuals to use (optional).}
 
-\item{dat.max}{<documentar>}
+\item{vars}{an array that indicates which variables to use (optional).}
 
-\item{rad.main}{<documentar>}
+\item{rad.main}{the title of the final plot (optional).}
 
-\item{seg}{<documentar>}
-
-\item{use.legend}{a logical value indicating whether use a legend.}
-
-\item{main}{the main title (on top).}
+\item{use.pct}{a logical value indicating if use percentage or real distance for plot.}
 }
 \value{
 A radar plot.
 }
 \description{
-Radar Plot For Symbolic Interval Variables
+Internal sym.radar.plot the distence between two rows
 }
+\keyword{For}
+\keyword{Interval}
+\keyword{Plot}
+\keyword{Radar}
+\keyword{Symbolic}
+\keyword{Variables}
+\keyword{internal}

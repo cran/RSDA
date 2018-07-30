@@ -2,40 +2,12 @@
 % Please edit documentation in R/sym.continuos.plot.R
 \name{sym.continuos.plot}
 \alias{sym.continuos.plot}
-\title{Function for plotting one "continuos" type value from the symbolic data table}
+\title{sym.continuos.plot}
 \usage{
 sym.continuos.plot(info, col = c("blue"), border = FALSE,
   show.type = TRUE)
 }
-\arguments{
-\item{info}{The information of one "continuos" type value. Use data[num.r,num.col] to get info}
-
-\item{col}{A specification for the default plotting color.}
-
-\item{border}{A logical value indicating whether border should be plotted.}
-
-\item{show.type}{A logical value indicating whether type should be plotted.}
-}
-\value{
-A plot of one "continuos" type value from the symbolic data table.
-}
 \description{
-Function for plotting one "continuos" type value from the symbolic data table
+sym.continuos.plot
 }
-\examples{
-\dontrun{
-data(ex1_db2so)
-data.sym <- classic.to.sym(ex1_db2so, concept=c("state", "sex"),
-                           col.names = c(county, group, age,age,age,age),
-                           variables.types=c(county = type.interval(),
-                           group = type.continuous(),
-                           age = type.continuous(),
-                            age = type.continuous(),
-                            age = type.modal(),
-                            age = type.histogram()))
-sym.continuos.plot(data.sym[1,2])
-}
-}
-\author{
-Andres Navarro
-}
+\keyword{internal}
