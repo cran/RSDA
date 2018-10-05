@@ -3,107 +3,84 @@
 #' @aliases sym.cfa
 #' @author Oldemar Rodriguez Rojas.
 #' @description Correspondence Analysis for Symbolic MultiValued Variables.
-#' @usage sym.cfa(sym.data)
-#' @param sym.data Should be a symbolic data table read with the function read.sym.table(...).
+#' @usage sym.cfa(x = NULL, y  = NULL)
+#' @param x parametro x
+#' @param y parametro y
 #' @return Return the interval principal components.
 #' @references
 #' Rodriguez, O. (2011).
 #' Correspondence Analysis for Symbolic MultiValued Variables. Workshop in Symbolic Data Analysis
 #' Namur, Belgium.
-#' @examples
-#' data(ex_cfa1)
-#' res<-sym.cfa(ex_cfa1)
-#' cfa.scatterplot(sym.var(res,1),sym.var(res,2),num.gr1=ex_cfa1$N,
-#'                 labels=TRUE,col='red',main='CFA')
 #'
 #' @keywords CFA
 #' @export
 #'
-sym.cfa <- function(sym.data) {
-    idn <- all(sym.data$sym.var.types == sym.data$sym.var.types[1])
-    if (idn == FALSE) 
-        stop("All variables have to be of the same type")
-    res <- cfa.totals(sym.data)
-    Z <- cfa.MatrixZ(sym.data, res$TotalRows, res$TotalColumns)
-    svd <- eigen(Z)
-    MVPRealz <- cfa.CVPRealz(sym.data, res$TotalRows, res$TotalColumns, res$Total, 
-        svd$vectors)
-    Mzz <- cfa.Czz(sym.data, res$TotalRows, res$TotalColumns, MVPRealz, svd$values)
-    CMM <- cfa.minmax(sym.data, res$TotalRows, res$TotalRowsMin, res$TotalRowsMax, 
-        res$TotalColumns, res$TotalColumnsMin, res$TotalColumnsMax, res$Total, MVPRealz, 
-        Mzz)
-    n.sym.objects <- sym.data$N + sym.data$M  # Number of rows
-    n.sym.var <- sym.data$M - 1  # Number of columns
-    sym.var.types <- list()
-    sym.var.length <- rep(0, n.sym.var)
-    sym.var.names <- list()
-    sym.var.starts <- rep(0, n.sym.var)
-    posd <- 1
-    posdd <- 2
-    for (ss in 1:n.sym.var) {
-        sym.var.types[ss] <- "$I"
-        sym.var.length[ss] <- 2
-        sym.var.names[ss] <- paste("C", ss, sep = "")
-        sym.var.starts[ss] <- posdd
-        posd <- posd + 2
-        posdd <- posdd + 3
-    }
-    sym.obj.names <- c(sym.data$sym.obj.names, sym.data$sym.var.names)
-    data.matrix <- matrix(0, n.sym.objects, 2 * n.sym.var)
-    meta.data <- matrix(0, n.sym.objects, 2 * n.sym.var)
-    for (i in 1:n.sym.objects) {
-        posd <- 1
-        for (j in 1:n.sym.var) {
-            meta.data[i, posd] <- CMM$Min[i, j]
-            meta.data[i, posd + 1] <- CMM$Max[i, j]
-            data.matrix[i, posd] <- CMM$Min[i, j]
-            data.matrix[i, posd + 1] <- CMM$Max[i, j]
-            posd <- posd + 2
-        }
-    }
-    col.types <- matrix(0, n.sym.objects, 1)
-    for (ss in 1:n.sym.objects) {
-        col.types[ss] <- "$I"
-    }
-    qq <- matrix(0, n.sym.objects, 3 * n.sym.var)
-    qq <- cbind(col.types, meta.data[, 1:2])
-    posd <- 3
-    for (ss in 2:n.sym.var) {
-        qq <- cbind(qq, col.types)
-        qq <- cbind(qq, meta.data[, posd])
-        qq <- cbind(qq, meta.data[, posd + 1])
-        posd <- posd + 2
-    }
-    meta.data <- qq
-    tt <- list()
-    ttt <- list()
-    posd <- 1
-    posdd <- 1
-    for (ss in 1:n.sym.var) {
-        tt[posd] <- paste("C", ss, sep = "")
-        tt[posd + 1] <- paste("C", ss, sep = "")
-        posd <- posd + 2
-        ttt[posdd] <- "$I"
-        ttt[posdd + 1] <- paste("C", ss, sep = "")
-        ttt[posdd + 2] <- paste("C", ss, sep = "")
-        posdd <- posdd + 3
-    }
-    meta.data <- as.data.frame(meta.data)
-    data.matrix <- as.data.frame(data.matrix)
-    rownames(data.matrix) <- sym.obj.names
-    colnames(data.matrix) <- tt
-    rownames(meta.data) <- sym.obj.names
-    colnames(meta.data) <- ttt
-    posdd <- 1
-    for (ss in 1:n.sym.var) {
-        meta.data[, posdd + 1] <- as.numeric(as.vector(meta.data[, posdd + 1]))
-        meta.data[, posdd + 2] <- as.numeric(as.vector(meta.data[, posdd + 2]))
-        posdd <- posdd + 3
-    }
-    sym.data <- list(N = n.sym.objects, M = n.sym.var, sym.obj.names = sym.obj.names, 
-        sym.var.names = unlist(sym.var.names), sym.var.types = unlist(sym.var.types), 
-        sym.var.length = sym.var.length, sym.var.starts = unlist(sym.var.starts), meta = meta.data, 
-        data = data.matrix)
-    class(sym.data) <- "sym.data.table"
-    return(sym.data)
+sym.cfa <- function(x = NULL, y = NULL) {
+
+  sym.data <- transform.set(x, y)
+  idn <- all(sym.data$sym.var.types == sym.data$sym.var.types[1])
+  if (idn == FALSE) {
+    stop("All variables have to be of the same type")
+  }
+  res <- cfa.totals(sym.data)
+  Z <- cfa.MatrixZ(sym.data, res$TotalRows, res$TotalColumns)
+  svd <- eigen(Z)
+  MVPRealz <- cfa.CVPRealz(
+    sym.data, res$TotalRows, res$TotalColumns, res$Total,
+    svd$vectors
+  )
+  Mzz <- cfa.Czz(sym.data, res$TotalRows, res$TotalColumns, MVPRealz, svd$values)
+  CMM <- cfa.minmax(
+    sym.data, res$TotalRows, res$TotalRowsMin, res$TotalRowsMax,
+    res$TotalColumns, res$TotalColumnsMin, res$TotalColumnsMax, res$Total, MVPRealz,
+    Mzz
+  )
+  names. <- make.names(c(sym.data$sym.var.names, sym.data$sym.obj.names),unique = T)
+  df <- cbind(concept = names., data.frame(rbind(CMM$Min, CMM$Max)))
+  df <- cbind(concept = names., data.frame(rbind(CMM$Min, CMM$Max)))
+  colnames(df) <- c("concept", paste0("C", seq_len(ncol(df) - 1)))
+  out <- classic.to.sym(df, concept = "concept")
+  class(out) <- "sym.data.table"
+  meta <- do.call("cbind",lapply(seq_len(ncol(CMM$Min)), function(x){data.frame("$I" = rep("I",nrow(CMM$Max)), CMM$Min[,x], CMM$Max[,x] ,check.names = F)}))
+  data <- do.call("cbind",lapply(seq_len(ncol(CMM$Min)), function(x){data.frame(CMM$Min[,x], CMM$Max[,x] ,check.names = F)}))
+  colnames(data) <-colnames(out$data)
+  colnames(meta) <-colnames(out$meta)
+  rownames(meta) <- make.names(names.,unique = T)
+  rownames(data) <- make.names(names.,unique = T)
+
+  out2 <- list(N = sum(sym.data$N,sym.data$M),
+               M = ncol(CMM$Min),
+               sym.obj.names = names.,
+               sym.var.names = out$sym.var.names,
+               sym.var.types = out$sym.var.types,
+               sym.var.length = out$sym.var.length,
+               sym.var.starts = out$sym.var.starts,
+               data = data,
+               meta = meta)
+  class(out2) <- "sym.data.table"
+  return(out2)
+}
+
+transform.set <- function(x, y) {
+  concept <- colnames(x$data)
+  x <- as.matrix(x$data)
+  y <- as.matrix(y$data)
+
+  x.min <- x
+  p <- apply(x, 1, function(x) sum(x) > 1)
+  x.min[p, ] <- rep(0, ncol(x))
+  x.max <- x
+
+  y.max <- y
+  y.min <- y
+  p <- apply(y, 1, function(x) sum(x) > 1)
+  y.min[p, ] <- rep(0, ncol(y))
+
+  df1 <- data.frame(t(x.min) %*% y.min)
+  df2 <- data.frame(t(x.max) %*% y.max)
+  df1$concept <- concept
+  df2$concept <- concept
+  df.out <- rbind(df1, df2)
+
+  classic.to.sym(df.out, concept = "concept")
 }

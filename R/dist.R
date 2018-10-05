@@ -7,7 +7,7 @@
 #' @return dist returns an object of class 'dist'
 #' @export
 dist <- function(x, ...) {
-    UseMethod("dist", x)
+  UseMethod("dist", x)
 }
 
 #' @param method the distance measure to be used. This must be one of "euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski". Any unambiguous substring can be given.
@@ -18,7 +18,7 @@ dist <- function(x, ...) {
 #' @rdname dist
 #' @export
 dist.default <- function(x, method = "euclidean", diag = FALSE, upper = FALSE, p = 2, ...) {
-    stats::dist(x, method = method, diag = diag, upper = upper, p = p)
+  stats::dist(x, method = method, diag = diag, upper = upper, p = p)
 }
 
 
@@ -27,31 +27,31 @@ dist.default <- function(x, method = "euclidean", diag = FALSE, upper = FALSE, p
 #'
 #' @rdname dist
 #' @export
-dist.sym.data.table <- function(x,q = 2, ...) {
-   if(length(unique(x$sym.var.types))){
-     if(x$sym.var.types[1] == "%I"){
-       return(sym.dist.interval(x))
-     }else if(x$sym.var.types[1] == "%S"){
-       return(sym.dist.set(x))
-     }
-   }
+dist.sym.data.table <- function(x, q = 2, ...) {
+  if (length(unique(x$sym.var.types))) {
+    if (x$sym.var.types[1] == "%I") {
+      return(sym.dist.interval(x))
+    } else if (x$sym.var.types[1] == "%S") {
+      return(sym.dist.set(x))
+    }
+  }
 
-    n <- x$N
-    m <- x$M
-    out <- matrix(0, nrow = n, ncol = n)
-    colnames(out) <- x$sym.obj.names
-    rownames(out) <- x$sym.obj.names
-    dist.functions <- select.dist(x)
-    for (i in seq_len(m)) {
-      for (j in seq_len(n)) {
-        for (k in seq_len(n)) {
-          out[j, k] <- out[j, k] + dist.functions[[i]](x[j, i],x[k,i])
-        }
+  n <- x$N
+  m <- x$M
+  out <- matrix(0, nrow = n, ncol = n)
+  colnames(out) <- x$sym.obj.names
+  rownames(out) <- x$sym.obj.names
+  dist.functions <- select.dist(x)
+  for (i in seq_len(m)) {
+    for (j in seq_len(n)) {
+      for (k in seq_len(n)) {
+        out[j, k] <- out[j, k] + dist.functions[[i]](x[j, i], x[k, i])
       }
     }
-    out <- out ^ (1/q)
-    out <- dist(out)
-    return(out)
+  }
+  out <- out^(1 / q)
+  out <- dist(out)
+  return(out)
 }
 
 #' Select distance methods for a symbolic data table
@@ -59,27 +59,27 @@ dist.sym.data.table <- function(x,q = 2, ...) {
 #' @param x A symbilic data table
 #'
 #' @keywords internal
-select.dist <- function(x){
+select.dist <- function(x) {
   types <- x$sym.var.types
   dist.functions <- list()
-  for(i in seq_along(types)){
-      switch(types[i],
-             "$C"={
-               dist.functions[[i]] <- cont.distance
-             },
-             "$I"={
-               dist.functions[[i]] <- interval.distance
-             },
-             "$M"={
-               dist.functions[[i]] <- modal.distance
-             },
-             "$S"={
-               dist.functions[[i]] <- set.distance
-             },
-             "$H" = {
-               dist.functions[[i]] <- hist.distance
-             }
-      )
+  for (i in seq_along(types)) {
+    switch(types[i],
+      "$C" = {
+        dist.functions[[i]] <- cont.distance
+      },
+      "$I" = {
+        dist.functions[[i]] <- interval.distance
+      },
+      "$M" = {
+        dist.functions[[i]] <- modal.distance
+      },
+      "$S" = {
+        dist.functions[[i]] <- set.distance
+      },
+      "$H" = {
+        dist.functions[[i]] <- hist.distance
+      }
+    )
   }
   return(dist.functions)
 }
@@ -91,7 +91,7 @@ select.dist <- function(x){
 #'
 #' @keywords internal
 modal.distance <- function(x, y, q = 2) {
-    1 - (sum(sqrt(x$data * y$data))^q)
+  1 - (sum(sqrt(x$data * y$data))^q)
 }
 
 
@@ -103,15 +103,15 @@ modal.distance <- function(x, y, q = 2) {
 #' @param normalize A logical value indicating whether normalize the output
 #'
 #' @keywords internal
-set.distance <- function(x, y, q = 2){
-    var <- rbind(x$data,y$data)
-    sum.var <- colSums(var)
-    union <- sum(sum.var > 0)
-    intersect <- length(which(sum.var == 2))
+set.distance <- function(x, y, q = 2) {
+  var <- rbind(x$data, y$data)
+  sum.var <- colSums(var)
+  union <- sum(sum.var > 0)
+  intersect <- length(which(sum.var == 2))
 
-    distance <- union - intersect + 0.5*(2*intersect - sum(x$data) - sum(y$data))
-    distance <- distance/ncol(x$data)
-    distances <- distance^q
+  distance <- union - intersect + 0.5 * (2 * intersect - sum(x$data) - sum(y$data))
+  distance <- distance / ncol(x$data)
+  distances <- distance^q
   return(distance)
 }
 
@@ -121,8 +121,8 @@ set.distance <- function(x, y, q = 2){
 #' @param y A symbilic data table 1x1
 #'
 #' @keywords internal
-interval.distance <- function(x,y, q = 2){
-  max(c(abs(x$data[,1]-y$data[,1]),abs(x$data[,2]-y$data[,2])))^q
+interval.distance <- function(x, y, q = 2) {
+  max(c(abs(x$data[, 1] - y$data[, 1]), abs(x$data[, 2] - y$data[, 2])))^q
 }
 
 
@@ -132,7 +132,7 @@ interval.distance <- function(x,y, q = 2){
 #' @param y A symbilic data table 1x1
 #'
 #' @keywords internal
-hist.distance <- function(x, y, q = 2){
+hist.distance <- function(x, y, q = 2) {
   1 - (sum(sqrt(x$data * y$data))^q)
 }
 
@@ -142,6 +142,6 @@ hist.distance <- function(x, y, q = 2){
 #' @param y A symbilic data table 1x1
 #'
 #' @keywords internal
-cont.distance <- function(x,y, q = 2){
-  (x$data-y$data)^q
+cont.distance <- function(x, y, q = 2) {
+  (x$data - y$data)^q
 }

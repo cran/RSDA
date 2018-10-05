@@ -20,5 +20,5 @@
 #' @export
 #'
 display.sym.table <- function(sym.data) {
-    return(sym.data$meta)
+  return(sym.data$meta)
 }

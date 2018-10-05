@@ -29,30 +29,38 @@
 #' cor(sym.data[,2], sym.data[,6], method='billard')
 #' @keywords Symbolic Correlation
 cor <- function(x, ...) {
-    UseMethod("cor", x)
+  UseMethod("cor", x)
 }
 
 #' @rdname cor
 #' @export
-cor.default <- function(x, y = NULL, use = "everything", method = c("pearson", "kendall", 
-    "spearman"), ...) {
-    stats::cor(x, y, use, method)
+cor.default <- function(x, y = NULL, use = "everything", method = c(
+                          "pearson", "kendall",
+                          "spearman"
+                        ), ...) {
+  stats::cor(x, y, use, method)
 }
 
 #' @rdname cor
 #' @export
-cor.sym.data.table <- function(x, y, method = c("centers", "interval", "billard", "modal"), 
-    ...) {
-    method <- match.arg(method)
-    if (method == "centers") {
-        if ((x$sym.var.types == "$C") && (y$sym.var.types == "$C")) 
-            return(cor(x$data[, 1], y$data[, 1]))
-        if ((x$sym.var.types == "$I") && (y$sym.var.types == "$I")) 
-            return(cor((x$data[, 1] + x$data[, 2])/2, (y$data[, 1] + y$data[, 2])/2)) else stop("Impossible to compute the Standard Deviation for this type of variable with this method")
+cor.sym.data.table <- function(x, y, method = c("centers", "interval", "billard", "modal"),
+                               ...) {
+  method <- match.arg(method)
+  if (method == "centers") {
+    if ((x$sym.var.types == "$C") && (y$sym.var.types == "$C")) {
+      return(cor(x$data[, 1], y$data[, 1]))
     }
-    if (method == "billard") {
-        if ((x$sym.var.types == "$I") && (y$sym.var.types == "$I")) 
-            return(cov(x, y, method = "billard")/(sd(x, method = "billard") * sd(y, 
-                method = "billard")))
+    if ((x$sym.var.types == "$I") && (y$sym.var.types == "$I")) {
+      return(cor((x$data[, 1] + x$data[, 2]) / 2, (y$data[, 1] + y$data[, 2]) / 2))
+    } else {
+      stop("Impossible to compute the Standard Deviation for this type of variable with this method")
     }
+  }
+  if (method == "billard") {
+    if ((x$sym.var.types == "$I") && (y$sym.var.types == "$I")) {
+      return(cov(x, y, method = "billard") / (sd(x, method = "billard") * sd(y,
+        method = "billard"
+      )))
+    }
+  }
 }

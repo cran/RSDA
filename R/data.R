@@ -56,12 +56,6 @@
 #' @references Rodriguez, O. (2011).
 #' Correspondence Analysis for Symbolic MultiValued Variables. Workshop in Symbolic
 #' Data Analysis Namur, Belgium
-#' @examples
-#' data(ex_cfa1)
-#' res <- sym.cfa(ex_cfa1)
-#' class(res) <- c('sym.data.table')
-#' cfa.scatterplot(sym.var(res,1),sym.var(res,2),num.gr1=ex_cfa1$N,
-#'                 labels=TRUE,col='red',main='CFA')
 #' @keywords datasets
 "ex_cfa1"
 
@@ -73,12 +67,6 @@
 #' @references Rodriguez, O. (2011).
 #' Correspondence Analysis for Symbolic MultiValued Variables. Workshop in Symbolic
 #' Data Analysis Namur, Belgium
-#' @examples
-#' data(ex_cfa2)
-#' res <- sym.cfa(ex_cfa2)
-#' class(res) <- c('sym.data.table')
-#' cfa.scatterplot(sym.var(res,1),sym.var(res,2),num.gr1=ex_cfa2$N,
-#'                 labels=TRUE,col='red',main='CFA')
 #' @keywords datasets
 "ex_cfa2"
 
@@ -364,7 +352,7 @@
 #' Billard L. and  Diday E. (2006).
 #' Symbolic data analysis: Conceptual statistics and data mining. Wiley, Chichester.
 #' @examples
-#'\dontrun{
+#' \dontrun{
 #' data(facedata)
 #' res.vertex.ps<-sym.interval.pc(facedata,'vertex',150,FALSE,FALSE,TRUE)
 #' class(res.vertex.ps$sym.prin.curve) <- c('sym.data.table')

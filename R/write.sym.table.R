@@ -21,10 +21,12 @@
 #' data(example1)
 #' write.sym.table(example1, file='temp4.csv', sep='|',dec='.', row.names=TRUE, col.names=TRUE)
 #' ex1 <- read.sym.table('temp4.csv', header=TRUE, sep='|',dec='.', row.names=1)
-#'}
+#' }
 #'
 #'
 write.sym.table <- function(sym.data, file, sep, dec, row.names = NULL, col.names = NULL) {
-    write.table(sym.data$meta, file, sep = as.character(sep), dec = dec, quote = FALSE,
-        row.names = c(row.names), col.names = c(col.names))
+  write.table(sym.data$meta, file,
+    sep = as.character(sep), dec = dec, quote = FALSE,
+    row.names = c(row.names), col.names = c(col.names)
+  )
 }

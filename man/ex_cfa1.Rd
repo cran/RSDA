@@ -11,13 +11,6 @@ data(ex_cfa1)
 \description{
 Correspondence Analysis for Symbolic MultiValued Variables example.
 }
-\examples{
-data(ex_cfa1)
-res <- sym.cfa(ex_cfa1)
-class(res) <- c('sym.data.table')
-cfa.scatterplot(sym.var(res,1),sym.var(res,2),num.gr1=ex_cfa1$N,
-                labels=TRUE,col='red',main='CFA')
-}
 \references{
 Rodriguez, O. (2011).
 Correspondence Analysis for Symbolic MultiValued Variables. Workshop in Symbolic

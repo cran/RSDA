@@ -4,7 +4,7 @@ cov, cor, median.sym.data.table,sd,var,mean.sym.data.table,"[.sym.data.table", p
 classic.to.sym,read.sym.table, generate.sym.table, write.sym.table, display.sym.table, sym.var, sym.obj,sym.scatterplot, cfa.scatterplot,
 sym.scatterplot.ggplot, sym.scatterplot3d, sym.lm.bi, sym.lm, predictsym.lm, sym.glm, predictsym.glm,deter.coefficient, RMSE.L, RMSE.U, R2.L,
 R2.U, sym.interval.pca, sym.circle.plot, interval.dist.tobj, interval.dist, interscal, sym.hclust,sym.kmeans, sym.histogram.pca, sym.mds,
-sym.cfa,sym.cor,sym.cov,sym.sd,sym.variance,sym.mean,sym.var,sym.median, type.histogram, type.interval,type.set,type.continuous,type.modal)
+sym.cfa,sym.cor,sym.cov,sym.sd,sym.variance,sym.mean,sym.var,sym.median, type.histogram, type.interval,type.set,type.continuous,type.modal,sym.mcfa,cfa.scatterplot.gg)
 #funciones a importar
 
 importFrom(FactoMineR,PCA)
@@ -12,7 +12,6 @@ importFrom(RJSONIO,fromJSON)
 import(XML)
 import(nloptr)
 import(xtable)
-import(randomcoloR)
 import(grid)
 import(FactoMineR)
 importFrom(abind,abind)

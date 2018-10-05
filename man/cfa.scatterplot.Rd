@@ -25,12 +25,6 @@ This function could be use to plot two
 symbolic variables in a X-Y plane to special case
 of Symbolic Correspondance Analysis.
 }
-\examples{
-data(ex_cfa1)
-res<-sym.cfa(ex_cfa1)
-cfa.scatterplot(sym.var(res,1), sym.var(res,2), num.gr1=ex_cfa1$N,
-labels=TRUE, col='red',main='CFA')
-}
 \references{
 Rodriguez, O. (2011).Correspondence Analysis for Symbolic MultiValued Variables.
  Workshop in Symbolic Data AnalysisNamur, Belgium.

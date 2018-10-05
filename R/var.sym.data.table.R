@@ -36,51 +36,52 @@
 #' @export
 #'
 var <- function(x, ...) {
-    UseMethod("var", x)
+  UseMethod("var", x)
 }
 
 #' @rdname var
 #' @export
 var.default <- function(x, y = NULL, na.rm = FALSE, use, ...) {
-    stats::var(x, y, na.rm, use)
+  stats::var(x, y, na.rm, use)
 }
 
 #' @rdname var
 #' @export
-var.sym.data.table <- function(x, method = c("centers", "interval", "billard", "modal"), 
-    na.rm = FALSE, ...) {
-    error.message <- "Impossible to compute the variance for this type of variable with this method"
-    method <- match.arg(method)
-    if (method == "centers") {
-        if (x$sym.var.types == "$C") 
-            return(var(x$data[, 1]))
-        if (x$sym.var.types == "$I") {
-            return(var(x$data[, 1] + x$data[, 2])/2)
-        } else {
-            stop(error.message)
-        }
+var.sym.data.table <- function(x, method = c("centers", "interval", "billard", "modal"),
+                               na.rm = FALSE, ...) {
+  error.message <- "Impossible to compute the variance for this type of variable with this method"
+  method <- match.arg(method)
+  if (method == "centers") {
+    if (x$sym.var.types == "$C") {
+      return(var(x$data[, 1]))
     }
-    if (method == "interval") {
-        if (x$sym.var.types == "$I") {
-            return(sapply(x$data, var))
-        } else {
-            stop(error.message)
-        }
+    if (x$sym.var.types == "$I") {
+      return(var(x$data[, 1] + x$data[, 2]) / 2)
+    } else {
+      stop(error.message)
     }
-    if (method == "billard") {
-        if (x$sym.var.types == "$I") {
-            return((1/(3 * x$N)) * sum(x$data[, 1]^2 + (x$data[, 1] * x$data[, 2]) + 
-                x$data[, 2]^2) - (1/(4 * (x$N)^2)) * sum(x$data[, 1] + x$data[, 2])^2)
-        } else {
-            stop(error.message)
-        }
+  }
+  if (method == "interval") {
+    if (x$sym.var.types == "$I") {
+      return(sapply(x$data, var))
+    } else {
+      stop(error.message)
     }
-    
-    if (method == "modal") {
-        if (x$sym.var.types == "$M") {
-            return(sapply(x$data, var))
-        } else {
-            stop(error.message)
-        }
+  }
+  if (method == "billard") {
+    if (x$sym.var.types == "$I") {
+      return((1 / (3 * x$N)) * sum(x$data[, 1]^2 + (x$data[, 1] * x$data[, 2]) +
+        x$data[, 2]^2) - (1 / (4 * (x$N)^2)) * sum(x$data[, 1] + x$data[, 2])^2)
+    } else {
+      stop(error.message)
     }
+  }
+
+  if (method == "modal") {
+    if (x$sym.var.types == "$M") {
+      return(sapply(x$data, var))
+    } else {
+      stop(error.message)
+    }
+  }
 }

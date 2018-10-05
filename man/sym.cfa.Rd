@@ -4,23 +4,18 @@
 \alias{sym.cfa}
 \title{Symbolic correspondence analysis}
 \usage{
-sym.cfa(sym.data)
+sym.cfa(x = NULL, y  = NULL)
 }
 \arguments{
-\item{sym.data}{Should be a symbolic data table read with the function read.sym.table(...).}
+\item{x}{parametro x}
+
+\item{y}{parametro y}
 }
 \value{
 Return the interval principal components.
 }
 \description{
 Correspondence Analysis for Symbolic MultiValued Variables.
-}
-\examples{
-data(ex_cfa1)
-res<-sym.cfa(ex_cfa1)
-cfa.scatterplot(sym.var(res,1),sym.var(res,2),num.gr1=ex_cfa1$N,
-                labels=TRUE,col='red',main='CFA')
-
 }
 \references{
 Rodriguez, O. (2011).
