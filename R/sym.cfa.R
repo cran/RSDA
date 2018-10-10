@@ -1,19 +1,4 @@
-#' Symbolic correspondence analysis
-#' @name sym.cfa
-#' @aliases sym.cfa
-#' @author Oldemar Rodriguez Rojas.
-#' @description Correspondence Analysis for Symbolic MultiValued Variables.
-#' @usage sym.cfa(x = NULL, y  = NULL)
-#' @param x parametro x
-#' @param y parametro y
-#' @return Return the interval principal components.
-#' @references
-#' Rodriguez, O. (2011).
-#' Correspondence Analysis for Symbolic MultiValued Variables. Workshop in Symbolic Data Analysis
-#' Namur, Belgium.
-#'
-#' @keywords CFA
-#' @export
+#' @keywords internal
 #'
 sym.cfa <- function(x = NULL, y = NULL) {
 

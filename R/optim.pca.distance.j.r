@@ -3,7 +3,6 @@
 optim.pca.distance.j <- function(sym.data) {
   N <- sym.data$N
   M <- sym.data$M
-
   seq.min <- seq(from = 1, by = 2, length.out = M)
   seq.max <- seq(from = 2, by = 2, length.out = M)
 

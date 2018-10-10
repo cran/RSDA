@@ -1,6 +1,6 @@
 #' Symbolic k-Means
-#' @name sym.kmean
-#' @aliases sym.kmean
+#' @name sym.kmeans
+#' @aliases sym.kmeans
 #' @author Oldemar Rodriguez Rojas
 #' @description This is a function is to carry out a k-means overs a interval symbolic data matrix.
 #' @usage sym.kmeans(sym.data, k = 3, iter.max = 10, nstart = 1,

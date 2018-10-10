@@ -21,7 +21,7 @@ pca.supplementary.vertex.lambda.fun.j <- function(x, M, N, sym.var.names, sym.da
     X = M.x, scale.unit = FALSE, ind.sup = (N + 1):tot.individuals,
     ncp = M, graph = FALSE
   )
-  out <- list(pca.max = pca.max, out = -sum(pca.max$eig$eigenvalue[(1:num.dimen.aux)]))
+  out <- list(pca.max = pca.max, out = -sum(pca.max$eig[(1:num.dimen.aux)]))
 
-  return(-sum(pca.max$eig$eigenvalue[(1:num.dimen.aux)]))
+  return(-sum(pca.max$eig[(1:num.dimen.aux)]))
 }

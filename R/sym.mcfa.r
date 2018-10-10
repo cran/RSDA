@@ -1,11 +1,32 @@
-#' sym.mcfam
+#' sym.mcfa
+#' @aliases sym.mcfa
+#' @author Jorge Arce
+#' @param sym.data A symbolic data table containing at least two set type variables.
+#' @param pos.var Column numbers in the symbolic data table that contain the set type variables.
+#' @description This function executes a Multiple Correspondence Factor Analysis for variables of set type.
+#' @usage sym.mcfa(sym.data, pos.var)
+#' @references  Arce J. and Rodriguez, O. (2018). Multiple Correspondence Analysis for Symbolic Multi–Valued Variables. On the Symbolic Data Analysis Workshop SDA 2018.
 #'
-#' @param sym.data ddd
-#' @param pos.var ddd
+#' Benzecri, J.P. (1973). L' Analyse des Données. Tomo 2: L'Analyse des Correspondances. Dunod, Paris.
 #'
-#' @export
+#' Castillo, W. and Rodriguez O. (1997). Algoritmo e implementacion del analisis factorial de correspondencias. Revista de Matematicas: Teoria y Aplicaciones, 24-31.
 #'
-sym.mcfa<-function (sym.data, pos.var)
+#' Takagi I. and Yadosiha H. (2011). Correspondence Analysis for symbolic contingency tables base on interval algebra. Elsevier Procedia Computer Science, 6, 352-357.
+#'
+#' Rodriguez, O. (2007). Correspondence Analysis for Symbolic Multi--Valued Variables. CARME 2007 (Rotterdam, The Netherlands), http://www.carme-n.org/carme2007.
+#'
+#' @examples
+#' data("ex_mcfa1")
+#' sym.table <- classic.to.sym(ex_mcfa1, concept = "suspect",
+#'                    variables.types = c(hair = type.set(),
+#'                                        eyes = type.set(),
+#'                                        region = type.set()))
+#'
+#' res <- sym.mcfa(sym.table, c(1,2))
+#' mcfa.scatterplot(res[,1], res[,2], sym.data = sym.table, pos.var = c(1,2))
+#'
+
+sym.mcfa <- function (sym.data, pos.var)
 {
   sym.data <- calc.burt.sym(sym.data, pos.var)
   idn <- all(sym.data$sym.var.types == sym.data$sym.var.types[1])
