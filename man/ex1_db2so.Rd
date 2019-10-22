@@ -14,12 +14,13 @@ This is a small data example to generate symbolic objets.
 \examples{
 data(ex1_db2so)
 ex1 <- ex1_db2so
-result <- classic.to.sym(ex1, concept=c('state', 'sex'),
-                         variables = c(county, group, age, age),
-                         variables.types = c(county = type.continuous(),
-                         group = type.histogram(),
-                         age = type.histogram(),
-                          age = type.set()))
+result <- classic.to.sym(
+  x = ex1_db2so,
+  concept = c(state, sex),
+  variables = c(county, group, age),
+  county = mean(county),
+  age_hist = sym.histogram(age, breaks = pretty(ex1_db2so$age, 5))
+)
 result
 }
 \references{

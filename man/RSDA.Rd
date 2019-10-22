@@ -30,7 +30,7 @@ scaling of interval data, denominated INTERSCAL.
 Package: \tab RSDA\cr
 Type: \tab Package\cr
 Version: \tab 2.0.8\cr
-Date: \tab 2018-10-09\cr
+Date: \tab 2018-10-10\cr
 License: \tab GPL (>=2)\cr
 }
 Most of the function of the package stars from a symbolic data table that can be store in
@@ -43,39 +43,6 @@ interval variables we have the minimum and the maximum of the interval, for hist
 variables we have the number of modalities and then the probability of each modality
 and for set variables we have the cardinality of the set and next the elements of
 the set.
-}
-\examples{
-data(example3)
-sym.data<-example3
-class(sym.data) <- c('sym.data.table')
-display.sym.table(sym.data)
-sym.scatterplot(sym.data[,1], sym.data[,4], col='blue',main='Main Title')
-
-data(oils)
-class(oils) <- c('sym.data.table')
-res<-sym.interval.pca(oils,'centers')
-sym.scatterplot(res$Sym.Components[,1],res$Sym.Components[,2],
-                labels=TRUE,col='red',main='PCA Oils Data')
-sym.scatterplot3d(res$Sym.Components[,1], res$Sym.Components[,2],
-                  res$Sym.Components[,3],color='blue',main='PCA Oils Data')
-sym.scatterplot.ggplot(res$Sym.Components[,1],
-                       res$Sym.Components[,2], labels=TRUE)
-sym.circle.plot(res$Sym.Prin.Correlations)
-
-res<-sym.interval.pca(oils,'classic')
-plot(res,choix='ind')
-plot(res,choix='var')
-
-data(lynne2)
-res<-sym.interval.pca(lynne2,'centers')
-class(res$Sym.Components) <- c('sym.data.table')
-sym.scatterplot(res$Sym.Components[,1], res$Sym.Components[,2],
-                labels=TRUE, col='red',main='PCA Lynne Data')
-sym.scatterplot3d(res$Sym.Components[,1],res$Sym.Components[,2],
-                  res$Sym.Components[,3],color='blue', main='PCA Lynne Data')
-sym.scatterplot.ggplot(res$Sym.Components[,1],res$Sym.Components[,2],
-                       labels=TRUE)
-sym.circle.plot(res$Sym.Prin.Correlations)
 }
 \references{
 Billard L. and  Diday E. (2006).

@@ -4,7 +4,7 @@
 \name{lynne1}
 \alias{lynne1}
 \title{Symbolic interval data example.}
-\format{An object of class \code{sym.data.table} of length 9.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 10 rows and 4 columns.}
 \usage{
 data(lynne1)
 }
@@ -13,7 +13,7 @@ Symbolic data matrix with all the variables of interval type.
 }
 \examples{
 data(lynne1)
-display.sym.table(lynne1)
+lynne1
 }
 \references{
 Billard L. and  Diday E. (2006).

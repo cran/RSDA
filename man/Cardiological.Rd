@@ -4,7 +4,7 @@
 \name{Cardiological}
 \alias{Cardiological}
 \title{Cardiological data example}
-\format{An object of class \code{list} of length 9.}
+\format{An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 11 rows and 3 columns.}
 \usage{
 data(Cardiological)
 }
@@ -13,14 +13,13 @@ Cardiological interval data example.
 }
 \examples{
 data(Cardiological)
-car.data <- Cardiological
-res.cm <- sym.lm(Pulse~Syst+Diast,sym.data=car.data,method='cm')
-pred.cm <- predictsym.lm(res.cm,car.data,method='cm')
-RMSE.L(sym.var(car.data,1),pred.cm$Fitted)
-RMSE.U(sym.var(car.data,1),pred.cm$Fitted)
-R2.L(sym.var(car.data,1),pred.cm$Fitted)
-R2.U(sym.var(car.data,1),pred.cm$Fitted)
-deter.coefficient(sym.var(car.data,1),pred.cm$Fitted)
+res.cm <- sym.lm(formula = Pulse~Syst+Diast, sym.data = Cardiological, method = 'cm')
+pred.cm <- sym.predict(res.cm, Cardiological)
+RMSE.L(Cardiological$Pulse, pred.cm$Fitted)
+RMSE.U(Cardiological$Pulse,pred.cm$Fitted)
+R2.L(Cardiological$Pulse,pred.cm$Fitted)
+R2.U(Cardiological$Pulse,pred.cm$Fitted)
+deter.coefficient(Cardiological$Pulse,pred.cm$Fitted)
 }
 \references{
 Billard L. and  Diday E. (2006).Symbolic data analysis:

@@ -18,6 +18,6 @@ This a symbolic data matrix wint continuos, interval, histograma a set data type
 }
 \examples{
 data(example5)
-display.sym.table(example5)
+example5
 }
 \keyword{datasets}

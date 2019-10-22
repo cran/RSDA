@@ -1,23 +1,34 @@
 Package: RSDA
 Type: Package
 Title: R to Symbolic Data Analysis
-Version: 2.0.8
-Date: 2018-10-09
-Author: Oldemar Rodriguez R. with contributions from Carlos Aguero, Olger Calderon, Roberto Zuniga and Jorge Arce
-Maintainer: Oldemar Rodriguez <oldemar.rodriguez@ucr.ac.cr>
+Version: 3.0
+Date: 2019-10-21
+Authors@R: c(
+    person("Oldemar", "Rodriguez", email = "oldemar.rodriguez@ucr.ac.cr", role = "cre"),
+    person("Carlos", "Aguero", email = "carlos.aguero@promidat.com", role = "aut"),
+    person("Olger", "Calderon", role = "cph"),
+    person("Roberto", "Zuniga", role = "cph"),
+    person("Jorge", "Arce", role = "cph"))
 Description: Symbolic Data Analysis (SDA) was proposed by professor Edwin Diday in 1987, the main purpose of SDA is to substitute the set of rows (cases) in the data table for  a concept (second order statistical unit). This package implements, to the symbolic case, certain techniques of automatic classification, as well as some linear models.
 License: GPL (>= 2)
 Encoding: UTF-8
 Depends: R (>= 3.4)
-Imports: RJSONIO, glmnet, abind, scatterplot3d, graphics, stats, utils,
-        FactoMineR (>= 1.36), XML, scales, ggplot2, princurve, sqldf,
-        dplyr (>= 0.7.1), tidyr, stringr, lazyeval, nloptr (>= 1.0.4)
-        ,xtable,pander, rlang(>= 0.1.1), purrr, tidyselect, tibble,
-        ggpolypath, reshape, randomcoloR
 URL: http://www.oldemarrodriguez.com
-Suggests: testthat
-RoxygenNote: 6.0.1
+Suggests: testthat (>= 2.1.0), knitr, rmarkdown
+RoxygenNote: 6.1.1
+Imports: vctrs, dplyr, forcats, scales, stringr, rlang, purrr,
+        magrittr, tidyselect, tibble, stats, RJSONIO, XML, ggplot2,
+        ggpolypath, reshape, glmnet, FactoMineR, princurve, nloptr,
+        sqldf, randomcoloR
+VignetteBuilder: knitr
+LazyData: true
 NeedsCompilation: no
-Packaged: 2018-10-09 21:15:21 UTC; promidat04
+Packaged: 2019-10-21 15:19:37 UTC; promidat04
+Author: Oldemar Rodriguez [cre],
+  Carlos Aguero [aut],
+  Olger Calderon [cph],
+  Roberto Zuniga [cph],
+  Jorge Arce [cph]
+Maintainer: Oldemar Rodriguez <oldemar.rodriguez@ucr.ac.cr>
 Repository: CRAN
-Date/Publication: 2018-10-10 23:00:10 UTC
+Date/Publication: 2019-10-22 05:30:02 UTC

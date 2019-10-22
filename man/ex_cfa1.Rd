@@ -4,7 +4,7 @@
 \name{ex_cfa1}
 \alias{ex_cfa1}
 \title{Correspondence Analysis Example}
-\format{An object of class \code{list} of length 9.}
+\format{An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 4 rows and 4 columns.}
 \usage{
 data(ex_cfa1)
 }

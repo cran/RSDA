@@ -4,7 +4,7 @@
 \name{uscrime_int}
 \alias{uscrime_int}
 \title{Us crime interval data table.}
-\format{An object of class \code{list} of length 9.}
+\format{An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 46 rows and 102 columns.}
 \usage{
 data(uscrime_int)
 }
@@ -13,19 +13,21 @@ Us crime classic data table genetated from uscrime data.
 }
 \examples{
 data(uscrime_int)
-car.data<-uscrime_int
-res.cm.lasso<-sym.glm(sym.data=car.data,response=102,method='cm',alpha=1,
-                      nfolds=10,grouped=TRUE)
+car.data <- uscrime_int
+res.cm.lasso <- sym.glm(
+  sym.data = car.data, response = 102, method = "cm", alpha = 1,
+  nfolds = 10, grouped = TRUE
+)
 plot(res.cm.lasso)
-plot(res.cm.lasso$glmnet.fit, 'norm', label=TRUE)
-plot(res.cm.lasso$glmnet.fit, 'lambda', label=TRUE)
+plot(res.cm.lasso$glmnet.fit, "norm", label = TRUE)
+plot(res.cm.lasso$glmnet.fit, "lambda", label = TRUE)
 
-pred.cm.lasso<-predictsym.glm(res.cm.lasso,response=102,car.data,method='cm')
-RMSE.L(sym.var(car.data,102),pred.cm.lasso)
-RMSE.U(sym.var(car.data,102),pred.cm.lasso)
-R2.L(sym.var(car.data,102),pred.cm.lasso)
-R2.U(sym.var(car.data,102),pred.cm.lasso)
-deter.coefficient(sym.var(car.data,102),pred.cm.lasso)
+pred.cm.lasso <- sym.predict(res.cm.lasso, response = 102, car.data)
+RMSE.L(car.data$ViolentCrimesPerPop, pred.cm.lasso)
+RMSE.U(car.data$ViolentCrimesPerPop, pred.cm.lasso)
+R2.L(car.data$ViolentCrimesPerPop, pred.cm.lasso)
+R2.U(car.data$ViolentCrimesPerPop, pred.cm.lasso)
+deter.coefficient(car.data$ViolentCrimesPerPop, pred.cm.lasso)
 }
 \references{
 Rodriguez O. (2013). A generalization of Centre and Range method for fitting a linear

@@ -4,7 +4,7 @@
 \name{abalone}
 \alias{abalone}
 \title{SODAS XML data file.}
-\format{abalone<-SODAS.to.RSDA('C:/Program Files (x86)/DECISIA/SODAS version 2.0/bases/abalone.xml)}
+\format{An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 24 rows and 7 columns.}
 \source{
 http://www.info.fundp.ac.be/asso/sodaslink.htm
 }
@@ -16,15 +16,9 @@ Example of SODAS XML data file converted in a CSV file in RSDA format.
 }
 \examples{
 data(abalone)
-res<-sym.interval.pca(abalone,'centers')
-class(res$Sym.Components) <- c('sym.data.table')
-sym.scatterplot(res$Sym.Components[,1],res$Sym.Components[,2],
-labels=TRUE,col='red',main='PCA Oils Data')
-sym.scatterplot3d(res$Sym.Components[,1],res$Sym.Components[,2],
-res$Sym.Components[,3],color='blue',main='PCA Oils Data')
-sym.scatterplot.ggplot(res$Sym.Components[,1],
-res$Sym.Components[,2],labels=TRUE)
-sym.circle.plot(res$Sym.Prin.Correlations)
+res <- sym.pca(abalone, 'centers')
+plot(res, choix = "ind")
+plot(res, choix = "var")
 }
 \references{
 Bock H-H. and Diday E. (eds.) (2000).Analysis of Symbolic Data. Exploratory methods

@@ -1,55 +1,17 @@
-#' @name Table7
-#' @title Table7
-#' @description example for the dist.interval function.
-#' @keywords datasets
-"table7"
-
-#' @name ex_mcfa1
-#' @title ex_mcfa1
-#' @description example for the sym.mcfa function.
-#' @example
-#' #' @examples
-#' data("ex_mcfa1")
-#' sym.table <- classic.to.sym(ex_mcfa1, concept = "suspect",
-#'                    variables.types = c(hair = type.set(),
-#'                                        eyes = type.set(),
-#'                                        region = type.set()))
-#'
-#' res <- sym.mcfa(sym.table, c(1,2))
-#' mcfa.scatterplot(res[,1], res[,2], sym.data = sym.table, pos.var = c(1,2))
-#'
-#' @keywords datasets
-"ex_mcfa1"
-
-#' @name ex_mcfa2
-#' @title ex_mcfa2
-#' @description example for the sym.mcfa function.
-#' @keywords datasets
-"ex_mcfa2"
-
-
 #' @name abalone
 #' @title SODAS XML data file.
 #' @description Example of SODAS XML data file converted in a CSV file in RSDA format.
 #' @usage data(abalone)
-#' @format abalone<-SODAS.to.RSDA('C:/Program Files (x86)/DECISIA/SODAS version 2.0/bases/abalone.xml)
 #' @source http://www.info.fundp.ac.be/asso/sodaslink.htm
 #' @references Bock H-H. and Diday E. (eds.) (2000).Analysis of Symbolic Data. Exploratory methods
 #' for extracting statistical information fromcomplex data. Springer, Germany.
 #' @examples
 #' data(abalone)
-#' res<-sym.interval.pca(abalone,'centers')
-#' class(res$Sym.Components) <- c('sym.data.table')
-#' sym.scatterplot(res$Sym.Components[,1],res$Sym.Components[,2],
-#' labels=TRUE,col='red',main='PCA Oils Data')
-#' sym.scatterplot3d(res$Sym.Components[,1],res$Sym.Components[,2],
-#' res$Sym.Components[,3],color='blue',main='PCA Oils Data')
-#' sym.scatterplot.ggplot(res$Sym.Components[,1],
-#' res$Sym.Components[,2],labels=TRUE)
-#' sym.circle.plot(res$Sym.Prin.Correlations)
+#' res <- sym.pca(abalone, 'centers')
+#' plot(res, choix = "ind")
+#' plot(res, choix = "var")
 #' @keywords datasets
 "abalone"
-
 
 #' @name Cardiological
 #' @title Cardiological data example
@@ -59,40 +21,15 @@
 #' Conceptual statistics and data mining. Wiley, Chichester.
 #' @examples
 #' data(Cardiological)
-#' car.data <- Cardiological
-#' res.cm <- sym.lm(Pulse~Syst+Diast,sym.data=car.data,method='cm')
-#' pred.cm <- predictsym.lm(res.cm,car.data,method='cm')
-#' RMSE.L(sym.var(car.data,1),pred.cm$Fitted)
-#' RMSE.U(sym.var(car.data,1),pred.cm$Fitted)
-#' R2.L(sym.var(car.data,1),pred.cm$Fitted)
-#' R2.U(sym.var(car.data,1),pred.cm$Fitted)
-#' deter.coefficient(sym.var(car.data,1),pred.cm$Fitted)
+#' res.cm <- sym.lm(formula = Pulse~Syst+Diast, sym.data = Cardiological, method = 'cm')
+#' pred.cm <- sym.predict(res.cm, Cardiological)
+#' RMSE.L(Cardiological$Pulse, pred.cm$Fitted)
+#' RMSE.U(Cardiological$Pulse,pred.cm$Fitted)
+#' R2.L(Cardiological$Pulse,pred.cm$Fitted)
+#' R2.U(Cardiological$Pulse,pred.cm$Fitted)
+#' deter.coefficient(Cardiological$Pulse,pred.cm$Fitted)
 #' @keywords datasets
 "Cardiological"
-
-
-#' @name ex_cfa1
-#' @aliases ex_cfa1
-#' @title Correspondence Analysis Example
-#' @description Correspondence Analysis for Symbolic MultiValued Variables example.
-#' @usage data(ex_cfa1)
-#' @references Rodriguez, O. (2011).
-#' Correspondence Analysis for Symbolic MultiValued Variables. Workshop in Symbolic
-#' Data Analysis Namur, Belgium
-#' @keywords datasets
-"ex_cfa1"
-
-#' @name ex_cfa2
-#' @aliases ex_cfa2
-#' @title Correspondence Analysis Example
-#' @description Correspondence Analysis for Symbolic MultiValued Variables example.
-#' @usage data(ex_cfa2)
-#' @references Rodriguez, O. (2011).
-#' Correspondence Analysis for Symbolic MultiValued Variables. Workshop in Symbolic
-#' Data Analysis Namur, Belgium
-#' @keywords datasets
-"ex_cfa2"
-
 
 #' @name ex1_db2so
 #' @aliases ex1_db2so
@@ -105,16 +42,16 @@
 #' @examples
 #' data(ex1_db2so)
 #' ex1 <- ex1_db2so
-#' result <- classic.to.sym(ex1, concept=c('state', 'sex'),
-#'                          variables = c(county, group, age, age),
-#'                          variables.types = c(county = type.continuous(),
-#'                          group = type.histogram(),
-#'                          age = type.histogram(),
-#'                           age = type.set()))
+#' result <- classic.to.sym(
+#'   x = ex1_db2so,
+#'   concept = c(state, sex),
+#'   variables = c(county, group, age),
+#'   county = mean(county),
+#'   age_hist = sym.histogram(age, breaks = pretty(ex1_db2so$age, 5))
+#' )
 #' result
 #' @keywords datasets
 "ex1_db2so"
-
 
 #' @name example1
 #' @aliases example1
@@ -193,9 +130,9 @@
 #' complex data. Springer, Germany.
 #' @examples
 #' data(example1)
+#' example1
 #' @keywords datasets
 "example1"
-
 
 #' @name example2
 #' @aliases example2
@@ -213,7 +150,7 @@
 #'
 #' @examples
 #' data(example2)
-#' display.sym.table(example2)
+#' example2
 #' @keywords datasets
 "example2"
 
@@ -236,17 +173,16 @@
 #'
 #' @examples
 #' data(example3)
-#' display.sym.table(example3)
+#' example3
 #' @keywords datasets
 "example3"
-
 
 #' @name example4
 #' @aliases example4
 #' @title Data Example 4
 #' @description
 #' data(example4)
-#' display.sym.table(example4)
+#' example4
 #' @usage data(example4)
 #' @format
 #'       $C  2.8 $I  1  2 $M 3 0.1 0.7 0.2 $C    6 $S F4 e a 2 3 g b 1 4 i k c d $I      0     90
@@ -259,10 +195,9 @@
 #'
 #' @examples
 #' data(example4)
-#' display.sym.table(example4)
+#' example4
 #' @keywords datasets
 "example4"
-
 
 #' @name example5
 #' @aliases example5
@@ -285,10 +220,9 @@
 #'
 #' @examples
 #' data(example5)
-#' display.sym.table(example5)
+#' example5
 #' @keywords datasets
 "example5"
-
 
 #' @name example6
 #' @aliases example6
@@ -307,10 +241,9 @@
 #'
 #' @examples
 #' data(example6)
-#' display.sym.table(example6)
+#' example6
 #' @keywords datasets
 "example6"
-
 
 #' @name example7
 #' @aliases example7
@@ -333,10 +266,228 @@
 #'
 #' @examples
 #' data(example7)
-#' display.sym.table(example7)
+#' example7
 #' @keywords datasets
 "example7"
 
+#' @name ex_cfa1
+#' @aliases ex_cfa1
+#' @title Correspondence Analysis Example
+#' @description Correspondence Analysis for Symbolic MultiValued Variables example.
+#' @usage data(ex_cfa1)
+#' @references Rodriguez, O. (2011).
+#' Correspondence Analysis for Symbolic MultiValued Variables. Workshop in Symbolic
+#' Data Analysis Namur, Belgium
+#' @keywords datasets
+"ex_cfa1"
+
+#' @name ex_cfa2
+#' @aliases ex_cfa2
+#' @title Correspondence Analysis Example
+#' @description Correspondence Analysis for Symbolic MultiValued Variables example.
+#' @usage data(ex_cfa2)
+#' @references Rodriguez, O. (2011).
+#' Correspondence Analysis for Symbolic MultiValued Variables. Workshop in Symbolic
+#' Data Analysis Namur, Belgium
+#' @keywords datasets
+"ex_cfa2"
+
+#' @name ex_mcfa1
+#' @title Multiple Correspondence Analysis Example
+#' @description example for the sym.mcfa function.
+#' @usage data(ex_mcfa1)
+#' @examples
+#' data("ex_mcfa1")
+#' sym.table <- classic.to.sym(ex_mcfa1,
+#'                             concept = suspect,
+#'                             hair = sym.set(hair),
+#'                             eyes = sym.set(eyes),
+#'                             region = sym.set(region))
+#'
+#' res <- sym.mcfa(sym.table, c(1,2))
+#' mcfa.scatterplot(res[,1], res[,2], sym.data = sym.table, pos.var = c(1,2))
+#'
+#' @keywords datasets
+"ex_mcfa1"
+
+#' @name ex_mcfa2
+#' @title Multiple Correspondence Analysis Example
+#' @description example for the sym.mcfa function.
+#' @usage data(ex_mcfa2)
+#' @examples
+#' data("ex_mcfa2")
+#'
+#'ex <- classic.to.sym(ex_mcfa2,
+#'                     concept = employee_id,
+#'                      variables = c(employee_id, salary, region, evaluation, years_worked),
+#'                      salary = sym.set(salary),
+#'                      region = sym.set(region),
+#'                      evaluation = sym.set(evaluation),
+#'                      years_worked = sym.set(years_worked))
+#'
+#'res <- sym.mcfa(ex, c(1,2,3,4))
+#'mcfa.scatterplot(res[,1], res[,2], sym.data = ex, pos.var = c(1,2,3,4))
+#'
+#' @keywords datasets
+"ex_mcfa2"
+
+#' @name lynne1
+#' @aliases lynne1
+#' @title Symbolic interval data example.
+#' @description
+#' Symbolic data matrix with all the variables of interval type.
+#' @usage data(lynne1)
+#'
+#' @references
+#' Billard L. and  Diday E. (2006).
+#' Symbolic data analysis: Conceptual statistics and data mining. Wiley, Chichester.
+#' @examples
+#' data(lynne1)
+#' lynne1
+#' @keywords datasets
+"lynne1"
+
+#' @name oils
+#' @aliases olils
+#' @title Ichino Oils example data.
+#' @description
+#' Symbolic data matrix with all the variables of interval type.
+#' @usage data(oils)
+#' @format
+#' $I   GRA   GRA $I FRE FRE $I IOD IOD $I SAP SAP \cr
+
+#' L  $I 0.930 0.935 $I -27 -18 $I 170 204 $I 118 196 \cr
+
+#' P  $I 0.930 0.937 $I  -5  -4 $I 192 208 $I 188 197 \cr
+
+#' Co $I 0.916 0.918 $I  -6  -1 $I  99 113 $I 189 198 \cr
+
+#' S  $I 0.920 0.926 $I  -6  -4 $I 104 116 $I 187 193 \cr
+
+#' Ca $I 0.916 0.917 $I -25 -15 $I  80  82 $I 189 193 \cr
+
+#' O  $I 0.914 0.919 $I   0   6 $I  79  90 $I 187 196 \cr
+
+#' B  $I 0.860 0.870 $I  30  38 $I  40  48 $I 190 199 \cr
+
+#' H  $I 0.858 0.864 $I  22  32 $I  53  77 $I 190 202 \cr
+#'
+#' @references
+#' Cazes P., Chouakria A., Diday E. et Schektman Y. (1997).  Extension de l'analyse en
+#' composantes principales a des donnees de type intervalle, Rev. Statistique Appliquee,
+#' Vol. XLV Num. 3 pag. 5-24, France.
+#' @examples
+#' data(oils)
+#' oils
+#' @keywords datasets
+"oils"
+
+
+
+#' @name ex_mcfa1
+#' @title Multiple Correspondence Analysis Example
+#' @description example for the sym.mcfa function.
+#' @examples
+#' data("ex_mcfa1")
+#' sym.table <- classic.to.sym(
+#'   x = ex_mcfa1,
+#'   concept = "suspect",
+#'   variables = c(hair, eyes, region),
+#'   hair = sym.set(hair),
+#'   eyes = sym.set(eyes),
+#'   region = sym.set(region)
+#' )
+#' sym.table
+#' @keywords datasets
+"ex_mcfa1"
+
+#' @name USCrime
+#' @aliases USCrime
+#' @title Us crime classic data table
+#' @description
+#' Us crime classic data table that can be used to generate symbolic data tables.
+#' @usage data(USCrime)
+#' @source http://archive.ics.uci.edu/ml/
+#' @references
+#' HASTIE, T., TIBSHIRANI, R. and FRIEDMAN, J. (2008). The Elements of Statistical Learning:
+#' Data Mining, Inference and Prediction. New York: Springer.
+#' @examples
+#' \dontrun{
+#' data(USCrime)
+#' us.crime <- USCrime
+#' dim(us.crime)
+#' head(us.crime)
+#' summary(us.crime)
+#' names(us.crime)
+#' nrow(us.crime)
+#' result <- classic.to.sym(us.crime,
+#'   concept = "state",
+#'   variables = c(NumInShelters, NumImmig),
+#'   variables.types = c(
+#'     NumInShelters = type.histogram(),
+#'     NumImmig = type.histogram()
+#'   )
+#' )
+#' result
+#' }
+#' @keywords datasets
+"USCrime"
+
+#' @name int_prost_test
+#' @aliases int_prost_test
+#' @title Linear regression model data example.
+#' @description
+#' Linear regression model interval-valued data example.
+#' @usage data(int_prost_test)
+#' @references
+#' HASTIE, T., TIBSHIRANI, R. and FRIEDMAN, J. (2008). The Elements of Statistical Learning:
+#' Data Mining, Inference and Prediction. New York: Springer.
+#' @keywords datasets
+"int_prost_test"
+
+
+#' @name int_prost_train
+#' @aliases int_prost_train
+#' @title Linear regression model data example.
+#' @description
+#' Linear regression model interval-valued data example.
+#' @usage data(int_prost_train)
+#' @references
+#' HASTIE, T., TIBSHIRANI, R. and FRIEDMAN, J. (2008). The Elements of Statistical Learning:
+#' Data Mining, Inference and Prediction. New York: Springer.
+#' @keywords datasets
+"int_prost_train"
+
+#' @name uscrime_int
+#' @aliases uscrime_int
+#' @title Us crime interval data table.
+#' @description
+#' Us crime classic data table genetated from uscrime data.
+#' @usage data(uscrime_int)
+#' @references
+#' Rodriguez O. (2013). A generalization of Centre and Range method for fitting a linear
+#' regression model to symbolic interval data using Ridge Regression, Lasso
+#' and Elastic Net methods. The IFCS2013 conference of the International Federation of
+#' Classification Societies, Tilburg University Holland.
+#' @examples
+#' data(uscrime_int)
+#' car.data <- uscrime_int
+#' res.cm.lasso <- sym.glm(
+#'   sym.data = car.data, response = 102, method = "cm", alpha = 1,
+#'   nfolds = 10, grouped = TRUE
+#' )
+#' plot(res.cm.lasso)
+#' plot(res.cm.lasso$glmnet.fit, "norm", label = TRUE)
+#' plot(res.cm.lasso$glmnet.fit, "lambda", label = TRUE)
+#'
+#' pred.cm.lasso <- sym.predict(res.cm.lasso, response = 102, car.data)
+#' RMSE.L(car.data$ViolentCrimesPerPop, pred.cm.lasso)
+#' RMSE.U(car.data$ViolentCrimesPerPop, pred.cm.lasso)
+#' R2.L(car.data$ViolentCrimesPerPop, pred.cm.lasso)
+#' R2.U(car.data$ViolentCrimesPerPop, pred.cm.lasso)
+#' deter.coefficient(car.data$ViolentCrimesPerPop, pred.cm.lasso)
+#' @keywords datasets
+"uscrime_int"
 
 #' @name facedata
 #' @aliases facedata
@@ -377,238 +528,13 @@
 #' @examples
 #' \dontrun{
 #' data(facedata)
-#' res.vertex.ps<-sym.interval.pc(facedata,'vertex',150,FALSE,FALSE,TRUE)
+#' res.vertex.ps <- sym.interval.pc(facedata,'vertex',150,FALSE,FALSE,TRUE)
 #' class(res.vertex.ps$sym.prin.curve) <- c('sym.data.table')
 #' sym.scatterplot(res.vertex.ps$sym.prin.curve[,1], res.vertex.ps$sym.prin.curve[,2],
 #'                 labels=TRUE,col='red',main='PSC Face Data')
 #'                 }
 #' @keywords datasets
 "facedata"
-
-
-#' @name int_prost_test
-#' @aliases int_prost_test
-#' @title Linear regression model data example.
-#' @description
-#' Linear regression model interval-valued data example.
-#' @usage data(int_prost_test)
-#' @references
-#' HASTIE, T., TIBSHIRANI, R. and FRIEDMAN, J. (2008). The Elements of Statistical Learning:
-#' Data Mining, Inference and Prediction. New York: Springer.
-#' @examples
-#' data(int_prost_train)
-#' data(int_prost_test)
-#' res.cm<-sym.lm(lpsa~.,sym.data=int_prost_test,method='cm')
-#' res.cm<-sym.lm(lpsa~.,sym.data=int_prost_train,method='cm')
-#' pred.cm<-predictsym.lm(res.cm,int_prost_test,method='cm')
-#' RMSE.L(sym.var(int_prost_test,9),pred.cm$Fitted)
-#' RMSE.U(sym.var(int_prost_test,9),pred.cm$Fitted)
-#' R2.L(sym.var(int_prost_test,9),pred.cm$Fitted)
-#' R2.U(sym.var(int_prost_test,9),pred.cm$Fitted)
-#' deter.coefficient(sym.var(int_prost_test,9),pred.cm$Fitted)
-#'
-#' res.cm.lasso<-sym.glm(sym.data=int_prost_train,response=9,method='cm',
-#'                       alpha=1,nfolds=10,grouped=TRUE)
-#' plot(res.cm.lasso)
-#' plot(res.cm.lasso$glmnet.fit, 'norm', label=TRUE)
-#' plot(res.cm.lasso$glmnet.fit, 'lambda', label=TRUE)
-#' pred.cm.lasso<-predictsym.glm(res.cm.lasso,response=9,int_prost_test,method='cm')
-#' RMSE.L(sym.var(int_prost_test,9),pred.cm.lasso)
-#' RMSE.U(sym.var(int_prost_test,9),pred.cm.lasso)
-#' R2.L(sym.var(int_prost_test,9),pred.cm.lasso)
-#' R2.U(sym.var(int_prost_test,9),pred.cm.lasso)
-#' deter.coefficient(sym.var(int_prost_test,9),pred.cm.lasso)
-#' @keywords datasets
-"int_prost_test"
-
-
-#' @name int_prost_train
-#' @aliases int_prost_train
-#' @title Linear regression model data example.
-#' @description
-#' Linear regression model interval-valued data example.
-#' @usage data(int_prost_train)
-#' @references
-#' HASTIE, T., TIBSHIRANI, R. and FRIEDMAN, J. (2008). The Elements of Statistical Learning:
-#' Data Mining, Inference and Prediction. New York: Springer.
-#' @examples
-#' data(int_prost_train)
-#' data(int_prost_test)
-#' res.cm<-sym.lm(lpsa~.,sym.data=int_prost_test,method='cm')
-#' res.cm<-sym.lm(lpsa~.,sym.data=int_prost_train,method='cm')
-#' pred.cm<-predictsym.lm(res.cm,int_prost_test,method='cm')
-#' RMSE.L(sym.var(int_prost_test,9),pred.cm$Fitted)
-#' RMSE.U(sym.var(int_prost_test,9),pred.cm$Fitted)
-#' R2.L(sym.var(int_prost_test,9),pred.cm$Fitted)
-#' R2.U(sym.var(int_prost_test,9),pred.cm$Fitted)
-#' deter.coefficient(sym.var(int_prost_test,9),pred.cm$Fitted)
-#'
-#' res.cm.lasso<-sym.glm(sym.data=int_prost_train,response=9,method='cm',
-#'                       alpha=1,nfolds=10,grouped=TRUE)
-#' plot(res.cm.lasso)
-#' plot(res.cm.lasso$glmnet.fit, 'norm', label=TRUE)
-#' plot(res.cm.lasso$glmnet.fit, 'lambda', label=TRUE)
-#' pred.cm.lasso<-predictsym.glm(res.cm.lasso,response=9,int_prost_test,method='cm')
-#' RMSE.L(sym.var(int_prost_test,9),pred.cm.lasso)
-#' RMSE.U(sym.var(int_prost_test,9),pred.cm.lasso)
-#' R2.L(sym.var(int_prost_test,9),pred.cm.lasso)
-#' R2.U(sym.var(int_prost_test,9),pred.cm.lasso)
-#' deter.coefficient(sym.var(int_prost_test,9),pred.cm.lasso)
-#' @keywords datasets
-"int_prost_train"
-
-
-#' @name lynne1
-#' @aliases lynne1
-#' @title Symbolic interval data example.
-#' @description
-#' Symbolic data matrix with all the variables of interval type.
-#' @usage data(lynne1)
-#'
-#' @references
-#' Billard L. and  Diday E. (2006).
-#' Symbolic data analysis: Conceptual statistics and data mining. Wiley, Chichester.
-#' @examples
-#' data(lynne1)
-#' display.sym.table(lynne1)
-#' @keywords datasets
-"lynne1"
-
-
-#' @name lynne2
-#' @aliases lynne2
-#' @title Symbolic interval data example.
-#' @description
-#' Symbolic data matrix with all the variables of interval type.
-#' @usage data(lynne2)
-#'
-#' @references
-#' Billard L. and  Diday E. (2006).
-#' Symbolic data analysis: Conceptual statistics and data mining. Wiley, Chichester.
-#' @examples
-#' data(lynne2)
-#' display.sym.table(lynne2)
-#' @keywords datasets
-"lynne2"
-
-
-#' @name oils
-#' @aliases olils
-#' @title Ichino Oils example data.
-#' @description
-#' Symbolic data matrix with all the variables of interval type.
-#' @usage data(oils)
-#' @format
-#' $I   GRA   GRA $I FRE FRE $I IOD IOD $I SAP SAP \cr
-
-#' L  $I 0.930 0.935 $I -27 -18 $I 170 204 $I 118 196 \cr
-
-#' P  $I 0.930 0.937 $I  -5  -4 $I 192 208 $I 188 197 \cr
-
-#' Co $I 0.916 0.918 $I  -6  -1 $I  99 113 $I 189 198 \cr
-
-#' S  $I 0.920 0.926 $I  -6  -4 $I 104 116 $I 187 193 \cr
-
-#' Ca $I 0.916 0.917 $I -25 -15 $I  80  82 $I 189 193 \cr
-
-#' O  $I 0.914 0.919 $I   0   6 $I  79  90 $I 187 196 \cr
-
-#' B  $I 0.860 0.870 $I  30  38 $I  40  48 $I 190 199 \cr
-
-#' H  $I 0.858 0.864 $I  22  32 $I  53  77 $I 190 202 \cr
-#'
-#' @references
-#' Cazes P., Chouakria A., Diday E. et Schektman Y. (1997).  Extension de l'analyse en
-#' composantes principales a des donnees de type intervalle, Rev. Statistique Appliquee,
-#' Vol. XLV Num. 3 pag. 5-24, France.
-#' @examples
-#' data(oils)
-#' display.sym.table(oils)
-#' @keywords datasets
-"oils"
-
-
-#' @name StudentsGrades
-#' @aliases StudentsGrades
-#' @title Data Example.
-#' @description
-#' Symbolic data matrix with all the variables continuos type.
-#' @usage data(StudentsGrades)
-#' @format
-#'         $C Math  $C Science  $C Spanish  $C History  $C Sport\cr
-#' Lucia   $C  7.0   $C     6.5  $C     9.2  $C     8.6  $C   8.0\cr
-#' Pedro   $C  7.5  $C     9.4  $C     7.3  $C     7.0  $C   7.0\cr
-#' Ines    $C  7.6  $C     9.2  $C     8.0  $C     8.0  $C   7.5\cr
-#' Luis    $C  5.0  $C     6.5  $C     6.5  $C     7.0  $C   9.0\cr
-#' Andres  $C  6.0  $C     6.0  $C     7.8  $C     8.9  $C   7.3\cr
-#' Ana     $C  7.8  $C     9.6  $C     7.7  $C     8.0  $C   6.5\cr
-#' Carlos  $C  6.3  $C     6.4  $C     8.2  $C     9.0  $C   7.2\cr
-#' Jose    $C  7.9  $C     9.7  $C     7.5  $C     8.0  $C   6.0\cr
-#' Sonia   $C  6.0  $C     6.0  $C     6.5  $C     5.5  $C   8.7\cr
-#' Maria   $C  6.8  $C     7.2  $C     8.7  $C     9.0  $C   7.0\cr
-#' @examples
-#' data(StudentsGrades)
-#' StudentsGrades
-#' @keywords datasets
-"StudentsGrades"
-
-
-#' @name uscrime_int
-#' @aliases uscrime_int
-#' @title Us crime interval data table.
-#' @description
-#' Us crime classic data table genetated from uscrime data.
-#' @usage data(uscrime_int)
-#' @references
-#' Rodriguez O. (2013). A generalization of Centre and Range method for fitting a linear
-#' regression model to symbolic interval data using Ridge Regression, Lasso
-#' and Elastic Net methods. The IFCS2013 conference of the International Federation of
-#' Classification Societies, Tilburg University Holland.
-#' @examples
-#' data(uscrime_int)
-#' car.data<-uscrime_int
-#' res.cm.lasso<-sym.glm(sym.data=car.data,response=102,method='cm',alpha=1,
-#'                       nfolds=10,grouped=TRUE)
-#' plot(res.cm.lasso)
-#' plot(res.cm.lasso$glmnet.fit, 'norm', label=TRUE)
-#' plot(res.cm.lasso$glmnet.fit, 'lambda', label=TRUE)
-#'
-#' pred.cm.lasso<-predictsym.glm(res.cm.lasso,response=102,car.data,method='cm')
-#' RMSE.L(sym.var(car.data,102),pred.cm.lasso)
-#' RMSE.U(sym.var(car.data,102),pred.cm.lasso)
-#' R2.L(sym.var(car.data,102),pred.cm.lasso)
-#' R2.U(sym.var(car.data,102),pred.cm.lasso)
-#' deter.coefficient(sym.var(car.data,102),pred.cm.lasso)
-#' @keywords datasets
-"uscrime_int"
-
-
-#' @name USCrime
-#' @aliases USCrime
-#' @title Us crime classic data table
-#' @description
-#' Us crime classic data table that can be used to generate symbolic data tables.
-#' @usage data(USCrime)
-#' @source http://archive.ics.uci.edu/ml/
-#' @references
-#' HASTIE, T., TIBSHIRANI, R. and FRIEDMAN, J. (2008). The Elements of Statistical Learning:
-#' Data Mining, Inference and Prediction. New York: Springer.
-#' @examples
-#' data(USCrime)
-#' us.crime<-USCrime
-#' dim(us.crime)
-#' head(us.crime)
-#' summary(us.crime)
-#' names(us.crime)
-#' nrow(us.crime)
-#' result  <- classic.to.sym(us.crime, concept='state',
-#'                           variables =c(NumInShelters, NumImmig),
-#'                           variables.types =c(NumInShelters = type.histogram(),
-#'                            NumImmig = type.histogram()))
-#' result
-#' @keywords datasets
-"USCrime"
-
 
 #' @name VeterinaryData
 #' @aliases VeterinaryData
@@ -646,13 +572,6 @@
 #' Symbolic data analysis: Conceptual statistics and data mining. Wiley, Chichester.
 #' @examples
 #' data(VeterinaryData)
-#' display.sym.table(VeterinaryData)
+#' VeterinaryData
 #' @keywords datasets
 "VeterinaryData"
-
-
-
-#' @title sodasXML
-#' @description sodasXML
-#' @keywords internal
-"sodasXML"

@@ -21,6 +21,6 @@ histogram and set types.
 }
 \examples{
 data(example3)
-display.sym.table(example3)
+example3
 }
 \keyword{datasets}

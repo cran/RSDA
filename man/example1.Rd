@@ -59,6 +59,7 @@ histogram and set types.
 }
 \examples{
 data(example1)
+example1
 }
 \references{
 Bock H-H. and Diday E. (eds.) (2000).

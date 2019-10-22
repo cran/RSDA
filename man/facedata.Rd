@@ -39,7 +39,7 @@ Symbolic data matrix with all the variables of interval type.
 \examples{
 \dontrun{
 data(facedata)
-res.vertex.ps<-sym.interval.pc(facedata,'vertex',150,FALSE,FALSE,TRUE)
+res.vertex.ps <- sym.interval.pc(facedata,'vertex',150,FALSE,FALSE,TRUE)
 class(res.vertex.ps$sym.prin.curve) <- c('sym.data.table')
 sym.scatterplot(res.vertex.ps$sym.prin.curve[,1], res.vertex.ps$sym.prin.curve[,2],
                 labels=TRUE,col='red',main='PSC Face Data')

@@ -33,7 +33,7 @@ Symbolic data matrix with all the variables of interval type.
 }
 \examples{
 data(VeterinaryData)
-display.sym.table(VeterinaryData)
+VeterinaryData
 }
 \references{
 Billard L. and  Diday E. (2006).

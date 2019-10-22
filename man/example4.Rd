@@ -16,10 +16,10 @@ data(example4)
 }
 \description{
 data(example4)
-display.sym.table(example4)
+example4
 }
 \examples{
 data(example4)
-display.sym.table(example4)
+example4
 }
 \keyword{datasets}

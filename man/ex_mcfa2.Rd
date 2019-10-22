@@ -3,12 +3,27 @@
 \docType{data}
 \name{ex_mcfa2}
 \alias{ex_mcfa2}
-\title{ex_mcfa2}
+\title{Multiple Correspondence Analysis Example}
 \format{An object of class \code{data.frame} with 130 rows and 7 columns.}
 \usage{
-ex_mcfa2
+data(ex_mcfa2)
 }
 \description{
 example for the sym.mcfa function.
+}
+\examples{
+data("ex_mcfa2")
+
+ex <- classic.to.sym(ex_mcfa2,
+                    concept = employee_id,
+                     variables = c(employee_id, salary, region, evaluation, years_worked),
+                     salary = sym.set(salary),
+                     region = sym.set(region),
+                     evaluation = sym.set(evaluation),
+                     years_worked = sym.set(years_worked))
+
+res <- sym.mcfa(ex, c(1,2,3,4))
+mcfa.scatterplot(res[,1], res[,2], sym.data = ex, pos.var = c(1,2,3,4))
+
 }
 \keyword{datasets}

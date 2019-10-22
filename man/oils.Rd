@@ -22,7 +22,7 @@ Symbolic data matrix with all the variables of interval type.
 }
 \examples{
 data(oils)
-display.sym.table(oils)
+oils
 }
 \references{
 Cazes P., Chouakria A., Diday E. et Schektman Y. (1997).  Extension de l'analyse en

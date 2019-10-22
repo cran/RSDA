@@ -15,18 +15,24 @@ data(USCrime)
 Us crime classic data table that can be used to generate symbolic data tables.
 }
 \examples{
+\dontrun{
 data(USCrime)
-us.crime<-USCrime
+us.crime <- USCrime
 dim(us.crime)
 head(us.crime)
 summary(us.crime)
 names(us.crime)
 nrow(us.crime)
-result  <- classic.to.sym(us.crime, concept='state',
-                          variables =c(NumInShelters, NumImmig),
-                          variables.types =c(NumInShelters = type.histogram(),
-                           NumImmig = type.histogram()))
+result <- classic.to.sym(us.crime,
+  concept = "state",
+  variables = c(NumInShelters, NumImmig),
+  variables.types = c(
+    NumInShelters = type.histogram(),
+    NumImmig = type.histogram()
+  )
+)
 result
+}
 }
 \references{
 HASTIE, T., TIBSHIRANI, R. and FRIEDMAN, J. (2008). The Elements of Statistical Learning:
