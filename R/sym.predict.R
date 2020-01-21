@@ -83,7 +83,6 @@ sym.predict.symbolic_lm_crm <- function(model, new.sym.data, ...) {
 }
 
 #' @rdname sym.predict
-#' @param response The number of the column where is the response variable in the interval data table.
 #' @export
 #' @importFrom  stats predict
 sym.predict.symbolic_glm_cm <- function(model, new.sym.data, response, ...) {
@@ -100,4 +99,22 @@ sym.predict.symbolic_glm_cm <- function(model, new.sym.data, response, ...) {
   out <- data.frame("Minimums" = pred.mins, "Maximums" = pred.maxs)
   colnames(out) <- c("Minimums", "Maximums")
   return(out)
+}
+
+#' @rdname sym.predict
+#' @param response The number of the column where is the response variable in the interval data table.
+#' @export
+#' @importFrom  stats predict
+sym.predict.symbolic_glm_crm <- function(model, new.sym.data, response, ...) {
+  centers <- interval.centers(new.sym.data)
+  centers <- as.matrix(centers)
+  predc <- predict(model$CenterModel, newx = centers[, -response], s = "lambda.min")
+  # Range Model
+  range <- interval.ranges(new.sym.data)
+  range <- as.matrix(range)
+  predr <- predict(model$RangeModel, newx = range[, -response], s = "lambda.min")
+  res.min <- predc - predr
+  res.max <- predc + predr
+  Prediction <- data.frame(Minimums = res.min, Maximums = res.max)
+  return(Prediction)
 }

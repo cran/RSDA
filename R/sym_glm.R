@@ -67,7 +67,7 @@ sym.glm <- function(sym.data, response = 1, method = c("cm", "crm"), alpha = 1, 
       alpha = alpha
     )
     model <- list(CenterModel = model_centers, RangeModel = model_range)
-    class(model) <- c("symbolic_glm_crm", class(model))
+    class(model) <- c("symbolic_glm_crm")
     return(model)
   }
 }

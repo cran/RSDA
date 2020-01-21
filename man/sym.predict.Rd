@@ -5,6 +5,7 @@
 \alias{sym.predict.symbolic_lm_cm}
 \alias{sym.predict.symbolic_lm_crm}
 \alias{sym.predict.symbolic_glm_cm}
+\alias{sym.predict.symbolic_glm_crm}
 \title{Predict method to CM and CRM Linear regression model}
 \usage{
 sym.predict(model, ...)
@@ -14,6 +15,8 @@ sym.predict(model, ...)
 \method{sym.predict}{symbolic_lm_crm}(model, new.sym.data, ...)
 
 \method{sym.predict}{symbolic_glm_cm}(model, new.sym.data, response, ...)
+
+\method{sym.predict}{symbolic_glm_crm}(model, new.sym.data, response, ...)
 }
 \arguments{
 \item{model}{The output of lm method.}

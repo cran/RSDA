@@ -27,8 +27,8 @@
 #' \tabular{ll}{
 #' Package: \tab RSDA\cr
 #' Type: \tab Package\cr
-#' Version: \tab 2.0.8\cr
-#' Date: \tab 2018-10-10\cr
+#' Version: \tab 3.0.1\cr
+#' Date: \tab 2020-01-17\cr
 #' License: \tab GPL (>=2)\cr
 #' }
 #' Most of the function of the package stars from a symbolic data table that can be store in
