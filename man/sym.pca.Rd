@@ -8,9 +8,12 @@
 \usage{
 sym.pca(sym.data, ...)
 
-\method{sym.pca}{symbolic_tbl}(sym.data, method = c("classic", "tops",
-  "centers", "principal.curves", "optimized.distance",
-  "optimized.variance"), ...)
+\method{sym.pca}{symbolic_tbl}(
+  sym.data,
+  method = c("classic", "tops", "centers", "principal.curves", "optimized.distance",
+    "optimized.variance"),
+  ...
+)
 }
 \arguments{
 \item{sym.data}{Shoud be a symbolic data table}

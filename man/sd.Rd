@@ -10,8 +10,7 @@ sd(x, ...)
 
 \method{sd}{default}(x, na.rm = FALSE, ...)
 
-\method{sd}{symbolic_interval}(x, method = c("centers", "interval",
-  "billard"), na.rm = FALSE, ...)
+\method{sd}{symbolic_interval}(x, method = c("centers", "interval", "billard"), na.rm = FALSE, ...)
 }
 \arguments{
 \item{x}{A symbolic variable.}

@@ -5,8 +5,7 @@
 \alias{mean.symbolic_tbl}
 \title{Symbolic mean for intervals}
 \usage{
-\method{mean}{symbolic_interval}(x, method = c("centers", "interval"),
-  trim = 0, na.rm = F, ...)
+\method{mean}{symbolic_interval}(x, method = c("centers", "interval"), trim = 0, na.rm = F, ...)
 
 \method{mean}{symbolic_tbl}(x, ...)
 }

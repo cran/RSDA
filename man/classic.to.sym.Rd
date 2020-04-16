@@ -4,9 +4,14 @@
 \alias{classic.to.sym}
 \title{Generate a symbolic data frame}
 \usage{
-classic.to.sym(x = NULL, concept = NULL,
-  variables = tidyselect::everything(), default.numeric = sym.interval,
-  default.categorical = sym.modal, ...)
+classic.to.sym(
+  x = NULL,
+  concept = NULL,
+  variables = tidyselect::everything(),
+  default.numeric = sym.interval,
+  default.categorical = sym.modal,
+  ...
+)
 }
 \arguments{
 \item{x}{A data.frame.}

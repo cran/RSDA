@@ -4,8 +4,13 @@
 \alias{process.mult.nominal.variable}
 \title{process.mult.nominal.variable}
 \usage{
-process.mult.nominal.variable(labels, number.of.rows, parsed.xml,
-  variable.index, variable.name)
+process.mult.nominal.variable(
+  labels,
+  number.of.rows,
+  parsed.xml,
+  variable.index,
+  variable.name
+)
 }
 \description{
 process.mult.nominal.variable

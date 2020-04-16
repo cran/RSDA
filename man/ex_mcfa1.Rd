@@ -4,7 +4,11 @@
 \name{ex_mcfa1}
 \alias{ex_mcfa1}
 \title{Multiple Correspondence Analysis Example}
-\format{An object of class \code{data.frame} with 130 rows and 5 columns.}
+\format{
+An object of class \code{data.frame} with 130 rows and 5 columns.
+
+An object of class \code{data.frame} with 130 rows and 5 columns.
+}
 \usage{
 data(ex_mcfa1)
 

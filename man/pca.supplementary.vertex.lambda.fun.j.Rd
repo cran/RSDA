@@ -4,8 +4,15 @@
 \alias{pca.supplementary.vertex.lambda.fun.j}
 \title{pca.supplementary.vertex.lambda.fun.j}
 \usage{
-pca.supplementary.vertex.lambda.fun.j(x, M, N, sym.var.names,
-  sym.data.vertex.matrix, tot.individuals, num.dimen.aux)
+pca.supplementary.vertex.lambda.fun.j(
+  x,
+  M,
+  N,
+  sym.var.names,
+  sym.data.vertex.matrix,
+  tot.individuals,
+  num.dimen.aux
+)
 }
 \description{
 pca.supplementary.vertex.lambda.fun.j

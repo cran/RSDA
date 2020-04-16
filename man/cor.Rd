@@ -8,11 +8,15 @@
 \usage{
 cor(x, ...)
 
-\method{cor}{default}(x, y = NULL, use = "everything",
-  method = c("pearson", "kendall", "spearman"), ...)
+\method{cor}{default}(
+  x,
+  y = NULL,
+  use = "everything",
+  method = c("pearson", "kendall", "spearman"),
+  ...
+)
 
-\method{cor}{symbolic_interval}(x, y, method = c("centers", "billard"),
-  ...)
+\method{cor}{symbolic_interval}(x, y, method = c("centers", "billard"), ...)
 }
 \arguments{
 \item{x}{A symbolic variable.}

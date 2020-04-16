@@ -4,8 +4,15 @@
 \alias{sym.Interval.distance}
 \title{Compute the distance between two rows}
 \usage{
-sym.Interval.distance(sym.data, variable, w1, w2, gamma = 0.5,
-  method = "Minkowski", normalize = TRUE)
+sym.Interval.distance(
+  sym.data,
+  variable,
+  w1,
+  w2,
+  gamma = 0.5,
+  method = "Minkowski",
+  normalize = TRUE
+)
 }
 \description{
 Compute the distance between two rows

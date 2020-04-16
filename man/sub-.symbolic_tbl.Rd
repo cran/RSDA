@@ -2,11 +2,11 @@
 % Please edit documentation in R/symbolic_df.R
 \name{[.symbolic_tbl}
 \alias{[.symbolic_tbl}
-\title{Extract meta data}
+\title{subset for symbolic table}
 \usage{
-\method{[}{symbolic_tbl}(x, i, j, drop = FALSE)
+\method{[}{symbolic_tbl}(x, i, j, drop = FALSE, ...)
 }
 \description{
-Extract meta data
+subset for symbolic table
 }
 \keyword{internal}

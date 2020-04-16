@@ -4,7 +4,9 @@
 \name{USCrime}
 \alias{USCrime}
 \title{Us crime classic data table}
-\format{An object of class \code{data.frame} with 1994 rows and 103 columns.}
+\format{
+An object of class \code{data.frame} with 1994 rows and 103 columns.
+}
 \source{
 http://archive.ics.uci.edu/ml/
 }

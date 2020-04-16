@@ -4,7 +4,8 @@
 \name{VeterinaryData}
 \alias{VeterinaryData}
 \title{Symbolic interval data example}
-\format{$I Height Height $I Weight Weight \cr
+\format{
+$I Height Height $I Weight Weight \cr
 
 1  $I  120.0  180.0 $I  222.2  354.0\cr
 
@@ -24,7 +25,8 @@
 
 9  $I   40.3   55.8 $I    2.1    4.5\cr
 
-10 $I   38.4   72.4 $I    2.5    6.1\cr}
+10 $I   38.4   72.4 $I    2.5    6.1\cr
+}
 \usage{
 data(VeterinaryData)
 }

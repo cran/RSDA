@@ -27,8 +27,8 @@
 #' \tabular{ll}{
 #' Package: \tab RSDA\cr
 #' Type: \tab Package\cr
-#' Version: \tab 3.0.1\cr
-#' Date: \tab 2020-01-17\cr
+#' Version: \tab 3.0.3\cr
+#' Date: \tab 2020-04-16\cr
 #' License: \tab GPL (>=2)\cr
 #' }
 #' Most of the function of the package stars from a symbolic data table that can be store in
@@ -72,19 +72,16 @@
 #'
 #' Makosso-Kallyth S. and Diday E. (2012).  Adaptation of interval PCA to symbolic histogram
 #' variables, Advances in Data Analysis and Classification July, Volume 6, Issue 2, pp 147-159.
-#'
+
 #' Rodriguez, O. (2000).
 #' Classification et Modeles Lineaires en Analyse des Donnees Symboliques. Ph.D. Thesis,
 #' Paris IX-Dauphine University.
-#'
-#'
 #' @keywords package
 #' @docType package
 
 NULL
 utils::globalVariables(c(
-  "sym_interval", "sym_modal", "sym_set",
-  "sym_histogram", ":=", "Variables",
-  "value", "Individuals", "pos.var", "C1", "C1.1",
-  "C2", "C2.1", "var.name", "cat.name", "symindiv"
+  "to", "from", "interval", "n", "prob", "pca.max", "N", "M",
+  "<<-", ".", "do", "quo", "concept","C1","C1.1","C2","C2.1","var.name","cat.name","symindiv","Variables",
+  "value","Individuals","pos.var",":="
 ))

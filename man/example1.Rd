@@ -4,7 +4,8 @@
 \name{example1}
 \alias{example1}
 \title{Data Example 1}
-\format{The labels $C means that follows a continuous variable, $I means an interval
+\format{
+The labels $C means that follows a continuous variable, $I means an interval
 variable, $H means a histogram variables and $S means set variable. In the
 first row each labels should be follow of a name to variable and to the case
 of histogram a set variables types the names of the modalities (categories).
@@ -49,7 +50,8 @@ Case1  2.8  1    2 0.1 0.7 0.2 1 0 0 0 1 0 0 0 1 1 0 0
 Case2  1.4  3    9 0.6 0.3 0.1 0 1 0 0 0 1 0 0 0 0 1 1
 Case3  3.2 -1    4 0.2 0.2 0.6 0 0 1 0 0 1 1 0 0 0 1 0
 Case4 -2.1  0    2 0.9 0.0 0.1 0 1 0 1 0 0 0 1 0 0 1 0
-Case5 -3.0 -4   -2 0.6 0.0 0.4 1 0 0 0 1 0 0 0 1 1 0 0}
+Case5 -3.0 -4   -2 0.6 0.0 0.4 1 0 0 0 1 0 0 0 1 1 0 0
+}
 \usage{
 data(example1)
 }

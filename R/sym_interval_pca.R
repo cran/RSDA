@@ -92,7 +92,7 @@ sym.pca <- function(sym.data, ...) {
 #' and 'centers' to use the centers algorithm.
 #' @export
 #' @importFrom  FactoMineR PCA
-#' @importFrom tibble as.tibble rownames_to_column
+#' @importFrom tibble as_tibble rownames_to_column
 sym.pca.symbolic_tbl <- function(sym.data, method = c(
                                    "classic", "tops",
                                    "centers", "principal.curves",
@@ -249,7 +249,7 @@ sym.pca.symbolic_tbl <- function(sym.data, method = c(
     class(sym.comp) <- "sym.data.table"
     sym.comp <- to.v3(sym.comp)
     IPrinCorre <- tibble::rownames_to_column(IPrinCorre, var = "varname")
-    IPrinCorre <- tibble::as.tibble(IPrinCorre)
+    IPrinCorre <- tibble::as_tibble(IPrinCorre)
     out <- list(
       Sym.Components = sym.comp,
       Sym.Prin.Correlations = IPrinCorre

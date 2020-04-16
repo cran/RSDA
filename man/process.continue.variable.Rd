@@ -4,8 +4,12 @@
 \alias{process.continue.variable}
 \title{process.continue.variable}
 \usage{
-process.continue.variable(number.of.rows, parsed.xml, variable.index,
-  variable.name)
+process.continue.variable(
+  number.of.rows,
+  parsed.xml,
+  variable.index,
+  variable.name
+)
 }
 \description{
 process.continue.variable

@@ -4,7 +4,9 @@
 \name{uscrime_int}
 \alias{uscrime_int}
 \title{Us crime interval data table.}
-\format{An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 46 rows and 102 columns.}
+\format{
+An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 46 rows and 102 columns.
+}
 \usage{
 data(uscrime_int)
 }

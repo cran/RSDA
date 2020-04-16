@@ -36,7 +36,8 @@ classic.to.sym <- function(x = NULL,
   .concept <- tidyselect::vars_select(colnames(x), !!rlang::enquo(concept))
   col.types <- rlang::quos(...)
   col.types <- check_quo_duplicated_names(col.types)
-  var.names <- tidyselect::vars_select(colnames(x), c(!!rlang::enquo(concept), !!rlang::enquo(variables)))
+  var.names <- tidyselect::vars_select(colnames(x), c(!!rlang::enquo(concept),
+                                                      !!rlang::enquo(variables)))
   var.names <- var.names[!var.names %in% names(col.types)]
 
   out1 <- x %>%
@@ -60,83 +61,69 @@ classic.to.sym <- function(x = NULL,
 
   concepts <- apply(out[, .concept], 1, function(x) paste0(x, collapse = ":"))
   out <- dplyr::select(out, -.concept)
-
+  #out <- tibble::add_column(out, Concept = concepts, .before = 1)
+  attr(out, "concept") <- concepts
   class(out) <- c("symbolic_tbl", class(out))
-  attr(out, "row.names") <- concepts
   return(out)
 }
 
-#' Extract meta data
-#' @keywords internal
-#' @importFrom purrr map
-#' @import tibble
-#' @importFrom utils getFromNamespace
+#' subset for symbolic table
 #' @export
-`[.symbolic_tbl` <- function(x, i, j, drop = FALSE) {
-  warningc <- getFromNamespace("warningc", "tibble")
-  check_names_df <- getFromNamespace("check_names_df", "tibble")
-  fast_nrow <- getFromNamespace("fast_nrow", "tibble")
-  vec_restore_tbl_df_with_nr <- getFromNamespace("vec_restore_tbl_df_with_nr", "tibble")
-  has_rownames <- getFromNamespace("has_rownames", "tibble")
-  string_to_indices <- getFromNamespace("string_to_indices", "tibble")
-  subset_rows <- getFromNamespace("subset_rows", "tibble")
+#' @importFrom utils getFromNamespace
+#' @keywords internal
+`[.symbolic_tbl` <- function(x, i, j, drop = FALSE, ...) {
+  .concepts <- attr(x,"concept")
+  tbl_subset_matrix <- getFromNamespace("tbl_subset_matrix","tibble")
+  tbl_subset_col <- getFromNamespace("tbl_subset_col","tibble")
+  tbl_subset_row <- getFromNamespace("tbl_subset_row","tibble")
+  tbl_subset2 <- getFromNamespace("tbl_subset2","tibble")
+  vectbl_restore <- getFromNamespace("vectbl_restore","tibble")
 
+  i_arg <- substitute(i)
+  j_arg <- substitute(j)
+  if (missing(i)) {
+    i <- NULL
+    i_arg <- NULL
+  }
+  else if (is.null(i)) {
+    i <- integer()
+  }
+  if (missing(j)) {
+    j <- NULL
+    j_arg <- NULL
+  }
+  else if (is.null(j)) {
+    j <- integer()
+  }
   n_real_args <- nargs() - !missing(drop)
   if (n_real_args <= 2L) {
     if (!missing(drop)) {
-      warningc("drop ignored")
+      rlang::warn("`drop` argument ignored for subsetting a tibble with `x[j]`, it has an effect only for `x[i, j]`.")
+      drop <- FALSE
     }
-    if (missing(i)) {
-      return(x)
+    j <- i
+    i <- NULL
+    j_arg <- i_arg
+    i_arg <- NULL
+    if (is.matrix(j)) {
+      return(tbl_subset_matrix(x, j, j_arg))
     }
-    i <- check_names_df(i, x)
-    result <- .subset(x, i)
-    nr <- fast_nrow(x)
-    out <- vec_restore_tbl_df_with_nr(result, x, nr)
-    attr(out, "row.names") <- attr(x, "row.names")[i]
-    return(out)
   }
-  if (missing(j)) {
-    result <- x
+  xo <- tbl_subset_col(x, j = j, j_arg)
+  if (!is.null(i)) {
+    xo <- tbl_subset_row(xo, i = i, i_arg)
+    .concepts <- .concepts[i]
+  }
+  if (drop && length(xo) == 1L) {
+    xo <- tbl_subset2(xo, 1L, j_arg)
+    attr(xo, "concept") <- .concepts
+    xo
   }
   else {
-    j <- check_names_df(j, x)
-    result <- .subset(x, j)
+    xo <- vectbl_restore(xo, x)
+    attr(xo, "concept") <- .concepts
+    xo
   }
-  if (missing(i)) {
-    nr <- fast_nrow(x)
-  }
-  else {
-    if (is.logical(i) && !(length(i) %in% c(1L, fast_nrow(x)))) {
-      warningc("Length of logical index must be 1", if (fast_nrow(x) !=
-        1) {
-        paste0(" or ", fast_nrow(x))
-      }, ", not ", length(i))
-    }
-    if (length(result) == 0) {
-      nr <- length(attr(x, "row.names")[i])
-    }
-    else {
-      if (is.character(i)) {
-        if (has_rownames(x)) {
-          i <- match(i, rownames(x))
-        }
-        else {
-          i <- string_to_indices(i)
-        }
-      }
-      result <- purrr::map(result, subset_rows, i)
-      nr <- NROW(result[[1]])
-    }
-  }
-  if (drop) {
-    if (length(result) == 1L) {
-      return(result[[1L]])
-    }
-  }
-  out <- vec_restore_tbl_df_with_nr(result, x, nr)
-  attr(out, "row.names") <- attr(x, "row.names")[i]
-  return(out)
 }
 
 #' Extract meta data
@@ -239,7 +226,7 @@ to.v2 <- function(x) {
   out <- list()
   out$N <- nrow(x)
   out$M <- ncol(x)
-  out$sym.obj.names <- attr(x, "row.names")
+  out$sym.obj.names <- attr(x, "concept")
   out$sym.var.names <- colnames(x)
 
   meta <- lapply(colnames(x), function(y) {
@@ -265,7 +252,7 @@ to.v2 <- function(x) {
 #' to.v3
 #' @keywords internal
 to.v3 <- function(x) {
-  out <- tibble::tibble(.rows = x$N)
+  out <- tibble::tibble(.rows = length(x$sym.obj.names))
   for (i in seq_len(x$M)) {
     if (x$sym.var.types[i] == "$I") {
       values <- x[, i]$data
@@ -344,7 +331,7 @@ to.v3 <- function(x) {
       } := values)
     }
   }
-  attr(out, "row.names") <- x$sym.obj.names
+  attr(out, "concept") <- x$sym.obj.names
   class(out) <- c("symbolic_tbl", class(out))
   return(out)
 }

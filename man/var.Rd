@@ -10,8 +10,7 @@ var(x, ...)
 
 \method{var}{default}(x, y = NULL, na.rm = FALSE, use, ...)
 
-\method{var}{symbolic_interval}(x, method = c("centers", "interval",
-  "billard"), na.rm = FALSE, ...)
+\method{var}{symbolic_interval}(x, method = c("centers", "interval", "billard"), na.rm = FALSE, ...)
 }
 \arguments{
 \item{x}{A symbolic interval.}

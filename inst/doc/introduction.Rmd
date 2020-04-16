@@ -1,5 +1,5 @@
 ---
-title: "How to use RSDA 3.0"
+title: "How to use RSDA 3.3"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Instroduction to RSDA packages}
@@ -18,7 +18,7 @@ library(RSDA)
 ```
 
 
-## RSDA Package version 3
+## RSDA Package version 3.3
 ## Oldemar Rodríguez R.
 
 ## Installing the package
@@ -37,7 +37,7 @@ devtools::install_github("PROMiDAT/RSDA")
 ## How to read a Symbolic Table from a CSV file with RSDA?
 
 ```{r}
-ex3 <- read.sym.table('tsym1.csv', header=TRUE, sep=';',dec='.', row.names=1)
+ex3 <- read.sym.table(file = 'tsym1.csv', header=TRUE, sep=';',dec='.', row.names=1)
 ex3
 ```
 
@@ -82,7 +82,7 @@ The `classic.to.sym` function allows to convert a traditional table into a symbo
 
 ```{r}
 result <- classic.to.sym(x = ex1_db2so, 
-                         concept = c("state", "sex"),
+                         concept = c(state, sex),
                          variables = c(county, group, age))
 result
 ```
@@ -249,6 +249,7 @@ cor(example3$F2, example3$F6, method = 'billard')
 library(ggpolypath)
 
 data(oils)
+oils <- RSDA:::to.v3(RSDA:::to.v2(oils))
 sym.radar.plot(oils[2:3,])
 sym.radar.plot(oils[2:5,])
 

@@ -1,8 +1,8 @@
 Package: RSDA
 Type: Package
 Title: R to Symbolic Data Analysis
-Version: 3.0.1
-Date: 2020-01-17
+Version: 3.0.3
+Date: 2020-04-16
 Authors@R: c(
     person("Oldemar", "Rodriguez", email = "oldemar.rodriguez@ucr.ac.cr", role = "cre"),
     person("Carlos", "Aguero", email = "carlos.aguero@promidat.com", role = "aut"),
@@ -15,15 +15,16 @@ Encoding: UTF-8
 Depends: R (>= 3.4)
 URL: http://www.oldemarrodriguez.com
 Suggests: testthat (>= 2.1.0), knitr, rmarkdown
-RoxygenNote: 6.1.1
-Imports: vctrs, dplyr, forcats, scales, stringr, rlang, purrr,
-        magrittr, tidyselect, tibble, stats, RJSONIO, XML, ggplot2,
-        ggpolypath, reshape, glmnet, FactoMineR, princurve, nloptr,
-        sqldf, randomcoloR
+RoxygenNote: 7.1.0
+Imports: vctrs (>= 0.2.4), dplyr (>= 0.8.5), forcats, scales, stringr,
+        rlang (>= 0.4.5), purrr, magrittr, tidyselect, tibble (>=
+        3.0.0), stats, RJSONIO, XML, ggplot2, ggpolypath, reshape,
+        glmnet, FactoMineR, princurve, nloptr, sqldf, randomcoloR,
+        labelled
 VignetteBuilder: knitr
 LazyData: true
 NeedsCompilation: no
-Packaged: 2020-01-20 19:30:03 UTC; promidat04
+Packaged: 2020-04-16 20:36:07 UTC; promidat04
 Author: Oldemar Rodriguez [cre],
   Carlos Aguero [aut],
   Olger Calderon [cph],
@@ -31,4 +32,4 @@ Author: Oldemar Rodriguez [cre],
   Jorge Arce [cph]
 Maintainer: Oldemar Rodriguez <oldemar.rodriguez@ucr.ac.cr>
 Repository: CRAN
-Date/Publication: 2020-01-21 07:50:31 UTC
+Date/Publication: 2020-04-16 22:10:02 UTC

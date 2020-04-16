@@ -4,7 +4,9 @@
 \name{ex1_db2so}
 \alias{ex1_db2so}
 \title{Data example to generate symbolic objets}
-\format{An object of class \code{data.frame} with 19 rows and 5 columns.}
+\format{
+An object of class \code{data.frame} with 19 rows and 5 columns.
+}
 \usage{
 data(ex1_db2so)
 }

@@ -8,11 +8,15 @@
 \usage{
 cov(x, ...)
 
-\method{cov}{default}(x, y = NULL, use = "everything",
-  method = c("pearson", "kendall", "spearman"), ...)
+\method{cov}{default}(
+  x,
+  y = NULL,
+  use = "everything",
+  method = c("pearson", "kendall", "spearman"),
+  ...
+)
 
-\method{cov}{symbolic_interval}(x, y, method = c("centers", "billard"),
-  na.rm = FALSE, ...)
+\method{cov}{symbolic_interval}(x, y, method = c("centers", "billard"), na.rm = FALSE, ...)
 }
 \arguments{
 \item{x}{First symbolic variables.}

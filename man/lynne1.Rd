@@ -4,7 +4,9 @@
 \name{lynne1}
 \alias{lynne1}
 \title{Symbolic interval data example.}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 10 rows and 4 columns.}
+\format{
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 10 rows and 4 columns.
+}
 \usage{
 data(lynne1)
 }

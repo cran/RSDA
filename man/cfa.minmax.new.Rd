@@ -4,8 +4,18 @@
 \alias{cfa.minmax.new}
 \title{cfa.minmax.new}
 \usage{
-cfa.minmax.new(sym.data, TFilas, TFilasMin, TFilasMax, TColumnas,
-  TColumnasMin, TColumnasMax, Total, VP, VPzz)
+cfa.minmax.new(
+  sym.data,
+  TFilas,
+  TFilasMin,
+  TFilasMax,
+  TColumnas,
+  TColumnasMin,
+  TColumnasMax,
+  Total,
+  VP,
+  VPzz
+)
 }
 \description{
 cfa.minmax.new

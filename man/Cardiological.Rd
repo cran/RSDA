@@ -4,7 +4,9 @@
 \name{Cardiological}
 \alias{Cardiological}
 \title{Cardiological data example}
-\format{An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 11 rows and 3 columns.}
+\format{
+An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 11 rows and 3 columns.
+}
 \usage{
 data(Cardiological)
 }

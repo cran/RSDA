@@ -4,8 +4,7 @@
 \alias{plot.symbolic_pca}
 \title{Plot symbolic PCA}
 \usage{
-\method{plot}{symbolic_pca}(x, choix = c("ind", "var"), axes = c(1, 2),
-  labels = TRUE, ...)
+\method{plot}{symbolic_pca}(x, choix = c("ind", "var"), axes = c(1, 2), labels = TRUE, ...)
 }
 \description{
 Plot symbolic PCA

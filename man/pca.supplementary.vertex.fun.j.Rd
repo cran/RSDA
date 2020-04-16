@@ -4,8 +4,14 @@
 \alias{pca.supplementary.vertex.fun.j}
 \title{pca.supplementary.vertex.fun.j}
 \usage{
-pca.supplementary.vertex.fun.j(x, N, M, sym.var.names,
-  sym.data.vertex.matrix, tot.individuals)
+pca.supplementary.vertex.fun.j(
+  x,
+  N,
+  M,
+  sym.var.names,
+  sym.data.vertex.matrix,
+  tot.individuals
+)
 }
 \description{
 pca.supplementary.vertex.fun.j

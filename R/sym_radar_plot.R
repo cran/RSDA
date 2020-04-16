@@ -16,9 +16,12 @@
 #'
 sym.radar.plot <- function(dat, indivs, vars, rad.main = "", rad.legend = "Individuals", use.pct = F) {
   requireNamespace("ggpolypath")
+
   dat <- to.v2(dat)
+  names. <- dat$sym.obj.names
   nom.vars <- dat$sym.var.names # Takes the names of the variables
   dat <- dat$data # Takes the dataset of the symbolic data.
+  row.names(dat) <- names.
   if (!missing(indivs)) {
     dat <- dat[indivs, ] # If individuals given, take just that indiduals for the analysis.
   }
@@ -32,7 +35,6 @@ sym.radar.plot <- function(dat, indivs, vars, rad.main = "", rad.legend = "Indiv
   }
 
   dat <- sym.radar.data(dat, nom.vars, use.pct) # Turn dataset to a molten data.
-
   # Plot the radar plot with the points of the intervals.
   res.radar <- ggplot2::ggplot(dat, ggplot2::aes(x = Variables, y = value)) +
     ggplot2::geom_point(ggplot2::aes(color = Individuals), size = 1) +
@@ -83,6 +85,7 @@ sym.radar.plot <- function(dat, indivs, vars, rad.main = "", rad.legend = "Indiv
 #' @importFrom scales rescale
 #'
 sym.radar.data <- function(dat, nom.vars, use.pct = F) {
+
   n <- ncol(dat) # Number of variables (2 for each variable (minimum and maximum)).
   m <- n / 2 # Number of variables (Real number).
   datos.L <- dat[, seq(1, n, 2)] # Takes the minimum values of the dataset

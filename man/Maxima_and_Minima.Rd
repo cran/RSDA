@@ -10,8 +10,7 @@
 
 \method{max}{symbolic_interval}(x, ...)
 
-\method{$}{symbolic_interval}(x, name = c("min", "max", "mean",
-  "median"))
+\method{$}{symbolic_interval}(x, name = c("min", "max", "mean", "median"))
 }
 \arguments{
 \item{x}{symbolic interval vector}

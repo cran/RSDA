@@ -4,7 +4,9 @@
 \name{int_prost_train}
 \alias{int_prost_train}
 \title{Linear regression model data example.}
-\format{An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 67 rows and 9 columns.}
+\format{
+An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 67 rows and 9 columns.
+}
 \usage{
 data(int_prost_train)
 }

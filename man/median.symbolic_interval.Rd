@@ -4,8 +4,7 @@
 \alias{median.symbolic_interval}
 \title{Symbolic Median}
 \usage{
-\method{median}{symbolic_interval}(x, na.rm = FALSE,
-  method = c("centers", "interval"), ...)
+\method{median}{symbolic_interval}(x, na.rm = FALSE, method = c("centers", "interval"), ...)
 }
 \arguments{
 \item{x}{A symbolic interval.}

@@ -4,7 +4,9 @@
 \name{abalone}
 \alias{abalone}
 \title{SODAS XML data file.}
-\format{An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 24 rows and 7 columns.}
+\format{
+An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 24 rows and 7 columns.
+}
 \source{
 http://www.info.fundp.ac.be/asso/sodaslink.htm
 }

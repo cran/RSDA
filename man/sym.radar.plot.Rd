@@ -4,8 +4,14 @@
 \alias{sym.radar.plot}
 \title{Internal sym.radar.plot the distence between two rows}
 \usage{
-sym.radar.plot(dat, indivs, vars, rad.main = "",
-  rad.legend = "Individuals", use.pct = F)
+sym.radar.plot(
+  dat,
+  indivs,
+  vars,
+  rad.main = "",
+  rad.legend = "Individuals",
+  use.pct = F
+)
 }
 \arguments{
 \item{dat}{The symbolic data.}

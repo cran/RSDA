@@ -4,7 +4,9 @@
 \name{ex_cfa2}
 \alias{ex_cfa2}
 \title{Correspondence Analysis Example}
-\format{An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 6 rows and 5 columns.}
+\format{
+An object of class \code{symbolic_tbl} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 6 rows and 5 columns.
+}
 \usage{
 data(ex_cfa2)
 }

@@ -5,7 +5,8 @@
 \alias{oils}
 \alias{olils}
 \title{Ichino Oils example data.}
-\format{$I   GRA   GRA $I FRE FRE $I IOD IOD $I SAP SAP \cr
+\format{
+$I   GRA   GRA $I FRE FRE $I IOD IOD $I SAP SAP \cr
 L  $I 0.930 0.935 $I -27 -18 $I 170 204 $I 118 196 \cr
 P  $I 0.930 0.937 $I  -5  -4 $I 192 208 $I 188 197 \cr
 Co $I 0.916 0.918 $I  -6  -1 $I  99 113 $I 189 198 \cr
@@ -13,7 +14,8 @@ S  $I 0.920 0.926 $I  -6  -4 $I 104 116 $I 187 193 \cr
 Ca $I 0.916 0.917 $I -25 -15 $I  80  82 $I 189 193 \cr
 O  $I 0.914 0.919 $I   0   6 $I  79  90 $I 187 196 \cr
 B  $I 0.860 0.870 $I  30  38 $I  40  48 $I 190 199 \cr
-H  $I 0.858 0.864 $I  22  32 $I  53  77 $I 190 202 \cr}
+H  $I 0.858 0.864 $I  22  32 $I  53  77 $I 190 202 \cr
+}
 \usage{
 data(oils)
 }

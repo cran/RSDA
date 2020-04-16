@@ -4,9 +4,16 @@
 \alias{sym.dist.interval}
 \title{Distance for Symbolic Interval Variables.}
 \usage{
-sym.dist.interval(sym.data, gamma = 0.5, method = "Minkowski",
-  normalize = TRUE, SpanNormalize = FALSE, q = 1, euclidea = TRUE,
-  pond = rep(1, length(variables)))
+sym.dist.interval(
+  sym.data,
+  gamma = 0.5,
+  method = "Minkowski",
+  normalize = TRUE,
+  SpanNormalize = FALSE,
+  q = 1,
+  euclidea = TRUE,
+  pond = rep(1, length(variables))
+)
 }
 \arguments{
 \item{sym.data}{A symbolic object}
