@@ -27,8 +27,8 @@
 #' \tabular{ll}{
 #' Package: \tab RSDA\cr
 #' Type: \tab Package\cr
-#' Version: \tab 3.0.3\cr
-#' Date: \tab 2020-04-16\cr
+#' Version: \tab 3.0.4\cr
+#' Date: \tab 2020-06-05\cr
 #' License: \tab GPL (>=2)\cr
 #' }
 #' Most of the function of the package stars from a symbolic data table that can be store in
@@ -83,5 +83,5 @@ NULL
 utils::globalVariables(c(
   "to", "from", "interval", "n", "prob", "pca.max", "N", "M",
   "<<-", ".", "do", "quo", "concept","C1","C1.1","C2","C2.1","var.name","cat.name","symindiv","Variables",
-  "value","Individuals","pos.var",":="
+  "value","Individuals","pos.var",":=","real.value"
 ))

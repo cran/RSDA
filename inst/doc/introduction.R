@@ -59,7 +59,7 @@ result  <- classic.to.sym(x = USCrime,
                                        NumImmig,
                                        ViolentCrimesPerPop),
                           ViolentCrimesPerPop_hist = sym.histogram(ViolentCrimesPerPop,
-                                                                   breaks = pretty(USCrime$iolentCrimesPerPop,5)))
+                                                                   breaks = pretty(USCrime$ViolentCrimesPerPop,5)))
 result
 
 ## -----------------------------------------------------------------------------

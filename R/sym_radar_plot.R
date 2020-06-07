@@ -60,11 +60,11 @@ sym.radar.plot <- function(dat, indivs, vars, rad.main = "", rad.legend = "Indiv
     }
   } else {
     res.radar <- res.radar +
-      ggplot2::geom_text(ggplot2::aes(x = 0.5, y = 0, label = round(min(dat$real.value), 3)), size = 3, colour = "gray", family = "Arial") +
-      ggplot2::geom_text(ggplot2::aes(x = 0.5, y = 0.25, label = inverse.rescale(0.25, dat$real.value)), size = 3, colour = "gray", family = "Arial") +
-      ggplot2::geom_text(ggplot2::aes(x = 0.5, y = 0.5, label = inverse.rescale(0.5, dat$real.value)), size = 3, colour = "gray", family = "Arial") +
-      ggplot2::geom_text(ggplot2::aes(x = 0.5, y = 0.75, label = inverse.rescale(0.75, dat$real.value)), size = 3, colour = "gray", family = "Arial") +
-      ggplot2::geom_text(ggplot2::aes(x = 0.5, y = 1, label = round(max(dat$real.value), 3)), size = 3, colour = "gray", family = "Arial")
+      ggplot2::geom_text(ggplot2::aes(x = 0.5, y = 0, label = round(min(real.value), 3)), size = 3, colour = "gray", family = "Arial") +
+      ggplot2::geom_text(ggplot2::aes(x = 0.5, y = 0.25, label = inverse.rescale(0.25, real.value)), size = 3, colour = "gray", family = "Arial") +
+      ggplot2::geom_text(ggplot2::aes(x = 0.5, y = 0.5, label = inverse.rescale(0.5, real.value)), size = 3, colour = "gray", family = "Arial") +
+      ggplot2::geom_text(ggplot2::aes(x = 0.5, y = 0.75, label = inverse.rescale(0.75, real.value)), size = 3, colour = "gray", family = "Arial") +
+      ggplot2::geom_text(ggplot2::aes(x = 0.5, y = 1, label = round(max(real.value), 3)), size = 3, colour = "gray", family = "Arial")
   }
   # Paths which connect the points of the interval are added.
   res.radar + ggpolypath::geom_polypath(data = dat, aes(x = pos.var, y = value, fill = Individuals), alpha = 0.3, rule = "evenodd") +
