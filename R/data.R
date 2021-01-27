@@ -31,6 +31,15 @@
 #' @keywords datasets
 "Cardiological"
 
+#' @name cardiologicalv2
+#' @title Cardiological data example
+#' @description Cardiological interval data example.
+#' @usage data(Cardiological)
+#' @references Billard L. and  Diday E. (2006).Symbolic data analysis:
+#' Conceptual statistics and data mining. Wiley, Chichester.
+#' @keywords datasets
+"cardiologicalv2"
+
 #' @name ex1_db2so
 #' @aliases ex1_db2so
 #' @title Data example to generate symbolic objets
@@ -488,6 +497,21 @@
 #' deter.coefficient(car.data$ViolentCrimesPerPop, pred.cm.lasso)
 #' @keywords datasets
 "uscrime_int"
+
+#' @name uscrime_intv2
+#' @aliases uscrime_intv2
+#' @title Us crime interval data table.
+#' @description
+#' Us crime classic data table genetated from uscrime data.
+#' @usage data(uscrime_int)
+#' @references
+#' Rodriguez O. (2013). A generalization of Centre and Range method for fitting a linear
+#' regression model to symbolic interval data using Ridge Regression, Lasso
+#' and Elastic Net methods. The IFCS2013 conference of the International Federation of
+#' Classification Societies, Tilburg University Holland.
+#'
+#' @keywords datasets
+"uscrime_intv2"
 
 #' @name facedata
 #' @aliases facedata

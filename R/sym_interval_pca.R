@@ -210,15 +210,15 @@ sym.pca.symbolic_tbl <- function(sym.data, method = c(
       comp.name <- paste("Max.C", j, sep = "")
       colnames(sym.comp$meta)[sym.comp$sym.var.starts[j] + 1] <- comp.name
     }
-    # Interval Principal Correlations
-    svdV <- matrix(0, nn, nn)
+    # Interval Principal Correlationsz
+    svdV <- matrix(0, nrow = nn, ncol = mm)
     for (i in 1:nn) {
       for (j in 1:mm) {
         ss <- 0
         for (k in 1:mm) {
           ss <- ss + centers.stan[i, k] * svd$vectors[k, j]
         }
-        svdV[i, j] <- (1 / sqrt(svd$values[j])) * ss
+        svdV[i, j] <- (1 / sqrt(abs(svd$values[j]))) * ss
       }
     }
     IPrinCorre <- matrix(0, mm, 2 * mm)

@@ -1,4 +1,4 @@
-#' Predict method to CM and CRM Linear regression model
+#' Predict method to CM and CRM regression model
 #' @name sym.predict
 #' @aliases sym.predict
 #' @author Oldemar Rodriguez Rojas

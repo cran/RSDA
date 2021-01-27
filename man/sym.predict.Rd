@@ -6,7 +6,7 @@
 \alias{sym.predict.symbolic_lm_crm}
 \alias{sym.predict.symbolic_glm_cm}
 \alias{sym.predict.symbolic_glm_crm}
-\title{Predict method to CM and CRM Linear regression model}
+\title{Predict method to CM and CRM regression model}
 \usage{
 sym.predict(model, ...)
 
