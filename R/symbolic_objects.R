@@ -76,13 +76,13 @@ format.symbolic_interval <- function(x, ...) {
 }
 
 #' Maxima and Minima
-#' @rdname Maxima_and_Minima
 #' @param x symbolic interval vector
 #' @param ... further arguments passed to or from other methods.
 #' @param name ...
 #'
 #' @return a new symbolic interval with the minimum of the minima and the minimum of the maxima
 #' @export
+#' @rdname Maxima_and_Minima
 #' @importFrom vctrs vec_data
 min.symbolic_interval <- function(x, ...) {
   sapply(x, function(x) Re(vctrs::vec_data(x)))
@@ -177,6 +177,7 @@ map_symbolic_tbl <- function(.x = NULL, .f = NULL, ...) {
 #' @export
 #' @importFrom vctrs vec_data
 #' @importFrom stats median
+#' @rdname Symbolic_median
 #'
 median.symbolic_interval <- function(x, na.rm = FALSE, method = c("centers", "interval"), ...) {
   method <- match.arg(method)
@@ -245,7 +246,8 @@ var.symbolic_interval <- function(x, method = c("centers", "interval", "billard"
     return(out)
   }
 }
-#' @rdname Symbolic_var
+#' @rdname var
+#' @name var
 #' @export
 var.symbolic_tbl <- function(x, ...) map_symbolic_tbl(x, var, ...)
 
@@ -300,7 +302,7 @@ cor.symbolic_interval <- function(x, y, method = c("centers", "billard"), ...) {
   }
 }
 
-#' @rdname Symbolic_cor
+#' @rdname cor
 #' @export
 cor.symbolic_tbl <- function(x, ...) map_symbolic_tbl(x, cor, ...)
 
@@ -376,7 +378,7 @@ cov.symbolic_interval <- function(x, y, method = c("centers", "billard"),
   }
 }
 
-#' @rdname Symbolic_cov
+#' @rdname cov
 #' @export
 cov.symbolic_tbl <- function(x, ...) map_symbolic_tbl(x, cov, ...)
 
@@ -431,7 +433,7 @@ sd.symbolic_interval <- function(x, method = c("centers", "interval", "billard")
   }
 }
 
-#' @rdname Symbolic_sd
+#' @rdname sd
 #' @export
 sd.symbolic_tbl <- function(x, ...) map_symbolic_tbl(x, sd, ...)
 

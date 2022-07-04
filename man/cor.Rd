@@ -4,6 +4,7 @@
 \alias{cor}
 \alias{cor.default}
 \alias{cor.symbolic_interval}
+\alias{cor.symbolic_tbl}
 \title{Generic function for the correlation}
 \usage{
 cor(x, ...)
@@ -17,6 +18,8 @@ cor(x, ...)
 )
 
 \method{cor}{symbolic_interval}(x, y, method = c("centers", "billard"), ...)
+
+\method{cor}{symbolic_tbl}(x, ...)
 }
 \arguments{
 \item{x}{A symbolic variable.}

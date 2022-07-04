@@ -2,7 +2,7 @@
 % Please edit documentation in R/sym_var.R
 \name{sym.var}
 \alias{sym.var}
-\title{Symbolic Variable (Feature)}
+\title{Symbolic Variable}
 \usage{
 sym.var(sym.data, number.sym.var)
 }

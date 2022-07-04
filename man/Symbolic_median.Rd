@@ -2,9 +2,12 @@
 % Please edit documentation in R/symbolic_objects.R
 \name{median.symbolic_interval}
 \alias{median.symbolic_interval}
+\alias{median.symbolic_tbl}
 \title{Symbolic Median}
 \usage{
 \method{median}{symbolic_interval}(x, na.rm = FALSE, method = c("centers", "interval"), ...)
+
+\method{median}{symbolic_tbl}(x, ...)
 }
 \arguments{
 \item{x}{A symbolic interval.}

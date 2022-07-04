@@ -4,6 +4,7 @@
 \alias{var}
 \alias{var.default}
 \alias{var.symbolic_interval}
+\alias{var.symbolic_tbl}
 \title{Symbolic Variance}
 \usage{
 var(x, ...)
@@ -11,6 +12,8 @@ var(x, ...)
 \method{var}{default}(x, y = NULL, na.rm = FALSE, use, ...)
 
 \method{var}{symbolic_interval}(x, method = c("centers", "interval", "billard"), na.rm = FALSE, ...)
+
+\method{var}{symbolic_tbl}(x, ...)
 }
 \arguments{
 \item{x}{A symbolic interval.}

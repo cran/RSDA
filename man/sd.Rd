@@ -4,6 +4,7 @@
 \alias{sd}
 \alias{sd.default}
 \alias{sd.symbolic_interval}
+\alias{sd.symbolic_tbl}
 \title{Generic function for the standard desviation}
 \usage{
 sd(x, ...)
@@ -11,6 +12,8 @@ sd(x, ...)
 \method{sd}{default}(x, na.rm = FALSE, ...)
 
 \method{sd}{symbolic_interval}(x, method = c("centers", "interval", "billard"), na.rm = FALSE, ...)
+
+\method{sd}{symbolic_tbl}(x, ...)
 }
 \arguments{
 \item{x}{A symbolic variable.}

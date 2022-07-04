@@ -4,6 +4,7 @@
 \alias{cov}
 \alias{cov.default}
 \alias{cov.symbolic_interval}
+\alias{cov.symbolic_tbl}
 \title{Generic function for the covariance}
 \usage{
 cov(x, ...)
@@ -17,6 +18,8 @@ cov(x, ...)
 )
 
 \method{cov}{symbolic_interval}(x, y, method = c("centers", "billard"), na.rm = FALSE, ...)
+
+\method{cov}{symbolic_tbl}(x, ...)
 }
 \arguments{
 \item{x}{First symbolic variables.}

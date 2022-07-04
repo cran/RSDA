@@ -82,17 +82,17 @@ sym.table <- classic.to.sym(x = ex_mcfa1,
 sym.table
 
 ## -----------------------------------------------------------------------------
-hani3101 <- SDS.to.RSDA(file.path = "hani3101.sds")
-hani3101
+#hani3101 <- SDS.to.RSDA(file.path = "hani3101.sds", encoding = "UTF-8")
+#hani3101
 
 ## ---- eval=F------------------------------------------------------------------
 #  # We can save the file in CSV to RSDA format as follows:
-#  write.sym.table(hani3101,
-#                  file='hani3101.csv',
-#                  sep=';',
-#                  dec='.',
-#                  row.names=TRUE,
-#                  col.names=TRUE)
+#  #write.sym.table(hani3101,
+#  #                file='hani3101.csv',
+#  #                sep=';',
+#  #                dec='.',
+#  #                row.names=TRUE,
+#  #                col.names=TRUE)
 
 ## -----------------------------------------------------------------------------
 abalone <- SODAS.to.RSDA("abalone.xml")

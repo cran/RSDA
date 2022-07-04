@@ -1,4 +1,5 @@
-#' Symbolic Variable (Feature)
+#' Symbolic Variable
+#'
 #' @name sym.var
 #' @aliases sym.var
 #' @author Oldemar Rodriguez Rojas
