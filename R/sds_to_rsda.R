@@ -3,10 +3,9 @@
 #' @aliases SDS.to.RSDA
 #' @author Olger Calderon and Roberto Zuniga.
 #' @description To convert SDS SODAS files to RSDA files.
-#' @usage SDS.to.RSDA(file.path, labels = FALSE, encoding = "UTF-8")
+#' @usage SDS.to.RSDA(file.path, labels = FALSE)
 #' @param file.path Disk path where the SODAS *.SDA file is.
 #' @param labels If we want to include SODAS SDA files lebels in RSDA file.
-#' @param encoding file encoding
 #'
 #' @return A RSDA symbolic data file.
 #' @references Bock H-H. and Diday E. (eds.) (2000).
@@ -26,9 +25,8 @@
 #' @keywords Symbolic data table
 #' @export
 #' @importFrom RJSONIO fromJSON
-#' @importFrom readr read_lines locale
 #'
-SDS.to.RSDA <- function(file.path, labels = FALSE, encoding = "UTF-8") {
+SDS.to.RSDA <- function(file.path, labels = FALSE) {
   get.last <- function(X) {
     return(X[[length(X)]])
   }
@@ -233,7 +231,7 @@ SDS.to.RSDA <- function(file.path, labels = FALSE, encoding = "UTF-8") {
 
   # -------------------- Main function Logic --------------------
 
-  data <- readr::read_lines(file = file.path, locale = readr::locale(encoding = encoding))
+  data <- readLines(con = file.path, warn = FALSE)
 
   cat("Preprocessing file\n")
   data <- regex.preprocess(data)

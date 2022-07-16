@@ -4,14 +4,12 @@
 \alias{SDS.to.RSDA}
 \title{SDS SODAS files to RSDA files.}
 \usage{
-SDS.to.RSDA(file.path, labels = FALSE, encoding = "UTF-8")
+SDS.to.RSDA(file.path, labels = FALSE)
 }
 \arguments{
 \item{file.path}{Disk path where the SODAS *.SDA file is.}
 
 \item{labels}{If we want to include SODAS SDA files lebels in RSDA file.}
-
-\item{encoding}{file encoding}
 }
 \value{
 A RSDA symbolic data file.

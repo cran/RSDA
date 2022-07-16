@@ -8,7 +8,7 @@ FILE =  (
    create_date = ""
 ),
 HEADER =  (
-   title = "Anomalias de escorrentia Cuenca 31" ,
+   title = "Anomalías de escorrentía Cuenca 31" ,
    sub_title = "71-2002" ,
    indiv_nb = 32 ,
    var_nb = 6 ,
