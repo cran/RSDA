@@ -480,67 +480,32 @@ mcfa.scatterplot(res[,2], res[,3], sym.data = sym.table, pos.var = c(2,3,4))
 ## Ejemplo Oils
 
 ```{r}
-data <- oils
-data
+datos <- oils
+datos
 ```
 
 ```{r}
-coords <- sym.umap(data)
-coords
+x <- sym.umap(datos)
+x
 ```
 
 ```{r}
-plot(coords)
+plot(x)
 ```
 
 ## Ejemplo Cardiological
 
 ```{r}
-data <- Cardiological
-data
+datos <- Cardiological
+datos
 ```
 
 ```{r}
-coords <- sym.umap(data)
-coords
+x <- sym.umap(datos)
+x
 ```
 
 ```{r}
-plot(coords)
+plot(x)
 ```
-
-# Symbolic TSNE
-
-## Ejemplo Oils
-
-```{r}
-data <- oils
-data
-```
-
-```{r}
-coords <- sym.tsne(data)
-coords
-```
-
-```{r}
-plot(coords)
-```
-
-## Ejemplo Cardiological
-
-```{r}
-data <- Cardiological
-data
-```
-
-```{r}
-coords <- sym.tsne(data)
-coords
-```
-
-```{r}
-plot(coords)
-```
-
 

@@ -9,6 +9,31 @@ check_quo_duplicated_names <- function(x) {
   return(x)
 }
 
+#' tbl_subset_col
+#' @keywords internal
+tbl_subset_col <- function(x, j, j_arg) {
+  if (is.null(j)) return(x)
+  vectbl_as_col_location <- getFromNamespace("vectbl_as_col_location","tibble")
+  j <- vectbl_as_col_location(j, length(x), names(x), j_arg = j_arg, assign = FALSE)
+
+  if (anyNA(j)) {
+    cnd_signal(error_na_column_index(which(is.na(j))))
+  }
+
+  xo <- .subset(x, j)
+  if (anyDuplicated(j)) {
+    xo <- set_repaired_names(xo, repair_hint = FALSE, .name_repair = "minimal")
+  }
+  set_tibble_class <- function(x, nrow) {
+    attr(x, "row.names") <- .set_row_names(nrow)
+    tibble_class <- getFromNamespace("tibble_class","tibble")
+    class(x) <- tibble_class
+    x
+  }
+  fast_nrow <- getFromNamespace("fast_nrow","tibble")
+  set_tibble_class(xo, nrow = fast_nrow(x))
+}
+
 #' Generate a symbolic data frame
 #' @description Generate a symbolic data table from a classic data table.
 #' @param x A data.frame.
@@ -74,8 +99,69 @@ classic.to.sym <- function(x = NULL,
 `[.symbolic_tbl` <- function(x, i, j, drop = FALSE, ...) {
   .concepts <- attr(x,"concept")
   tbl_subset_matrix <- getFromNamespace("tbl_subset_matrix","tibble")
-  tbl_subset_col <- getFromNamespace("tbl_subset_col","tibble")
-  tbl_subset_row <- getFromNamespace("tbl_subset_row","tibble")
+  tbl_subset_col <- function(x, j, j_arg) {
+    if (is.null(j)) return(x)
+    vectbl_as_col_location <- getFromNamespace("vectbl_as_col_location","tibble")
+    j <- vectbl_as_col_location(j, length(x), names(x), j_arg = j_arg, assign = FALSE)
+
+    if (anyNA(j)) {
+      cnd_signal(error_na_column_index(which(is.na(j))))
+    }
+
+    xo <- .subset(x, j)
+    if (anyDuplicated(j)) {
+      xo <- set_repaired_names(xo, repair_hint = FALSE, .name_repair = "minimal")
+    }
+    set_tibble_class <- function(x, nrow) {
+      attr(x, "row.names") <- .set_row_names(nrow)
+      tibble_class <- getFromNamespace("tibble_class","tibble")
+      class(x) <- tibble_class
+      x
+    }
+    fast_nrow <- getFromNamespace("fast_nrow","tibble")
+    set_tibble_class(xo, nrow = fast_nrow(x))
+  }
+  tbl_subset_row <- function(x, i, i_arg) {
+    if (is.null(i)) return(x)
+    vectbl_as_row_index <- function(i, x, i_arg, assign = FALSE) {
+      stopifnot(!is.null(i))
+      fast_nrow <- getFromNamespace("fast_nrow","tibble")
+      nr <- fast_nrow(x)
+
+      if (is.character(i)) {
+        is_na_orig <- is.na(i)
+
+        if (has_rownames(x)) {
+          i <- match(i, rownames(x))
+        } else {
+          i <- string_to_indices(i)
+          fix_oob <- getFromNamespace("fix_oob","tibble")
+          i <- fix_oob(i, nr, warn = FALSE)
+        }
+        fix_oob <- getFromNamespace("fix_oob","tibble")
+        i <- fix_oob_invalid(i, is_na_orig)
+        i
+      } else if (is.numeric(i)) {
+        fix_oob <- getFromNamespace("fix_oob","tibble")
+        i <- fix_oob(i, nr)
+        vectbl_as_row_location <- getFromNamespace("vectbl_as_row_location","tibble")
+        vectbl_as_row_location(i, nr, i_arg, assign)
+      } else {
+        vectbl_as_row_location <- getFromNamespace("vectbl_as_row_location","tibble")
+        vectbl_as_row_location(i, nr, i_arg, assign)
+      }
+    }
+    vectbl_as_row_index <- getFromNamespace("vectbl_as_row_index","tibble")
+    i <- vectbl_as_row_index(i, x, i_arg)
+    xo <- lapply(unclass(x), vctrs::vec_slice, i = i)
+    set_tibble_class <- function(x, nrow) {
+      attr(x, "row.names") <- .set_row_names(nrow)
+      tibble_class <- getFromNamespace("tibble_class","tibble")
+      class(x) <- tibble_class
+      x
+    }
+    set_tibble_class(xo, nrow = length(i))
+  }
   tbl_subset2 <- getFromNamespace("tbl_subset2","tibble")
   vectbl_restore <- getFromNamespace("vectbl_restore","tibble")
 
@@ -197,8 +283,9 @@ extract_data <- function(x, name = NA) {
 }
 
 #' Extract length
+#' @export
 #' @keywords internal
-var.length <- function(x) {
+var.length <- function(x,...) {
   if (any(class(x) %in% c("numeric", "integer"))) {
     return(1)
   }
@@ -219,6 +306,7 @@ var.length <- function(x) {
     return(length(x[[1]]$breaks) - 1)
   }
 }
+
 
 #' to.v2
 #' @keywords internal
@@ -252,6 +340,7 @@ to.v2 <- function(x) {
 #' to.v3
 #' @keywords internal
 to.v3 <- function(x) {
+
   out <- tibble::tibble(.rows = length(x$sym.obj.names))
   for (i in seq_len(x$M)) {
     if (x$sym.var.types[i] == "$I") {
@@ -331,6 +420,7 @@ to.v3 <- function(x) {
       } := values)
     }
   }
+
   attr(out, "concept") <- x$sym.obj.names
   class(out) <- c("symbolic_tbl", class(out))
   return(out)

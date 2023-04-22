@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{sym_umap object}
 
-\item{...}{other graphical parameters (see par and section ‘Details’ below).}
+\item{...}{params for plot}
 }
 \description{
 Plot UMAP for symbolic data tables

@@ -1,10 +1,14 @@
+#' UMAP for Symbolic Data
+#'
+#' @description This function applies the UMAP algorithm to a symbolic data table.
+#'
+#' @param sym.data A symbolic data table.
+#' @param ... Additional arguments to be passed to the UMAP algorithm.
 #' @keywords Intervals
 #' @export
 #'
-sym.umap <- function(sym.data,
-                     config = umap::umap.defaults,
-                     method = c("naive", "umap-learn"),
-                     preserve.seed = TRUE, ...) {
+#'
+sym.umap <- function(sym.data, ...) {
   UseMethod("sym.umap")
 }
 
@@ -32,27 +36,20 @@ expand_rows <- function(df){
 
 #' UMAP for symbolic data tables
 #' @rdname sym.umap
-#' @aliases sym.umap
 #' @param sym.data symbolic data table
 #' @param config object of class umap.config
 #' @param method 	character, implementation. Available methods are 'naive' (an implementation written in pure R) and 'umap-learn' (requires python package 'umap-learn')
 #' @param preserve.seed logical, leave TRUE to insulate external code from randomness within the umap algorithms; set FALSE to allow randomness used in umap algorithms to alter the external random-number generator
 #' @param ... list of settings; values overwrite defaults from config; see documentation of umap.default for details about available settings
 #' @export
-#' @usage sym.umap(sym.data, config = umap::umap.defaults,
-#' method = c("naive", "umap-learn"),preserve.seed = TRUE,...)
 #' @import umap
-#' @examples
-#' \dontrun{
-#' res <- sym.umap(oils)
-#' res
-#' plot(res)
-#'}
-sym.umap.symbolic_tbl <- function(sym.data,
+#'
+sym.umap.symbolic_tbl <- function(sym.data = NULL,
                                  config = umap::umap.defaults,
                                  method = c("naive", "umap-learn"),
                                  preserve.seed = TRUE, ...){
   ext <- expand_rows(sym.data)
+  config$n_components <- ncol(ext)
   umap_df <- umap::umap(scale(ext), config)
 
   res_umap <- as.data.frame(umap_df$layout)
@@ -64,12 +61,12 @@ sym.umap.symbolic_tbl <- function(sym.data,
 
 #' Plot UMAP for symbolic data tables
 #' @param  x sym_umap object
-#' @param ... other graphical parameters (see par and section ‘Details’ below).
+#' @param ... params for plot
 #' @export
 #' @import ggplot2
 #' @importFrom dplyr group_by summarise
 #'
-plot.sym_umap <- function(x,...){
+plot.sym_umap <- function(x, ...){
   l <- length(attr(x, "names_umap"))
   x$group <- sort(rep(1:l,(nrow(x)/l)))
 

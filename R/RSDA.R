@@ -27,8 +27,8 @@
 #' \tabular{ll}{
 #' Package: \tab RSDA\cr
 #' Type: \tab Package\cr
-#' Version: \tab 3.0.13\cr
-#' Date: \tab 2022-07-15\cr
+#' Version: \tab 3.1.0\cr
+#' Date: \tab 2023-04-21\cr
 #' License: \tab GPL (>=2)\cr
 #' }
 #' Most of the function of the package stars from a symbolic data table that can be store in
@@ -83,6 +83,12 @@ NULL
 utils::globalVariables(c(
   "to", "from", "interval", "n", "prob", "pca.max", "N", "M",
   "<<-", ".", "do", "quo", "concept","C1","C1.1","C2","C2.1","var.name","cat.name","symindiv","Variables",
-  "value","Individuals","pos.var",":=","real.value","V1", "V2",
-  "group", "xmax", "xmin", "ymax", "ymin"
+  "value","Individuals","pos.var",":=","real.value"
 ))
+
+# Evitar advertencias sobre variables globales en ggplot2
+utils::globalVariables(c("V1", "V2", "group", "xmin", "xmax", "ymin", "ymax","has_rownames",
+                         "cnd_signal","error_na_column_index","set_repaired_names","string_to_indices",
+                         "string_to_indices","fix_oob_invalid","error_na_column_index","string_to_indices"
+                         ))
+

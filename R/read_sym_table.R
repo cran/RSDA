@@ -111,6 +111,7 @@
 #' @importFrom utils read.table
 #'
 read.sym.table <- function(file, header = TRUE, sep, dec, row.names = NULL) {
+
   meta.data <- utils::read.table(file, header,
     sep = as.character(sep), dec = as.character(dec),
     row.names = c(row.names), check.names = FALSE
@@ -173,6 +174,8 @@ read.sym.table <- function(file, header = TRUE, sep, dec, row.names = NULL) {
   for (k in 1:del.columns.length) {
     sym.var.types[del.columns[k]] <- "$H"
   }
+
+
   del2 <- match(sym.var.types, c("$C", "$I", "$H", "$S", "$M"), 0)
   sym.var.types <- sym.var.types[del1 > 0]
   sym.var.length <- sym.var.length[del1 > 0]

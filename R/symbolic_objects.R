@@ -717,6 +717,7 @@ format.symbolic_modal <- function(x, ...) {
 
 get_cats <- function(x, ...) UseMethod("get_cats")
 
+#' @export
 #' @rawNamespace S3method(var, default)
 get_cats.symbolic_modal <- function(x, ...) {
   if (length(x) == 1) {
@@ -735,7 +736,9 @@ get_cats.symbolic_modal <- function(x, ...) {
 
 get_props <- function(x, ...) UseMethod("get_props")
 
+
 #' @rawNamespace S3method(var, default)
+#' @export
 get_props.symbolic_modal <- function(x, ...) {
   if (length(x) == 1) {
     out <- x[[1]]$prop
