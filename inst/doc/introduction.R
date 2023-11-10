@@ -328,3 +328,185 @@ x
 ## -----------------------------------------------------------------------------
 plot(x)
 
+## -----------------------------------------------------------------------------
+data(oils)
+datos <- oils
+interval.length(datos)
+
+## -----------------------------------------------------------------------------
+data("hardwoodBrito")
+Hardwood.histogram<-hardwoodBrito
+Hardwood.cols<-colnames(Hardwood.histogram)
+Hardwood.names<-row.names(Hardwood.histogram)
+Hardwood.histogram
+
+Hardwood.histogram[[1]][[1]]
+
+## -----------------------------------------------------------------------------
+weighted.center<-weighted.center.Hist.RSDA(Hardwood.histogram)
+
+## -----------------------------------------------------------------------------
+BIN.Matrix<-matrix(rep(3,length(Hardwood.cols)*length(Hardwood.names)),nrow = length(Hardwood.names))
+
+## -----------------------------------------------------------------------------
+pca.hist<-sym.histogram.pca(Hardwood.histogram,BIN.Matrix)
+pca.hist$classic.PCA
+pca.hist$sym.hist.matrix.PCA
+
+## -----------------------------------------------------------------------------
+ACER.p1<-Sym.PCA.Hist.PCA.k.plot(data.sym.df = pca.hist$Bins.df,
+                             title.graph = " ",
+                             concepts.name = c("ACER"),
+                             title.x = "First Principal Component (84.83%)",
+                             title.y = "Frequency",
+                             pca.axes = 1)
+
+ACER.p1
+
+## -----------------------------------------------------------------------------
+ALL.p1<-Sym.PCA.Hist.PCA.k.plot(data.sym.df = pca.hist$Bins.df,
+                    title.graph = " ",
+                    concepts.name = unique(pca.hist$Bins.df$Object.Name),
+                    title.x = "First Principal Component (84.83%)",
+                    title.y = "Frequency",
+                    pca.axes = 1)
+
+ALL.p1
+
+## -----------------------------------------------------------------------------
+Hardwood.quantiles.PCA<-quantiles.RSDA(pca.hist$sym.hist.matrix.PCA,3)
+
+label.name<-"Hard Wood"
+Title<-"First Principal Plane"
+axes.x.label<- "First Principal Component (84.83%)"
+axes.y.label<- "Second Principal Component (9.70%)"
+concept.names<-c("ACER")
+var.names<-c("PC.1","PC.2")
+
+quantile.ACER.plot<-Percentil.Arrow.plot(Hardwood.quantiles.PCA,
+                     concept.names,
+                     var.names,
+                     Title,
+                     axes.x.label,
+                     axes.y.label,
+                     label.name
+                     )
+
+quantile.ACER.plot
+
+## -----------------------------------------------------------------------------
+label.name<-"Hard Wood"
+Title<-"First Principal Plane"
+axes.x.label<- "First Principal Component (84.83%)"
+axes.y.label<- "Second Principal Component (9.70%)"
+concept.names<-row.names(Hardwood.quantiles.PCA)
+var.names<-c("PC.1","PC.2")
+
+quantile.plot<-Percentil.Arrow.plot(Hardwood.quantiles.PCA,
+                     concept.names,
+                     var.names,
+                     Title,
+                     axes.x.label,
+                     axes.y.label,
+                     label.name
+                     )
+
+quantile.plot
+
+## -----------------------------------------------------------------------------
+label.name<-"Hard Wood"
+Title<-"First Principal Plane"
+axes.x.label<- "PC 1 (84.83%)"
+axes.y.label<- "PC 2 (9.70%)"
+concept.names<-c("ACER")
+var.names<-c("PC.1","PC.2")
+
+plot.3D.HW<-sym.quantiles.PCA.plot(Hardwood.quantiles.PCA,
+                               concept.names,
+                               var.names,
+                               Title,
+                               axes.x.label,
+                               axes.y.label,
+                               label.name)
+
+plot.3D.HW
+
+## -----------------------------------------------------------------------------
+concept.names<-row.names(Hardwood.quantiles.PCA)
+sym.all.quantiles.plot(Hardwood.quantiles.PCA,
+                               concept.names,
+                               var.names,
+                               Title,
+                               axes.x.label,
+                               axes.y.label,
+                               label.name)
+
+## -----------------------------------------------------------------------------
+sym.all.quantiles.mesh3D.plot(Hardwood.quantiles.PCA,
+                               concept.names,
+                               var.names,
+                               Title,
+                               axes.x.label,
+                               axes.y.label,
+                               label.name)
+
+## -----------------------------------------------------------------------------
+Hardwood.quantiles.PCA.2<-quantiles.RSDA.KS(pca.hist$sym.hist.matrix.PCA,100)
+h<-Hardwood.quantiles.PCA.2[[1]][[1]]
+tmp<-HistRSDAToEcdf(h)
+
+h2<-Hardwood.quantiles.PCA.2[[1]][[2]]
+tmp2<-HistRSDAToEcdf(h2)
+
+h3<-Hardwood.quantiles.PCA.2[[1]][[3]]
+tmp3<-HistRSDAToEcdf(h3)
+
+h4<-Hardwood.quantiles.PCA.2[[1]][[4]]
+tmp4<-HistRSDAToEcdf(h4)
+
+h5<-Hardwood.quantiles.PCA.2[[1]][[5]]
+tmp5<-HistRSDAToEcdf(h5)
+
+breaks.unique<-unique(c(h$breaks,h2$breaks,h3$breaks,h4$breaks,h5$breaks))
+tmp.unique<-breaks.unique[order(breaks.unique)]
+
+tmp<-tmp(v = tmp.unique)
+tmp2<-tmp2(v = tmp.unique)
+tmp3<-tmp3(v = tmp.unique)
+tmp4<-tmp4(v = tmp.unique)
+tmp5<-tmp5(v = tmp.unique)
+abs_dif <-  abs(tmp2 - tmp)
+# La distancia Kolmogorov–Smirnov es el máximo de las distancias absolutas.
+distancia_ks <- max(abs_dif)
+distancia_ks
+
+## ----eval=FALSE---------------------------------------------------------------
+#  library(tidyr)
+#  # Se unen los valores calculados en un dataframe.
+#  df.HW <- data.frame(
+#    PC.1 = tmp.unique,
+#    ACER = tmp,
+#    ALNUS = tmp2,
+#    FRAXINUS = tmp3,
+#    JUGLANS = tmp4,
+#    QUERCUS = tmp5
+#  ) %>%
+#    pivot_longer(
+#      cols = c(ACER, ALNUS,FRAXINUS,JUGLANS,QUERCUS),
+#      names_to = "HardWood",
+#      values_to = "ecdf"
+#    )
+#  
+#  grafico_ecdf <- ggplot(data = df.HW,
+#                         aes(x = PC.1, y = ecdf, color = HardWood)) +
+#    geom_line(size = 1) +
+#    labs(
+#      color = "Hardwood",
+#      y = "Empirical Cumulative Distribution "
+#    ) +
+#    theme_bw() +
+#    theme(legend.position = "bottom",
+#          plot.title = element_text(size = 12))+geom_line()
+#  
+#  grafico_ecdf
+

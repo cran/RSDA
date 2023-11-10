@@ -599,3 +599,21 @@
 #' VeterinaryData
 #' @keywords datasets
 "VeterinaryData"
+
+
+#' @name hardwoodBrito
+#' @aliases hardwoodBrito
+#' @title Hard Wood Data Example
+#' @description
+#' Symbolic Histogram matrix.
+#' @usage data('hardwoodBrito')
+#' @references
+#' Brito P. and Dias S. (2022).
+#' Analysis of Distributional Data. CRC Press, United States of America.
+#' @examples
+#' \dontrun{
+#' data(hardwoodBrito)
+#' hardwoodBrito
+#' }
+#' @keywords datasets
+"hardwoodBrito"

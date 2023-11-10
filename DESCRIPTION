@@ -1,8 +1,8 @@
 Package: RSDA
 Type: Package
 Title: R to Symbolic Data Analysis
-Version: 3.1.0
-Date: 2023-04-21
+Version: 3.2.1
+Date: 2023-11-09
 Authors@R: c(
     person("Oldemar", "Rodriguez", email = "oldemar.rodriguez@ucr.ac.cr", role = c("aut", "cre")),
     person("Jose Emmanuel", "Chacon", email = "eman.jos@gmail.com", role = "cph"),
@@ -19,15 +19,16 @@ Imports: vctrs (>= 0.2.4), dplyr (>= 0.8.5), forcats, scales, stringr,
         rlang (>= 0.4.5), purrr, magrittr, tidyselect, tibble (>=
         3.0.0), stats, RJSONIO, XML, ggplot2, ggpolypath, reshape,
         glmnet, FactoMineR, princurve, nloptr, sqldf, randomcoloR,
-        kknn, e1071, gbm, randomForest, rpart, neuralnet, umap
+        kknn, e1071, gbm, randomForest, rpart, neuralnet, umap, xtable,
+        plotly, ggrepel
 VignetteBuilder: knitr
 LazyData: true
 NeedsCompilation: no
-Packaged: 2023-04-21 19:06:07 UTC; promidat04
+Packaged: 2023-11-10 02:04:34 UTC; jaag2
 Author: Oldemar Rodriguez [aut, cre],
   Jose Emmanuel Chacon [cph],
   Carlos Aguero [cph],
   Jorge Arce [cph]
 Maintainer: Oldemar Rodriguez <oldemar.rodriguez@ucr.ac.cr>
 Repository: CRAN
-Date/Publication: 2023-04-22 04:10:02 UTC
+Date/Publication: 2023-11-10 14:53:24 UTC

@@ -11,7 +11,8 @@ sym.pca(sym.data, ...)
 \method{sym.pca}{symbolic_tbl}(
   sym.data,
   method = c("classic", "tops", "centers", "principal.curves", "optimized.distance",
-    "optimized.variance"),
+    "optimized.variance", "fixed"),
+  fixed.matrix = NULL,
   ...
 )
 }
@@ -23,6 +24,8 @@ sym.pca(sym.data, ...)
 \item{method}{It is use so select the method, 'classic' execute a classical principal component
 analysis over the centers of the intervals, 'tops' to use the vertices algorithm
 and 'centers' to use the centers algorithm.}
+
+\item{fixed.matrix}{Classic Matrix. It is use when the method chosen is "fixed".}
 }
 \value{
 Sym.Components: This a symbolic data table with the interval principal components. As

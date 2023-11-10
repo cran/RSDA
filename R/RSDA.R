@@ -83,12 +83,18 @@ NULL
 utils::globalVariables(c(
   "to", "from", "interval", "n", "prob", "pca.max", "N", "M",
   "<<-", ".", "do", "quo", "concept","C1","C1.1","C2","C2.1","var.name","cat.name","symindiv","Variables",
-  "value","Individuals","pos.var",":=","real.value"
+  "value","Individuals","pos.var",":=","real.value","centers.pca.j.new"
 ))
 
 # Evitar advertencias sobre variables globales en ggplot2
 utils::globalVariables(c("V1", "V2", "group", "xmin", "xmax", "ymin", "ymax","has_rownames",
                          "cnd_signal","error_na_column_index","set_repaired_names","string_to_indices",
-                         "string_to_indices","fix_oob_invalid","error_na_column_index","string_to_indices"
+                         "string_to_indices","fix_oob_invalid","error_na_column_index","string_to_indices",
+                         "Coord.Var.1", "Coord.Var.2", "Concept.Name", "Coord.Var.Next.1","Coord.Var.Next.2",
+                         "Coord.Min", "Frequency.min", "Id", "Object.Name", "Coord.Max",
+                         "Frequency", "Coord.Min", "Frequency.min", "Id", "Coord.Max",
+                         "Frequency", "Principal.Component", "Principal.Component", "Object.Name",
+                         "Concept.Name"
+
                          ))
 

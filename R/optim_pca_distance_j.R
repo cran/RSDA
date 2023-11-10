@@ -35,7 +35,7 @@ optim.pca.distance.j <- function(sym.data) {
     sym.data.vertex.matrix.cent[, i] <- (sym.data.vertex.matrix.cent[, i] - mean.var[i]) / desv.var[i]
   }
   M.x <- rbind(M.x, sym.data.vertex.matrix.cent)
-  pca.min <- PCA(
+  pca.min <- FactoMineR::PCA(
     X = M.x, scale.unit = FALSE, ind.sup = (N + 1):tot.individuals,
     ncp = M, graph = FALSE
   )

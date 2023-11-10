@@ -90,6 +90,7 @@ sym.pca <- function(sym.data, ...) {
 #' @param method It is use so select the method, 'classic' execute a classical principal component
 #' analysis over the centers of the intervals, 'tops' to use the vertices algorithm
 #' and 'centers' to use the centers algorithm.
+#' @param fixed.matrix Classic Matrix. It is use when the method chosen is "fixed".
 #' @export
 #' @importFrom  FactoMineR PCA
 #' @importFrom tibble as_tibble rownames_to_column
@@ -97,8 +98,10 @@ sym.pca.symbolic_tbl <- function(sym.data, method = c(
                                    "classic", "tops",
                                    "centers", "principal.curves",
                                    "optimized.distance",
-                                   "optimized.variance"
-                                 ), ...) {
+                                   "optimized.variance",
+                                   "fixed"
+                                 ), fixed.matrix = NULL
+                                 , ...) {
   all_interval <- all(sapply(sym.data, function(x) any(class(x) %in% "symbolic_interval")))
   if (!all_interval) {
     stop("All variables have to be of the same type")
@@ -269,12 +272,18 @@ sym.pca.symbolic_tbl <- function(sym.data, method = c(
   }
   if (method == "optimized.distance") {
     res <- optim.pca.distance.j(sym.data)
+    #res <- optim.pca.distance.j.new(sym.data)
     class(res) <- c("symbolic_pca_optimized", class(res))
     return(res)
   }
   if (method == "optimized.variance") {
     res <- optim.pca.variance.j(sym.data, num.dimension = 3)
+    #res <- optim.pca.variance.j.new(sym.data, num.dimension = 3)
     class(res) <- c("symbolic_pca_optimized", class(res))
+    return(res)
+  }
+  if(method == "fixed"){
+    res <-fixed.pca.j.new(sym.data, fixed.matrix)
     return(res)
   }
   return(TRUE)
